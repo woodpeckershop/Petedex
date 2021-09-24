@@ -33,22 +33,42 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+// const usersRoutes = require("./routes/users");
+// const widgetsRoutes = require("./routes/widgets");
+const userRoutes = require("./routes/users");
+const productsRoute = require("./routes/products")
+const servicesRoute = require("./routes/services")
+const favoritesRoute = require("./routes/favorites")
+
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+app.use ("/api/products", productsRoute(db))
+// app.use ("/api/services", servicesRoute(db))
+// app.use ("/api/users", usersRoute(db))
+// app.use ("/api/favorites", favoritesRoute(db))
+
+// original
+// app.use("/api/users", usersRoutes(db));
+// app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
-});
+
+// app.get("/", (req, res) => {
+//   queries
+//     .getAll(db)
+//     .then((data) => {
+//       res.json({ data });
+//     })
+//     .catch((err) => {
+//       res.status(500).json({ error: err.message });
+//     });
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
