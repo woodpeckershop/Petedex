@@ -1,10 +1,11 @@
 const getAllProducts = (db) => {
   // console.log("client",pool)
 const queryStatement =
-`SELECT users.name, price, name, description, photo_path
-FROM products
-JOIN users ON user_id = users.id
-ORDER BY name`;
+`SELECT * from products`;
+// `SELECT users.name, price, name, description, photo_path
+// FROM products
+// JOIN users ON user_id = users.id
+// ORDER BY name`;
 return db
 .query(queryStatement)
 .then((res)=>{
