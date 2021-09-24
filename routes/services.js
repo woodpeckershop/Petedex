@@ -7,7 +7,7 @@ module.exports = function (db) {
 
   router.get("/", (req, res) => {
     queries
-      .getAllServices(16)
+      .getAllServices(db)
       .then((data) => {
         res.json(data);
       })
