@@ -1,12 +1,13 @@
-const { Pool } = require("pg");
+
 
 const getAllProducts = (db) => {
   // console.log("client",pool)
 const queryStatement =
-`SELECT users.name, price, name, description, photo_path
-FROM products
-JOIN users ON user_id = users.id
-ORDER BY name`;
+`SELECT * from products`;
+// `SELECT users.name, price, name, description, photo_path
+// FROM products
+// JOIN users ON user_id = users.id
+// ORDER BY name`;
 return db
 .query(queryStatement)
 .then((res)=>{
@@ -30,21 +31,21 @@ return db
 //       });
 //   }
 
-// const getAllServices = () => {
-//   const queryStatement =
-//   `SELECT users.name, price, name, description, photo_path
-//   FROM services
-//   JOIN users ON user_id = users.id
-//   ORDER BY name`;
-//   return db
-//   .query(queryStatement)
-//   .then((res)=>{
-//     return res.rows;
-//   })
-//   .catch((err) => {
-//         return err;
-//       });
-//   }
+const getAllServices = (db) => {
+  const queryStatement =
+  `SELECT users.name, price, name, description, photo_path
+  FROM services
+  JOIN users ON user_id = users.id
+  ORDER BY name`;
+  return db
+  .query(queryStatement)
+  .then((res)=>{
+    return res.rows;
+  })
+  .catch((err) => {
+        return err;
+      });
+  }
 
 //   const createNewUser = (newUser) => {
 //     const value = [
@@ -209,6 +210,6 @@ return db
 
   module.exports = {
     getAllProducts,
-    // getAllServices,
+    getAllServices,
 
   };

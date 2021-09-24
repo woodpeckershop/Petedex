@@ -45,7 +45,7 @@ const favoritesRoute = require("./routes/favorites")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use ("/api/products", productsRoute(db))
-// app.use ("/api/services", servicesRoute(db))
+app.use ("/api/services", servicesRoute(db))
 // app.use ("/api/users", usersRoute(db))
 // app.use ("/api/favorites", favoritesRoute(db))
 
