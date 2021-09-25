@@ -14,6 +14,7 @@ CREATE TABLE users (
 -- products table
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   price INTEGER NOT NULL DEFAULT 0,
@@ -23,6 +24,7 @@ CREATE TABLE products (
 -- services table
 CREATE TABLE services (
   id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   price INTEGER NOT NULL DEFAULT 0,

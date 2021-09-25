@@ -1,51 +1,33 @@
-
-
 const getAllProducts = (db) => {
-  // console.log("client",pool)
-const queryStatement =
-`SELECT * from products`;
-// `SELECT users.name, price, name, description, photo_path
-// FROM products
-// JOIN users ON user_id = users.id
-// ORDER BY name`;
-return db
-.query(queryStatement)
-.then((res)=>{
-  return res.rows;
-})
-}
-
-// const getAll = () => {
-//   const queryStatement =
-//   `SELECT services.name, services.description,services.photo_path,services.price,price, name, description, photo_path
-//   FROM products
-//   JOIN services ON user_id = services.user_id
-//   ORDER BY name`;
-//   return db
-//   .query(queryStatement)
-//   .then((res)=>{
-//     return res.rows;
-//   })
-//   .catch((err) => {
-//         return err;
-//       });
-//   }
-
-const getAllServices = (db) => {
-  const queryStatement =
-  `SELECT users.name, price, name, description, photo_path
-  FROM services
+  const queryStatement = `SELECT users.name, price, name, description, photo_path
+  FROM products
   JOIN users ON user_id = users.id
   ORDER BY name`;
-  return db
-  .query(queryStatement)
-  .then((res)=>{
+  return db.query(queryStatement).then((res) => {
     return res.rows;
-  })
-  .catch((err) => {
-        return err;
-      });
-  }
+  });
+};
+
+const getAll = (db) => {
+  const queryStatement = `SELECT services.name, services.description,services.image_path,services.price,products.price, prducts.name, products.description, products.image_path
+  FROM users
+  JOIN products ON products.user_id = users.id
+  JOIN services ON services.user_id = users.id
+  ORDER BY users.id`;
+  return db.query(queryStatement).then((res) => {
+    return res.rows;
+  });
+};
+
+const getAllServices = (db) => {
+  const queryStatement = `SELECT users.name, price, services.name, description, image_path
+  FROM services
+  JOIN users ON user_id = users.id
+  ORDER BY services.name`;
+  return db.query(queryStatement).then((res) => {
+    return res.rows;
+  });
+};
 
 //   const createNewUser = (newUser) => {
 //     const value = [
@@ -100,7 +82,6 @@ const getAllServices = (db) => {
 //         })
 //     );
 //   };
-
 
 //   const deleteProduct = (id) => {
 //     const value = id["id"];
@@ -166,50 +147,49 @@ const getAllServices = (db) => {
 //     });
 //   };
 
-//   const getProductWithId = function (id) {
-//     const value = id;
-//     const queryStatement =
-//         `
-//       SELECT *
-//       FROM products
-//       Where id = $1
-//       `;
+const getProductWithId = function (id, db) {
+  const value = [Number(id)];
+  const queryStatement = `
+      SELECT *
+      FROM products
+      Where id = $1
+      `;
 
-//       return db
-//     .query(queryStatement, value)
-//     .then((res) => {
-//       return res.rows;
-//     })
-//     .catch((err) => {
-//       return err;
-//     });
-// };
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      console.log("getaproduct", err.message);
+      return err;
+    });
+};
 
+const getServicesWithId = function (id, db) {
+  const value = [Number(id)];
+  const queryStatement = `
+    SELECT *
+    FROM services
+    Where id = $1
+    `;
 
-// const getServicesWithId = function (id) {
-//   const value = id;
-//   const queryStatement =
-//       `
-//     SELECT *
-//     FROM services
-//     Where id = $1
-//     `;
-
-//     return db
-//   .query(queryStatement, value)
-//   .then((res) => {
-//     return res.rows;
-//   })
-//   .catch((err) => {
-//     return err;
-//   });
-// };
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
 
 // favorites and cancelFav? add boolean in ERD?
 
-
-  module.exports = {
-    getAllProducts,
-    getAllServices,
-
-  };
+module.exports = {
+  getAllProducts,
+  getAllServices,
+  getProductWithId,
+  getServicesWithId,
+  getAll,
+};
