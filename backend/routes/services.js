@@ -50,7 +50,7 @@ module.exports = function (db) {
 
   router.get("/:service_id", (req, res) => {
     queries
-      .getServiceWithId(req.params, db)
+      .getServiceWithId(req.params.service_id, db)
       .then((data) => {
         res.json(data);
       })

@@ -1,8 +1,8 @@
 const getAllProducts = (db) => {
-  const queryStatement = `SELECT users.name, price, name, description, photo_path
+  const queryStatement = `SELECT users.name, price, products.name, description, image_path
   FROM products
   JOIN users ON user_id = users.id
-  ORDER BY name`;
+  ORDER BY products.name`;
   return db.query(queryStatement).then((res) => {
     return res.rows;
   });
@@ -161,12 +161,11 @@ const getProductWithId = function (id, db) {
       return res.rows;
     })
     .catch((err) => {
-      console.log("getaproduct", err.message);
       return err;
     });
 };
 
-const getServicesWithId = function (id, db) {
+const getServiceWithId = function (id, db) {
   const value = [Number(id)];
   const queryStatement = `
     SELECT *
@@ -190,6 +189,6 @@ module.exports = {
   getAllProducts,
   getAllServices,
   getProductWithId,
-  getServicesWithId,
+  getServiceWithId,
   getAll,
 };
