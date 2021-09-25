@@ -54,16 +54,17 @@ module.exports = function(db) {
 //       });
 //   })
 
-//   router.get("/:product_id", (req, res) => {
-//     queries
-//       .getProductWithId(req.params)
-//       .then((data) => {
-//         res.json(data);
-//       })
-//       .catch((err) => {
-//         res.status(500).json({ error: err.message });
-//       });
-//   });
+  router.get("/:product_id", (req, res) => {
+    const product = {productId: req.params.productId};
+    queries
+      .getProductWithId(product)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 
 
 
