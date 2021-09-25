@@ -1,24 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
+
+import "./App.css";
+import Checkout from "./Checkout.jsx";
+import Header from "./Header.jsx";
+// import Home from "./Home";
+
+
 
 function App() {
+  const [state, setState] = useState({
+    products:[]
+  });
+
+  useEffect(() => {
+    Promise.all([
+      axios.get("/api/products"),
+      // axios.get("/api/services"),
+    ]).then((all) => {
+      console.log('all',all[0].data)
+      setState((prev) => ({
+        ...prev,
+        products: all[0].data,
+      }));
+    });
+  }, []);
+
+  //why/when is the state set?
+  console.log('state', state)
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //BEM
+    <Router>
+      <div className="App">
+        <Header />
+
+        <Switch>
+          <Route path="/checkout">
+            <Checkout />
+          </Route>
+
+          <Route path="/">
+            {/* <Home /> */}
+            <Checkout />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
