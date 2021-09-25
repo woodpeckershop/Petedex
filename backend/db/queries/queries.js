@@ -1,5 +1,5 @@
 const getAllProducts = (db) => {
-  const queryStatement = `SELECT users.name, price, products.name, description, image_path
+  const queryStatement = `SELECT users.name, price, products.name, description, image_path, products.id
   FROM products
   JOIN users ON user_id = users.id
   ORDER BY products.name`;
@@ -20,7 +20,7 @@ const getAll = (db) => {
 };
 
 const getAllServices = (db) => {
-  const queryStatement = `SELECT users.name, price, services.name, description, image_path
+  const queryStatement = `SELECT users.name, price, services.name, description, image_path, services.id
   FROM services
   JOIN users ON user_id = users.id
   ORDER BY services.name`;
