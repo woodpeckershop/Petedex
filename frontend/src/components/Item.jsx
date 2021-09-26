@@ -13,6 +13,7 @@ export default function Item(props) {
           </header>
           <p className="item-text">{description}</p>
         </div>
+        <button onClick={props.onClick}>Details</button>
       </article>
     </div>
   );

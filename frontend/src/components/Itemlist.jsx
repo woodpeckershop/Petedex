@@ -7,6 +7,7 @@ import Item from "./Item.jsx";
 
 function Home(props) {
   const { selectedItems } = props;
+  const itemArray = Object.values(selectedItems);
   // const [items, setItems] = useState(items);
   // const [categories, setCategories] = useState(allCategories);
 
@@ -49,7 +50,7 @@ function Home(props) {
   // return <ul>{itemList}</ul>;
   return (
     <div>
-      {selectedItems.map(item => (
+      {itemArray.map(item => (
         <Item
           //why error?
           key={item.id}
