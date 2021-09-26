@@ -28,7 +28,7 @@ function App() {
     );
   }, []);
 
-  // const filterItems = (category) => {
+  // const filter88888Items = (category) => {
   //   if (category === "products") {
   //     return items.products;
   //   } else {
