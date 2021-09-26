@@ -6,7 +6,7 @@ import Checkout from "./Checkout.jsx";
 import Header from "./Header.jsx";
 import Itemlist from "./Itemlist.jsx";
 import Categories from "./Categories.jsx";
-import ProductDetail from "./ProductDetail.jsx"
+import ProductDetail from "./ProductDetail.jsx";
 import Mystore from "./Mystore";
 function App() {
   const [items, setItems] = useState({
@@ -28,6 +28,10 @@ function App() {
       }
     );
   }, []);
+
+  useEffect(() => {
+    console.log(selectedItem)
+  }, [selectedItem]);
   // console.log('thing', items.products);
 
   // const filterItems = (category) => {
@@ -53,8 +57,7 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-
-        <Route path="/:user_id" exact>
+          <Route path="/:user_id" exact>
             <Mystore />
           </Route>
 
@@ -69,14 +72,14 @@ function App() {
               setSelectedCategory={setSelectedCategory}
             />
             <Itemlist
-              selectedItems={items[selectedCategory]} setSelectedItem={setSelectedItem}
+              selectedItems={items[selectedCategory]}
+              setSelectedItem={setSelectedItem}
               // products={filterItems(products)} services={filterItems(services)}
             />
-            
           </Route>
-          
+
           <Route path={`/products/${selectedItem.id}`}>
-            <ProductDetail selectedItem={selectedItem}  />
+            <ProductDetail selectedItem={selectedItem} />
             {/* {console.log('id',items.products[req.params.id])} */}
           </Route>
         </Switch>
