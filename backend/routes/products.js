@@ -28,16 +28,18 @@ module.exports = function (db) {
   //       });
   //   })
 
-  //   router.put("/user_id/:product_id/add", (req, res) => {
-  //     queries
-  //       .addProduct(req.body?)
-  //       .then((data) => {
-  //         res.json(data);
-  //       })
-  //       .catch((err) => {
-  //         res.status(500).json({ error: err.message });
-  //       });
-  //   })
+  router.put("/:user_id/add", (req, res) => {
+    //add products needs newproduct: {user_id, id, name, description, price, image_path}
+    console.log(req.body, "addproduct put request");
+    queries
+      .addProduct(req.body.newProduct, db)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 
   //   router.patch("/user_id/:product_id/edit", (req, res) => {
   //     queries
