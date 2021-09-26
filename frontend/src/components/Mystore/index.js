@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
 import "./style.scss";
+import axios from "axios";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const getLocalStorage = () => {
   let list = localStorage.getItem("list");
@@ -12,6 +14,8 @@ const getLocalStorage = () => {
   }
 };
 const Mystore = (props) => {
+  let { user_id } = useParams();
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -39,11 +43,31 @@ const Mystore = (props) => {
       setIsEditing(false);
       showAlert(true, "success", "value changed");
     } else {
-      showAlert(true, "success", "item added to the list");
-      const newItem = { id: new Date().getTime().toString(), title: name };
+      // router.put("/user_id/:product_id/add", (req, res) => {
+      //add products needs newproduct: {user_id, name, description, price, image_path}
 
-      setList([...list, newItem]);
-      setName("");
+      const newProduct = { user_id, name, description, price, image };
+      console.log(newProduct, "newProduct");
+      //need to change product id
+      axios
+        .put(`http://localhost:8080/api/products/${user_id}/add`, {
+          newProduct: { ...newProduct },
+        })
+        .then((res) => {
+          showAlert(true, "success", "item added to the list");
+          const newItem = {
+            id: new Date().getTime().toString(),
+            title: name,
+            des: description,
+            image: image,
+            price: price,
+          };
+
+          setList([...list, newItem]);
+          setName("");
+          console.log("put success", res);
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -79,35 +103,41 @@ const Mystore = (props) => {
           <input
             type="text"
             className="grocery"
-            placeholder="Product_name"
+            placeholder="Product name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+        </div>
+        <div className="form-control">
           <input
             type="text"
             className="grocery"
-            placeholder="Product_price"
-            value={name}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <input
-            type="text"
-            className="grocery"
-            placeholder="Product_image"
-            value={name}
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <input
-            type="text"
-            className="grocery"
-            placeholder="Product_description"
-            value={name}
+            placeholder="Product description"
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <button type="submit" className="submit-btn">
-            {isEditing ? "edit" : "submit"}
-          </button>
         </div>
+        <div className="form-control">
+          <input
+            type="text"
+            className="grocery"
+            placeholder="Product price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div className="form-control">
+          <input
+            type="text"
+            className="grocery"
+            placeholder="Product image"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="submit-btn">
+          {isEditing ? "edit" : "submit"}
+        </button>
       </form>
       {list.length > 0 && (
         <div className="grocery-container">

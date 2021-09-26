@@ -69,7 +69,6 @@ function App() {
           </Route>
           
           <Route path="/products/:id">
-          
             <ProductDetail product={items.products.id} />
             {console.log('id',items.products[req.params.id])}
           </Route>
