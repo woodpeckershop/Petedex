@@ -7,7 +7,7 @@ import Header from "./Header.jsx";
 import Itemlist from "./Itemlist.jsx";
 import Categories from "./Categories.jsx";
 import ProductDetail from "./ProductDetail.jsx"
-
+import Mystore from "./Mystore";
 function App() {
   const [items, setItems] = useState({
     products: {},
@@ -15,6 +15,7 @@ function App() {
   });
 
   const [selectedCategory, setSelectedCategory] = useState("products");
+  const [selectedItem, setSelectedItem] = useState("{}");
 
   useEffect(() => {
     Promise.all([axios.get("/api/products"), axios.get("/api/services")]).then(
@@ -52,6 +53,11 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
+
+        <Route path="/:user_id">
+            <Mystore />
+          </Route>
+
           <Route path="/checkout">
             <Checkout />
           </Route>
@@ -62,16 +68,16 @@ function App() {
               setSelectedCategory={setSelectedCategory}
             />
             <Itemlist
-              selectedItems={items[selectedCategory]}
+              selectedItems={items[selectedCategory]} setSelectedItem={setSelectedItem}
               // products={filterItems(products)} services={filterItems(services)}
             />
             
           </Route>
           
-          <Route path="/products/:id">
+          {/* <Route path="/products/:id">
             <ProductDetail product={items.products.id} />
             {console.log('id',items.products[req.params.id])}
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     </Router>

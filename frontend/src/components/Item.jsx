@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Item(props) {
-  const { id, name, image_path, price, description } = props;
+  const { id, name, image_path, price, description, setSelectedItem } = props;
   return (
     <div className="section-center">
       <article key={id} className="menu-item">
@@ -13,7 +13,7 @@ export default function Item(props) {
           </header>
           <p className="item-text">{description}</p>
         </div>
-        <button onClick={props.onClick}>Details</button>
+        <button onClick={()=>{setSelectedItem(props)}}>Details</button>
       </article>
     </div>
   );
