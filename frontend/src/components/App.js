@@ -30,7 +30,7 @@ function App() {
   }, []);
   // console.log('thing', items.products);
 
-  // const filterItems = (category) => {
+  // const filter88888Items = (category) => {
   //   if (category === "products") {
   //     return items.products;
   //   } else {
