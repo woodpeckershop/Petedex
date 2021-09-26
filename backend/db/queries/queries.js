@@ -116,7 +116,6 @@ const getAllServices = (db) => {
 //   };
 
 const addProduct = (newproduct, db) => {
-  console.log("1111111111111");
   const value = [
     newproduct["user_id"],
     newproduct["name"],
@@ -126,11 +125,13 @@ const addProduct = (newproduct, db) => {
   ];
 
   const queryStatement = `INSERT INTO products(user_id, name, description, price, image_path)
-    VALUES ($1, $2, $3, $4, $5,)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *`;
   return db
     .query(queryStatement, value)
-    .then((res) => res.rows)
+    .then((res) => {
+      return res.rows;
+    })
     .catch((err) => {
       return err;
     });
