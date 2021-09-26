@@ -6,13 +6,20 @@ module.exports = function (db) {
   router.get("/", (req, res) => {
     queries
       .getAllProducts(db)
-      .then((data) => {
-        res.json(data);
-        console.log("db", db);
+      // .then((data) => {
+      //   res.json(data);
+
+      // })
+      .then((products) => {
+        res.json(
+          products.reduce(
+            (previous, current) => ({ ...previous, [current.id]: current }),
+            {}
+          )
+        );
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
-        console.log("get all product", err.messege);
       });
   });
 

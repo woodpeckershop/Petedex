@@ -115,6 +115,30 @@ const getAllServices = (db) => {
 //       });
 //   };
 
+// const addProduct = (newproduct, db) => {
+//   const value = [
+//     newproduct["user_id"],
+//     newproduct["name"],
+//     newproduct["description"],
+//     newproduct["price"],
+//     newproduct["image"],
+//   ];
+//   console.log('value', value)
+
+//   const queryStatement = `INSERT INTO products(user_id, name, description, price, image_path)
+//     VALUES ($1, $2, $3, $4, $5)
+//     RETURNING *`;
+//   return db
+//     .query(queryStatement, value)
+//     .then((res) => {
+//       console.log('res',res);
+//       return res.rows;
+//     })
+//     .catch((err) => {
+//       return err;
+//     });
+    
+// };
 const addProduct = (newproduct, db) => {
   const value = [
     newproduct["user_id"],
@@ -136,7 +160,6 @@ const addProduct = (newproduct, db) => {
       return err;
     });
 };
-
 //   const addServices = (newproduct) => {
 //     const value = [
 //      newservices["price"],

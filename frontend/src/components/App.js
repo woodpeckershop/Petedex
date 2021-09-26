@@ -6,15 +6,16 @@ import Checkout from "./Checkout.jsx";
 import Header from "./Header.jsx";
 import Itemlist from "./Itemlist.jsx";
 import Categories from "./Categories.jsx";
+import ProductDetail from "./ProductDetail.jsx";
 import Mystore from "./Mystore";
-
 function App() {
   const [items, setItems] = useState({
-    products: [],
+    products: {},
     services: [],
   });
 
   const [selectedCategory, setSelectedCategory] = useState("products");
+  const [selectedItem, setSelectedItem] = useState("{}");
 
   useEffect(() => {
     Promise.all([axios.get("/api/products"), axios.get("/api/services")]).then(
@@ -28,7 +29,12 @@ function App() {
     );
   }, []);
 
-  // const filter88888Items = (category) => {
+  useEffect(() => {
+    console.log(selectedItem)
+  }, [selectedItem]);
+  // console.log('thing', items.products);
+
+  // const filterItems = (category) => {
   //   if (category === "products") {
   //     return items.products;
   //   } else {
@@ -51,26 +57,31 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/:user_id">
+          <Route path="/:user_id" exact>
             <Mystore />
           </Route>
 
-          <Route path="/">
+          {/* <Route path="/checkout"> */}
+          <Route path="/8/checkout">
             <Checkout />
           </Route>
 
-          <Route path="/">
+          <Route path="/" exact>
             <Categories
               // filterItems={filterItems} items={items}
               setSelectedCategory={setSelectedCategory}
             />
             <Itemlist
               selectedItems={items[selectedCategory]}
+              setSelectedItem={setSelectedItem}
               // products={filterItems(products)} services={filterItems(services)}
             />
           </Route>
 
-          {/* <Route path='/products/:id' component={ItemDetails}/> */}
+          <Route path={`/products/${selectedItem.id}`}>
+            <ProductDetail selectedItem={selectedItem} />
+            {/* {console.log('id',items.products[req.params.id])} */}
+          </Route>
         </Switch>
       </div>
     </Router>
