@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
 import "./style.scss";
+import axios from "axios";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const getLocalStorage = () => {
   let list = localStorage.getItem("list");
@@ -12,10 +14,12 @@ const getLocalStorage = () => {
   }
 };
 const Mystore = (props) => {
+  let { user_id } = useParams();
+
   const [name, setName] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [image, setImage] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
@@ -39,11 +43,31 @@ const Mystore = (props) => {
       setIsEditing(false);
       showAlert(true, "success", "value changed");
     } else {
-      showAlert(true, "success", "item added to the list");
-      const newItem = { id: new Date().getTime().toString(), title: name };
+      // router.put("/user_id/:product_id/add", (req, res) => {
+      //add products needs newproduct: {user_id, name, description, price, image_path}
 
-      setList([...list, newItem]);
-      setName("");
+      const newProduct = { user_id, name, description, price, image };
+      console.log(newProduct, "newProduct");
+      //need to change product id
+      axios
+        .put(`http://localhost:8080/api/products/${user_id}/add`, {
+          newProduct: { ...newProduct },
+        })
+        .then((res) => {
+          showAlert(true, "success", "item added to the list");
+          const newItem = {
+            id: new Date().getTime().toString(),
+            title: name,
+            des: description,
+            image: image,
+            price: price,
+          };
+
+          setList([...list, newItem]);
+          setName("");
+          console.log("put success", res);
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -89,8 +113,8 @@ const Mystore = (props) => {
             type="text"
             className="grocery"
             placeholder="Product description"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="form-control">
@@ -98,8 +122,8 @@ const Mystore = (props) => {
             type="text"
             className="grocery"
             placeholder="Product price"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <div className="form-control">
@@ -107,8 +131,8 @@ const Mystore = (props) => {
             type="text"
             className="grocery"
             placeholder="Product image"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
           />
         </div>
         <button type="submit" className="submit-btn">

@@ -10,6 +10,7 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require("morgan");
 const queries = require("./db/queries/queries");
+const cors = require("cors");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -24,6 +25,7 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(
   "/styles",
   sass({
@@ -46,6 +48,7 @@ const favoritesRoute = require("./routes/favorites");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+app.use(cors());
 app.use("/api/products", productsRoute(db));
 app.use("/api/services", servicesRoute(db));
 // app.use ("/api/users", usersRoute(db))
