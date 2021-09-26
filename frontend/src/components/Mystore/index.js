@@ -13,9 +13,9 @@ const getLocalStorage = () => {
 };
 const Mystore = (props) => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [image, setImage] = useState("");
 
   const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
@@ -79,35 +79,41 @@ const Mystore = (props) => {
           <input
             type="text"
             className="grocery"
-            placeholder="Product_name"
+            placeholder="Product name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <input
-            type="text"
-            className="grocery"
-            placeholder="Product_price"
-            value={name}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <input
-            type="text"
-            className="grocery"
-            placeholder="Product_image"
-            value={name}
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <input
-            type="text"
-            className="grocery"
-            placeholder="Product_description"
-            value={name}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <button type="submit" className="submit-btn">
-            {isEditing ? "edit" : "submit"}
-          </button>
         </div>
+        <div className="form-control">
+          <input
+            type="text"
+            className="grocery"
+            placeholder="Product description"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="form-control">
+          <input
+            type="text"
+            className="grocery"
+            placeholder="Product price"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="form-control">
+          <input
+            type="text"
+            className="grocery"
+            placeholder="Product image"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="submit-btn">
+          {isEditing ? "edit" : "submit"}
+        </button>
       </form>
       {list.length > 0 && (
         <div className="grocery-container">
