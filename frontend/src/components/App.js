@@ -30,7 +30,7 @@ function App() {
   }, []);
   // console.log('thing', items.products);
 
-  // const filter88888Items = (category) => {
+  // const filterItems = (category) => {
   //   if (category === "products") {
   //     return items.products;
   //   } else {
@@ -54,11 +54,12 @@ function App() {
         <Header />
         <Switch>
 
-        <Route path="/:user_id">
+        <Route path="/:user_id" exact>
             <Mystore />
           </Route>
 
-          <Route path="/checkout">
+          {/* <Route path="/checkout"> */}
+          <Route path="/8/checkout">
             <Checkout />
           </Route>
 
@@ -74,10 +75,10 @@ function App() {
             
           </Route>
           
-          {/* <Route path="/products/:id">
-            <ProductDetail product={items.products.id} />
-            {console.log('id',items.products[req.params.id])}
-          </Route> */}
+          <Route path={`/products/${selectedItem.id}`}>
+            <ProductDetail selectedItem={selectedItem}  />
+            {/* {console.log('id',items.products[req.params.id])} */}
+          </Route>
         </Switch>
       </div>
     </Router>

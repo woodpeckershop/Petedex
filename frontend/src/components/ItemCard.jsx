@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Item(props) {
   const { id, name, image_path, price, description, setSelectedItem } = props;
@@ -13,7 +14,13 @@ export default function Item(props) {
           </header>
           <p className="item-text">{description}</p>
         </div>
-        <button onClick={()=>{setSelectedItem(props)}}>Details</button>
+
+        <Link to={`/products/${id}`}>
+          <button onClick={()=>{setSelectedItem(props)}}>Details</button>
+        </Link>
+
+
+       
       </article>
     </div>
   );

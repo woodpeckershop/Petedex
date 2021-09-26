@@ -1,22 +1,22 @@
 import React from "react";
 import "./ProductDetail.css";
 
-function Product({ name, image, price }) {
+function ProductDetail({ selectedItem }) {
   return (
     <div className="product">
-      <div classname="product__info">
-        <p>{name}</p>
+      <div className="product__info">
+        <p>{selectedItem.name}</p>
         <p className="product__price">
           <small>$</small>
-          <strong>{price}</strong>
+          <strong>{selectedItem.price}</strong>
         </p>
       
       </div>
 
-      <img src={image} alt="" />
+      <img src={selectedItem.image} alt="" />
       <button>Add to basket</button>
     </div>
   );
 }
 
-export default Product;
+export default ProductDetail;

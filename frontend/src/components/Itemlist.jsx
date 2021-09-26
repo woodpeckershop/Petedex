@@ -1,12 +1,12 @@
 import React from "react";
 import "./Home.css";
-import Item from "./Item.jsx";
+import ItemCard from "./ItemCard.jsx";
 
 // const allCategories = ['all', ...new Set(items.map((item) => item.category))];
 
 
 function Home(props) {
-  const { selectedItems } = props;
+  const { selectedItems, setSelectedItem } = props;
   const itemArray = Object.values(selectedItems);
   // const [items, setItems] = useState(items);
   // const [categories, setCategories] = useState(allCategories);
@@ -51,7 +51,7 @@ function Home(props) {
   return (
     <div>
       {itemArray.map(item => (
-        <Item
+        <ItemCard
           //why error?
           key={item.id}
           id={item.id}
@@ -60,6 +60,7 @@ function Home(props) {
           image_path={item.image_path}
           description={item.description}
           price={item.price}
+          setSelectedItem={setSelectedItem}
         />
       ))
       }
