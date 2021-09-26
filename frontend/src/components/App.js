@@ -6,6 +6,7 @@ import Checkout from "./Checkout.jsx";
 import Header from "./Header.jsx";
 import Itemlist from "./Itemlist.jsx";
 import Categories from "./Categories.jsx";
+import Mystore from "./Mystore";
 
 function App() {
   const [items, setItems] = useState({
@@ -16,14 +17,15 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState("products");
 
   useEffect(() => {
-    Promise.all([axios.get("/api/products"), axios.get("/api/services")])
-      .then((all) => {
+    Promise.all([axios.get("/api/products"), axios.get("/api/services")]).then(
+      (all) => {
         setItems((prev) => ({
           ...prev,
           products: all[0].data,
           services: all[1].data,
         }));
-      })
+      }
+    );
   }, []);
 
   // const filterItems = (category) => {
@@ -49,24 +51,26 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-        <Route path="/checkout">
+          <Route path="/:user_id">
+            <Mystore />
+          </Route>
+
+          <Route path="/">
             <Checkout />
           </Route>
 
-        <Route path="/">
-          <Categories
-            // filterItems={filterItems} items={items}
-            setSelectedCategory={setSelectedCategory}
-          />
-          <Itemlist
-            selectedItems={items[selectedCategory]}
-            // products={filterItems(products)} services={filterItems(services)}
-          />
-        </Route>
+          <Route path="/">
+            <Categories
+              // filterItems={filterItems} items={items}
+              setSelectedCategory={setSelectedCategory}
+            />
+            <Itemlist
+              selectedItems={items[selectedCategory]}
+              // products={filterItems(products)} services={filterItems(services)}
+            />
+          </Route>
 
-        {/* <Route path='/products/:id' component={ItemDetails}/> */}
-        
-         
+          {/* <Route path='/products/:id' component={ItemDetails}/> */}
         </Switch>
       </div>
     </Router>
