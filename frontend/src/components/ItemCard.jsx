@@ -20,7 +20,7 @@ export default function Item(props) {
           <p className="item-text">{description}</p>
         </div>
 
-        <Link to={`/products/${id}`}>
+        <Link to={`/8/products/${id}`}>
           <button onClick={()=>setSelectedItem(props)}>Details</button>
         </Link>
 
