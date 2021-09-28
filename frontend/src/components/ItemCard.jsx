@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Item(props) {
   const { id, name, image_path, price, description, setSelectedItem } = props;
-  // const handleItemPage =()=>{
-  //   setSelectedItem(props);
-  //   props.history.push('/')
-
-  // }
+ 
   return (
     <div className="section-center">
       <article key={id} className="menu-item">

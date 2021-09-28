@@ -31,16 +31,6 @@ function ProductDetail(props) {
   }
 );
 
-  // Favorite Button - Heart
-// $('.favme').click(function() {
-// 	$(this).toggleClass('active');
-// });
-
-// /* when a user clicks, toggle the 'is-animating' class */
-// $(".favme").on('click touchstart', function(){
-//   $(this).toggleClass('is_animating');
-// });
-
   const addFav = () => {
     const newFav = { user_id, product_id: props.selectedItem.id };
     const product_id = newFav.product_id;
