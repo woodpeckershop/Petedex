@@ -4,6 +4,8 @@ import Alert from "./Alert";
 import "./style.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useContext } from "react";
+import { authContext } from "../providers/AuthProvider";
 
 const getLocalStorage = () => {
   let list = localStorage.getItem("list");
@@ -14,6 +16,8 @@ const getLocalStorage = () => {
   }
 };
 const Mystore = (props) => {
+  const { test, loginStatus } = useContext(authContext);
+  console.log("login status88888", loginStatus);
   let { user_id } = useParams();
 
   const [name, setName] = useState("");

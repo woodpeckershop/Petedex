@@ -7,6 +7,9 @@ import Header from "./Header.jsx";
 import Itemlist from "./Itemlist.jsx";
 import Categories from "./Categories.jsx";
 import Mystore from "./Mystore";
+import Login from "./Users/login.js";
+import { useContext } from "react";
+import { authContext } from "./providers/AuthProvider";
 
 function App() {
   const [items, setItems] = useState({
@@ -28,6 +31,8 @@ function App() {
     );
   }, []);
 
+  const { authprovider } = useContext(authContext);
+
   // const filter88888Items = (category) => {
   //   if (category === "products") {
   //     return items.products;
@@ -47,16 +52,20 @@ function App() {
 
   return (
     //BEM
+
     <Router>
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/:user_id">
+          <Route path="/:user_id/mystore">
             <Mystore />
           </Route>
 
-          <Route path="/">
+          <Route path="/:user_id/checkout">
             <Checkout />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
 
           <Route path="/">

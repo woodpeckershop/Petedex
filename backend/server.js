@@ -39,9 +39,9 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-// const usersRoutes = require("./routes/users");
+const usersRoute = require("./routes/users");
 // const widgetsRoutes = require("./routes/widgets");
-const userRoutes = require("./routes/users");
+// const usersRoute = require("./routes/users");
 const productsRoute = require("./routes/products");
 const servicesRoute = require("./routes/services");
 const favoritesRoute = require("./routes/favorites");
@@ -51,7 +51,7 @@ const favoritesRoute = require("./routes/favorites");
 app.use(cors());
 app.use("/api/products", productsRoute(db));
 app.use("/api/services", servicesRoute(db));
-// app.use ("/api/users", usersRoute(db))
+app.use("/api/users", usersRoute(db));
 // app.use ("/api/favorites", favoritesRoute(db))
 
 // original
