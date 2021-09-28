@@ -4,7 +4,6 @@ const queries = require("../db/queries/queries");
 
 module.exports = function(db) {
 router.get("/:user_id", (req, res) => {
-  console.log('user_id', req.params.user_id)
       queries
         .getFavoritesByUserId(req.params.user_id, db)
         .then((data) => {
@@ -16,12 +15,10 @@ router.get("/:user_id", (req, res) => {
     });
 
   router.delete("/:user_id/:product_id", (req, res) => {
-    console.log("req", req)  
     // const info = {user_id :req.params.user_id, product_id: req.params.product_id}  
     queries
           .deleteFavorite(req.body.oldFav,db)
           .then((data) => {
-            console.log("data", data);
             res.status(200).json(data);
           })
           .catch((err) => {
@@ -30,7 +27,6 @@ router.get("/:user_id", (req, res) => {
       })
 
     router.put("/:user_id/:product_id", (req, res) => {
-      // console.log("newFav",res);
           queries
             .addFavorite(req.body.newFav, db)
             .then((data) => {

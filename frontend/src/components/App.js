@@ -61,7 +61,7 @@ function App() {
 
           <Route path="/8/favorites">
             <Favorites
-              favorites={items.favorites}
+              // favorites={items.favorites}
               setSelectedItem={setSelectedItem}
             />
           </Route>
@@ -74,8 +74,8 @@ function App() {
             />
           </Route>
 
-          <Route path={`/:user_id/products/${selectedItem.id}`} exact>
-            <ProductDetail selectedItem={selectedItem} />
+          <Route path={`/:user_id/products/:product_id`} exact>
+            <ProductDetail  />
           </Route>
         </Switch>
       </div>

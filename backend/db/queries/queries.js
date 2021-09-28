@@ -256,7 +256,6 @@ const getFavoritesByUserId = (userId, db) => {
   WHERE favorites.user_id = $1
   ORDER BY products.id`;
   return db.query(queryStatement, value).then((res) => {
-    console.log("res.rows", res.rows);
     return res.rows;
   });
 };
