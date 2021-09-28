@@ -43,12 +43,9 @@ const Mystore = (props) => {
       setIsEditing(false);
       showAlert(true, "success", "value changed");
     } else {
-      // router.put("/user_id/:product_id/add", (req, res) => {
-      //add products needs newproduct: {user_id, name, description, price, image_path}
-
       const newProduct = { user_id, name, description, price, image };
       console.log(newProduct, "newProduct");
-      //need to change product id
+
       axios
         .put(`http://localhost:8080/api/products/${user_id}/add`, {
           newProduct: { ...newProduct },
@@ -56,7 +53,7 @@ const Mystore = (props) => {
         .then((res) => {
           showAlert(true, "success", "item added to the list");
           const newItem = {
-            id: new Date().getTime().toString(),
+            user_id: user_id,
             title: name,
             des: description,
             image: image,

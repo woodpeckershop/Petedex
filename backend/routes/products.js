@@ -23,17 +23,17 @@ module.exports = function (db) {
       });
   });
 
-  //   router.put("/user_id/:product_id/delete", (req, res) => {
-  //     queries
-  //       .deleteProduct(req.params)
-  //       .then((data) => {
-  //         console.log("data", data);
-  //         res.status(200).json(data);
-  //       })
-  //       .catch((err) => {
-  //         res.status(500).json({ error: err.message });
-  //       });
-  //   })
+  router.put("/user_id/:product_id/delete", (req, res) => {
+    queries
+      .deleteProduct(req.params)
+      .then((data) => {
+        console.log("data", data);
+        res.status(200).json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 
   router.put("/:user_id/add", (req, res) => {
     //add products needs newproduct: {user_id, id, name, description, price, image_path}
@@ -48,16 +48,16 @@ module.exports = function (db) {
       });
   });
 
-  //   router.patch("/user_id/:product_id/edit", (req, res) => {
-  //     queries
-  //       .updateProduct
-  //       .then((data) => {
-  //         res.json(data);
-  //       })
-  //       .catch((err) => {
-  //         res.status(500).json({ error: err.message });
-  //       });
-  //   })
+  router.patch("/user_id/:product_id/edit", (req, res) => {
+    queries
+      .updateProduct(req.body.updateProduct, db)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 
   router.get("/:product_id", (req, res) => {
     queries

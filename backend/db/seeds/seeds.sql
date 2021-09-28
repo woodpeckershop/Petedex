@@ -102,7 +102,7 @@ insert into users ( name, email, phone) values ( 'Dottie', 'dshergold2r@topsy.co
 
 -- Seeds for products table
 
-insert into products (user_id,name, description, price, image_path) values (1,'Brittani', 'Turkey vulture', 70, '/images/item-6.jpeg');
+insert into products (user_id, name, description, price, image_path) values (1,'Brittani', 'Turkey vulture', 70, '/images/item-6.jpeg');
 insert into products (user_id, name, description, price, image_path) values (1,'Reba', 'Fowl, helmeted guinea', 92, '/images/item-6.jpeg');
 insert into products (user_id, name, description, price, image_path) values (1,'Crosby', 'Gelada baboon', 9, '/images/item-6.jpeg');
 insert into products (user_id, name, description, price, image_path) values (1,'Den', 'Hare, arctic', 51, '/images/item-6.jpeg');

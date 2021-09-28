@@ -42,9 +42,9 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          {/* <Route path="/:user_id" exact>
+          <Route path="/:user_id/mystore" exact>
             <Mystore />
-          </Route> */}
+          </Route>
 
           <Route path="/:user_id/products" exact>
             <Categories setSelectedCategory={setSelectedCategory} />
