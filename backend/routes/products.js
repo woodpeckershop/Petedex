@@ -60,7 +60,7 @@ module.exports = function (db) {
   //   })
 
   router.get("/:product_id", (req, res) => {
-    console.log('req.params.product_id',req.params.product_id)
+    // console.log('req.params.product_id',req.params.product_id)
     queries
       .getProductWithId(req.params.product_id, db)
       .then((data) => {

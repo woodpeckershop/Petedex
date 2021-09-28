@@ -12,14 +12,6 @@ function ProductDetail() {
   const [item, setItem] = useState({});
   
 
-  // useEffect(() => {
-  //   Axios.get("/api/products").then((result) => {
-      
-  //     const itemDetail = result.data[productIdParams]
-  //     setItem(itemDetail);
-  //   });
-  // }, [productIdParams]);
-
     useEffect(() => {
     Axios.get(`/api/products/${productIdParams}`).then((result) => {
       console.log('result.data',result.data)
@@ -40,13 +32,6 @@ function ProductDetail() {
     });
   }, [productIdParams]);
 
-  // useEffect(() => {
-  //   if (Object.keys(fav).length === 0) {
-  //     setColor("disabled");
-  //   } else {
-  //     setColor("secondary");
-  //   }
-  // }, []);
 
   const changeFav = () => {
     if (!fav) {
