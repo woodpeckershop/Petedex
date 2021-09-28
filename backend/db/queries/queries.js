@@ -137,7 +137,7 @@ const getAllServices = (db) => {
 //     .catch((err) => {
 //       return err;
 //     });
-    
+
 // };
 const addProduct = (newproduct, db) => {
   const value = [
@@ -214,6 +214,53 @@ const getServiceWithId = function (id, db) {
 
 // favorites and cancelFav? add boolean in ERD?
 
+const addFavorite = (newFav, db) => {
+  const value = [newFav["user_id"], newFav["product_id"]];
+
+  const queryStatement = `INSERT INTO favorites(user_id, product_id)
+    VALUES ($1, $2)
+    RETURNING *`;
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+const deleteFavorite = (oldFav, db) => {
+  const value = [oldFav["user_id"], oldFav["product_id"]];
+
+  const queryStatement = `DELETE FROM favorites
+      WHERE  user_id = $1
+      AND product_id = $2
+      RETURNING *`;
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+
+const getFavoritesByUserId = (userId, db) => {
+  const value = [Number(userId)];
+  const queryStatement = `SELECT products.name, products.price, products.description, products.image_path, products.id, products.user_id
+  FROM products
+  JOIN favorites ON favorites.product_id = products.id
+  WHERE favorites.user_id = $1
+  ORDER BY products.id`;
+  return db.query(queryStatement, value).then((res) => {
+    console.log("res.rows", res.rows);
+    return res.rows;
+  });
+};
+
 module.exports = {
   getAllProducts,
   getAllServices,
@@ -221,4 +268,7 @@ module.exports = {
   getServiceWithId,
   getAll,
   addProduct,
+  addFavorite,
+  getFavoritesByUserId,
+  deleteFavorite
 };

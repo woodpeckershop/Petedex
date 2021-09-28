@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 import { amazon } from '../assets/images'
 
@@ -38,6 +40,12 @@ function Header() {
           <span className="header_optionLineOne">Your</span>
           <span className="header_optionLineTwo">Prime</span>
         </div>
+        
+        <Link to='/8/favorites'>
+          <div className="header_optionBasket">
+            <FavoriteIcon />
+          </div>
+        </Link>
 
         <Link to='/8/checkout'>
           <div className="header_optionBasket">
@@ -45,6 +53,8 @@ function Header() {
             <span className="header_optionLineTwo header_basketCount">0</span>
           </div>
         </Link>
+
+       
       </div>
     </div>
   );
