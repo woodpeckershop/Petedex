@@ -30,7 +30,7 @@ function App() {
         ...prev,
         products: all[0].data,
         services: all[1].data,
-        favorites: all[2].data,
+        // favorites: all[2].data,
       }));
     });
   }, []);
