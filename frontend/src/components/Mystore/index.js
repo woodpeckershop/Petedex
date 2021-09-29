@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
@@ -6,6 +7,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useContext } from 'react';
 import { authContext } from '../providers/AuthProvider';
+
 
 // const getLocalStorage = () => {
 //   let list = localStorage.getItem("list");
@@ -26,11 +28,13 @@ const getLocalUser = () => {
 };
 
 const Mystore = (props) => {
+
   const user_id = getLocalUser();
   console.log(user_id);
   // const { test, loginStatus } = useContext(authContext);
   // let user_id;
   // if (loginStatus[0]) user_id = loginStatus[0].id;
+
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -137,6 +141,7 @@ const Mystore = (props) => {
     setDescription(specificItem.description);
     setImage(specificItem.image_path);
   };
+
   useEffect(() => {
     axios.get('http://localhost:8080/api/products').then((res) => {
       setList([...res.data]);
@@ -148,6 +153,7 @@ const Mystore = (props) => {
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={handleSubmit}>
+
         {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
 
         <h2>My Store</h2>
@@ -198,7 +204,7 @@ const Mystore = (props) => {
         </div>
       )}
     </section>
-  );
+  ):(<h1>please log in <Link to='/login'></Link></h1>)
 };
 
 export default Mystore;

@@ -96,5 +96,16 @@ module.exports = function (db) {
     //   .then((jobs) => res.render("jobs", { jobs }))
     //   .catch((err) => console.log(err));
   });
+
+  router.delete("/:product_id/delete", (req, res) => {
+    queries
+      .deleteProduct(req.body.updateProduct, db)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
   return router;
 };

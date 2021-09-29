@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./Header.css";
 import { Link, useHistory } from "react-router-dom";
 
-
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -51,11 +50,12 @@ function Header({ setSelectedItem }) {
         </form>
       </div>
       <div className="header_nav">
-        <div className="header_option">
-          <span className="header_optionLineOne">Hello Guest</span>
-          <span className="header_optionLineTwo">Sign In</span>
-        </div>
-
+        <Link to="/login">
+          <div className="header_option">
+            <span className="header_optionLineOne">Hello Guest</span>
+            <span className="header_optionLineTwo">Sign In</span>
+          </div>
+        </Link>
         <div className="header_option">
           <span className="header_optionLineOne">Returns</span>
           <span className="header_optionLineTwo">& Orders</span>

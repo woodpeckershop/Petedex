@@ -33,7 +33,7 @@ function App() {
         ...prev,
         products: all[0].data,
         services: all[1].data,
-        favorites: all[2].data,
+        // favorites: all[2].data,
       }));
     });
   }, []);
@@ -46,6 +46,7 @@ function App() {
       <div className='App'>
         <Header setSelectedItem={setSelectedItem} />
         <Switch>
+
           <Route path='/mystore' exact>
             <Mystore />
           </Route>
@@ -53,6 +54,7 @@ function App() {
           <Route path='/search'>
             <Itemlist items={selectedItem} />
           </Route>
+
 
           <Route path='/:user_id/products' exact>
             <Categories setSelectedCategory={setSelectedCategory} />
