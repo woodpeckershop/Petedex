@@ -14,7 +14,6 @@ function ProductDetail() {
 
     useEffect(() => {
     Axios.get(`/api/products/${productIdParams}`).then((result) => {
-      console.log('result.data',result.data)
       const itemDetail = result.data[0]
       setItem(itemDetail);
     });

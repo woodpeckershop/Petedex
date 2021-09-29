@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Item(props) {
-  const { id, name, image_path, price, description, setSelectedItem } = props;
+export default function ItemCard(props) {
+  const { id, name, image_path, price, description } = props;
  
   return (
     <div className="section-center">
@@ -17,7 +17,7 @@ export default function Item(props) {
         </div>
 
         <Link to={`/8/products/${id}`}>
-          <button onClick={()=>setSelectedItem(props)}>Details</button>
+          <button >Details</button>
         </Link>
 
 

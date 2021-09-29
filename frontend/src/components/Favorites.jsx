@@ -14,7 +14,7 @@ function Favorites({ setSelectedItem }) {
   return (
     <div>
       <Itemlist
-        selectedItems={fav}
+        items={fav}
         setSelectedItem={setSelectedItem}
       ></Itemlist>
     </div>

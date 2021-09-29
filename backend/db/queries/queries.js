@@ -260,6 +260,25 @@ const getFavoritesByUserId = (userId, db) => {
   });
 };
 
+const getSearchProducts = function (searchTerm, db) {
+  const value = [searchTerm];
+  const queryStatement = `
+      SELECT *
+      FROM products
+      Where name = $1
+      `;
+
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      console.log("res.rows",res.rows)
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
 module.exports = {
   getAllProducts,
   getAllServices,
@@ -269,5 +288,6 @@ module.exports = {
   addProduct,
   addFavorite,
   getFavoritesByUserId,
-  deleteFavorite
+  deleteFavorite,
+  getSearchProducts
 };
