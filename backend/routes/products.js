@@ -48,7 +48,7 @@ module.exports = function (db) {
       });
   });
 
-  router.patch("/user_id/:product_id/edit", (req, res) => {
+  router.patch("/:product_id/edit", (req, res) => {
     queries
       .updateProduct(req.body.updateProduct, db)
       .then((data) => {
@@ -70,5 +70,15 @@ module.exports = function (db) {
       });
   });
 
+  router.delete("/:product_id/delete", (req, res) => {
+    queries
+      .deleteProduct(req.body.updateProduct, db)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
   return router;
 };

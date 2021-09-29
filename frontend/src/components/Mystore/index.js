@@ -4,16 +4,20 @@ import Alert from "./Alert";
 import "./style.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useContext } from "react";
+import { authContext } from "../providers/AuthProvider";
 
 const getLocalStorage = () => {
-  let list = localStorage.getItem("list");
-  if (list) {
-    return (list = JSON.parse(localStorage.getItem("list")));
-  } else {
-    return [];
-  }
-};
+//   let list = localStorage.getItem("list");
+//   if (list) {
+//     return (list = JSON.parse(localStorage.getItem("list")));
+//   } else {
+//     return [];
+//   }
+// };
 const Mystore = (props) => {
+  const { test, loginStatus } = useContext(authContext);
+  console.log("login status88888", loginStatus);
   let { user_id } = useParams();
 
   const [name, setName] = useState("");
@@ -21,7 +25,7 @@ const Mystore = (props) => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
-  const [list, setList] = useState(getLocalStorage());
+  const [list, setList] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
@@ -30,22 +34,53 @@ const Mystore = (props) => {
     if (!name) {
       showAlert(true, "danger", "please enter value");
     } else if (name && isEditing) {
+      const updateProduct = {
+        editID,
+        user_id,
+        name,
+        description,
+        price,
+        image,
+      };
+      axios
+        .patch(`http://localhost:8080/api/${user_id}/${editID}/edit`, {
+          updateProduct: { ...updateProduct },
+        })
+        .then((res) => {
+          showAlert(true, "success", "product updated");
+          const updateProduct = {
+            editID: editID,
+            user_id: user_id,
+            title: name,
+            des: description,
+            image: image,
+            price: price,
+          };
+          setName("");
+          setPrice("");
+          setDescription("");
+          setImage("");
+          console.log("put success", res);
+        })
+        .catch((err) => console.log(err));
       setList(
         list.map((item) => {
           if (item.id === editID) {
-            return { ...item, title: name };
+            return { ...item, updateProduct };
           }
           return item;
         })
       );
       setName("");
+      setPrice("");
+      setDescription("");
+      setImage("");
       setEditID(null);
       setIsEditing(false);
       showAlert(true, "success", "value changed");
     } else {
       const newProduct = { user_id, name, description, price, image };
       console.log(newProduct, "newProduct");
-
       axios
         .put(`http://localhost:8080/api/products/${user_id}/add`, {
           newProduct: { ...newProduct },
@@ -59,9 +94,11 @@ const Mystore = (props) => {
             image: image,
             price: price,
           };
-
           setList([...list, newItem]);
           setName("");
+          setPrice("");
+          setDescription("");
+          setImage("");
           console.log("put success", res);
         })
         .catch((err) => console.log(err));
@@ -71,21 +108,23 @@ const Mystore = (props) => {
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
   };
-  const clearList = () => {
-    showAlert(true, "danger", "empty list");
-    setList([]);
-  };
+
   const removeItem = (id) => {
     showAlert(true, "danger", "item removed");
     setList(list.filter((item) => item.id !== id));
   };
   const editItem = (id) => {
     const specificItem = list.find((item) => item.id === id);
+    console.log(specificItem, "check edititem");
     setIsEditing(true);
     setEditID(id);
     setName(specificItem.title);
+    setPrice(specificItem.price);
+    setDescription(specificItem.des);
+    setImage(specificItem.image);
   };
   useEffect(() => {
+    Aixo.get('')
     localStorage.setItem("list", JSON.stringify(list));
   }, [list]);
 
@@ -139,9 +178,6 @@ const Mystore = (props) => {
       {list.length > 0 && (
         <div className="grocery-container">
           <List items={list} removeItem={removeItem} editItem={editItem} />
-          <button className="clear-btn" onClick={clearList}>
-            clear items
-          </button>
         </div>
       )}
     </section>

@@ -29,21 +29,40 @@ const getAllServices = (db) => {
   });
 };
 
-//   const createNewUser = (newUser) => {
-//     const value = [
-//       newUser["first_name"],
-//       newUser["last_name"],
-//       newUser["email"],
-//       newUser["password"],
-//       newUser["phone"],
-//     ];
+const createNewUser = (newUser) => {
+  const value = [
+    newUser["name"],
+    newUser["email"],
+    newUser["password"],
+    newUser["phone"],
+  ];
 
-//     const queryStatement = `INSERT INTO users(first_name, last_name, email, password, phone)
-//     VALUES ($1, $2, $3, $4, $5)`;
-//     return db.query(queryStatement, value).catch((err) => {
-//       return err;
-//     });
-//   };
+  const queryStatement = `INSERT INTO users(name, email, password, phone)
+    VALUES ($1, $2, $3, $4)`;
+  return db.query(queryStatement, value).catch((err) => {
+    return err;
+  });
+};
+
+const getPassWordWithEmail = function (email, db) {
+  const value = [email["email"], email["password"]];
+  const queryStatement = `
+  SELECT *
+  FROM users
+  WHERE email = $1 AND password = $2
+
+  `;
+  return db
+    .query(queryStatement, value)
+    .then((data) => {
+      console.log("dadadadadadad", data);
+      return data.rows;
+    })
+    .catch((err) => {
+      console.log("eeeeeeeror", err);
+      return err;
+    });
+};
 
 const updateProduct = (updateProduct) => {
   const value = [
@@ -276,4 +295,6 @@ module.exports = {
   deleteFavorite,
   updateProduct,
   deleteProduct,
+  createNewUser,
+  getPassWordWithEmail,
 };

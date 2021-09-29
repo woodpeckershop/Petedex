@@ -9,6 +9,9 @@ import Categories from "./Categories.jsx";
 import ProductDetail from "./ProductDetail.jsx";
 import Mystore from "./Mystore";
 import Favorites from "./Favorites.jsx";
+import Login from "./Users/login.js";
+import { useContext } from "react";
+import { authContext } from "./providers/AuthProvider";
 
 function App() {
   const [items, setItems] = useState({
@@ -38,6 +41,7 @@ function App() {
   console.log("items", items);
   return (
     //BEM
+
     <Router>
       <div className="App">
         <Header />
@@ -57,6 +61,9 @@ function App() {
           {/* <Route path="/checkout"> */}
           <Route path="/8/checkout">
             <Checkout />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
 
           <Route path="/8/favorites">
