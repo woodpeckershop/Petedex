@@ -115,6 +115,30 @@ const getAllServices = (db) => {
 //       });
 //   };
 
+// const addProduct = (newproduct, db) => {
+//   const value = [
+//     newproduct["user_id"],
+//     newproduct["name"],
+//     newproduct["description"],
+//     newproduct["price"],
+//     newproduct["image"],
+//   ];
+//   console.log('value', value)
+
+//   const queryStatement = `INSERT INTO products(user_id, name, description, price, image_path)
+//     VALUES ($1, $2, $3, $4, $5)
+//     RETURNING *`;
+//   return db
+//     .query(queryStatement, value)
+//     .then((res) => {
+//       console.log('res',res);
+//       return res.rows;
+//     })
+//     .catch((err) => {
+//       return err;
+//     });
+
+// };
 const addProduct = (newproduct, db) => {
   const value = [
     newproduct["user_id"],
@@ -136,7 +160,6 @@ const addProduct = (newproduct, db) => {
       return err;
     });
 };
-
 //   const addServices = (newproduct) => {
 //     const value = [
 //      newservices["price"],
@@ -191,6 +214,71 @@ const getServiceWithId = function (id, db) {
 
 // favorites and cancelFav? add boolean in ERD?
 
+const addFavorite = (newFav, db) => {
+  const value = [newFav["user_id"], newFav["product_id"]];
+
+  const queryStatement = `INSERT INTO favorites(user_id, product_id)
+    VALUES ($1, $2)
+    RETURNING *`;
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+const deleteFavorite = (oldFav, db) => {
+  const value = [oldFav["user_id"], oldFav["product_id"]];
+
+  const queryStatement = `DELETE FROM favorites
+      WHERE  user_id = $1
+      AND product_id = $2
+      RETURNING *`;
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+
+const getFavoritesByUserId = (userId, db) => {
+  const value = [Number(userId)];
+  const queryStatement = `SELECT products.name, products.price, products.description, products.image_path, products.id, products.user_id
+  FROM products
+  JOIN favorites ON favorites.product_id = products.id
+  WHERE favorites.user_id = $1
+  ORDER BY products.id`;
+  return db.query(queryStatement, value).then((res) => {
+    return res.rows;
+  });
+};
+
+const getSearchProducts = function (searchTerm, db) {
+  const value = [searchTerm];
+  const queryStatement = `
+      SELECT *
+      FROM products
+      Where name = $1
+      `;
+
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      console.log("res.rows",res.rows)
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
 module.exports = {
   getAllProducts,
   getAllServices,
@@ -198,4 +286,8 @@ module.exports = {
   getServiceWithId,
   getAll,
   addProduct,
+  addFavorite,
+  getFavoritesByUserId,
+  deleteFavorite,
+  getSearchProducts
 };

@@ -1,36 +1,32 @@
 import React from "react";
 import "./Home.css";
-import Item from "./Item.jsx";
+import ItemCard from "./ItemCard.jsx";
 
 // const allCategories = ['all', ...new Set(items.map((item) => item.category))];
 
+function Itemlist(props) {
+  const { items } = props;
+  console.log("items", items);
 
-function Home(props) {
-  const { selectedItems } = props;
+  if (!Array.isArray(items)) {
+    return (
+      <div>
+        <ItemCard
+          //why error?
+          key={items.id}
+          id={items.id}
+          userId={items.user_id}
+          name={items.name}
+          image_path={items.image_path}
+          description={items.description}
+          price={items.price}
+        />
+      </div>
+    );
+  }
+  // const itemArray = Object.values(items);
   // const [items, setItems] = useState(items);
   // const [categories, setCategories] = useState(allCategories);
-
-  // const filterItems = (category) => {
-  //   if (category === 'all') {
-  //     setItems(items);
-  //     return;
-  //   }
-  //   const newItems = items.filter((item) => item.category === category);
-  //   setItems(newItems);
-  // };
-
-  // return (
-  //   <main>
-  //     <section className="menu section">
-  //       <div className="title">
-  //         <h2>our menu</h2>
-  //         <div className="underline"></div>
-  //       </div>
-  //       <Categories categories={categories} filterItems={filterItems} />
-  //       <Menu items={Items} />
-  //     </section>
-  //   </main>
-  // );
 
   // const itemList = props.products.map((product) => {
   //   return (
@@ -49,8 +45,8 @@ function Home(props) {
   // return <ul>{itemList}</ul>;
   return (
     <div>
-      {selectedItems.map(item => (
-        <Item
+      {items.map((item) => (
+        <ItemCard
           //why error?
           key={item.id}
           id={item.id}
@@ -60,10 +56,9 @@ function Home(props) {
           description={item.description}
           price={item.price}
         />
-      ))
-      }
+      ))}
     </div>
-  )
+  );
 }
 
-export default Home;
+export default Itemlist;

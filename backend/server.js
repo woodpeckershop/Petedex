@@ -52,7 +52,7 @@ app.use(cors());
 app.use("/api/products", productsRoute(db));
 app.use("/api/services", servicesRoute(db));
 // app.use ("/api/users", usersRoute(db))
-// app.use ("/api/favorites", favoritesRoute(db))
+app.use("/api/favorites", favoritesRoute(db))
 
 // original
 // app.use("/api/users", usersRoutes(db));
