@@ -9,6 +9,9 @@ import Categories from "./Categories.jsx";
 import ProductDetail from "./ProductDetail.jsx";
 import Mystore from "./Mystore";
 import Favorites from "./Favorites.jsx";
+import Login from "./Users/login.js";
+import { useContext } from "react";
+import { authContext } from "./providers/AuthProvider";
 
 function App() {
   const [items, setItems] = useState({
@@ -38,16 +41,22 @@ function App() {
   console.log("items", items);
   return (
     //BEM
+
     <Router>
       <div className="App">
         <Header setSelectedItem={setSelectedItem}/>
         <Switch>
+
+          <Route path="/:user_id/mystore" exact>
+            <Mystore />
+          </Route>
+
+
           <Route path="/search">
             <Itemlist items={selectedItem} />
           </Route>
-          {/* <Route path="/:user_id" exact>
-            <Mystore />
-          </Route> */}
+          
+
           <Route path="/:user_id/products" exact>
             <Categories setSelectedCategory={setSelectedCategory} />
             <Itemlist items={items[selectedCategory]} />
@@ -56,6 +65,11 @@ function App() {
           <Route path="/8/checkout">
             <Checkout />
           </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
           <Route path="/8/favorites">
             <Favorites />
           </Route>
