@@ -15,14 +15,14 @@ import { authContext } from "./providers/AuthProvider";
 
 function App() {
   const [items, setItems] = useState({
-    products: {},
+    products: [],
     services: [],
     favorites: {},
   });
 
   const [selectedCategory, setSelectedCategory] = useState("products");
   const [selectedItem, setSelectedItem] = useState("{}");
-
+ 
   useEffect(() => {
     Promise.all([
       axios.get("/api/products"),
@@ -44,45 +44,41 @@ function App() {
 
     <Router>
       <div className="App">
-        <Header />
+        <Header setSelectedItem={setSelectedItem}/>
         <Switch>
+
           <Route path="/:user_id/mystore" exact>
             <Mystore />
           </Route>
 
+
+          <Route path="/search">
+            <Itemlist items={selectedItem} />
+          </Route>
+          
+
           <Route path="/:user_id/products" exact>
             <Categories setSelectedCategory={setSelectedCategory} />
-            <Itemlist
-              selectedItems={items[selectedCategory]}
-              setSelectedItem={setSelectedItem}
-            />
+            <Itemlist items={items[selectedCategory]} />
           </Route>
-
           {/* <Route path="/checkout"> */}
           <Route path="/8/checkout">
             <Checkout />
           </Route>
+
           <Route path="/login">
             <Login />
           </Route>
 
           <Route path="/8/favorites">
-            <Favorites
-              favorites={items.favorites}
-              setSelectedItem={setSelectedItem}
-            />
+            <Favorites />
           </Route>
-
           <Route path="/" exact>
             <Categories setSelectedCategory={setSelectedCategory} />
-            <Itemlist
-              selectedItems={items[selectedCategory]}
-              setSelectedItem={setSelectedItem}
-            />
+            <Itemlist items={items[selectedCategory]} />
           </Route>
-
-          <Route path={`/:user_id/products/${selectedItem.id}`} exact>
-            <ProductDetail selectedItem={selectedItem} />
+          <Route path={`/:user_id/products/:product_id`} exact>
+            <ProductDetail />
           </Route>
         </Switch>
       </div>

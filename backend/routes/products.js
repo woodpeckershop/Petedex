@@ -11,12 +11,13 @@ module.exports = function (db) {
 
       // })
       .then((products) => {
-        res.json(
-          products.reduce(
-            (previous, current) => ({ ...previous, [current.id]: current }),
-            {}
-          )
-        );
+        res.json(products);
+        // res.json(
+        //   products.reduce(
+        //     (previous, current) => ({ ...previous, [current.id]: current }),
+        //     {}
+        //   )
+        // );
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -59,6 +60,7 @@ module.exports = function (db) {
       });
   });
 
+  //get a product
   router.get("/:product_id", (req, res) => {
     queries
       .getProductWithId(req.params.product_id, db)
@@ -70,6 +72,7 @@ module.exports = function (db) {
       });
   });
 
+
   router.delete("/:product_id/delete", (req, res) => {
     queries
       .deleteProduct(req.body.updateProduct, db)
@@ -79,6 +82,23 @@ module.exports = function (db) {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
+  });
+  //search jobs
+  router.post("/search", (req, res) => {
+    console.log('req.body', req.body)
+    queries
+    .getSearchProducts(req.body.productName, db)
+    // let { term } = req.query;
+    // term = term.toLowerCase();
+    .then((data) => {
+      res.json(data);
+    })
+    // .catch((err) => {
+    //   res.status(500).json({ error: err.message });
+    // });
+    // Job.findAll({ where: { technologies: { [Op.like]: "%" + term + "%" } } })
+    //   .then((jobs) => res.render("jobs", { jobs }))
+    //   .catch((err) => console.log(err));
   });
   return router;
 };
