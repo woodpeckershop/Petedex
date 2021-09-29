@@ -28,7 +28,6 @@ module.exports = function (db) {
     queries
       .deleteProduct(req.params)
       .then((data) => {
-        console.log("data", data);
         res.status(200).json(data);
       })
       .catch((err) => {
@@ -38,7 +37,6 @@ module.exports = function (db) {
 
   router.put("/:user_id/add", (req, res) => {
     //add products needs newproduct: {user_id, id, name, description, price, image_path}
-    console.log(req.body, "addproduct put request");
     queries
       .addProduct(req.body.newProduct, db)
       .then((data) => {
@@ -49,11 +47,11 @@ module.exports = function (db) {
       });
   });
 
-  router.patch("/:product_id/edit", (req, res) => {
+  router.patch("/:user_id/:product_id/edit", (req, res) => {
     queries
       .updateProduct(req.body.updateProduct, db)
       .then((data) => {
-        res.json(data);
+        res.send(data[0]);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -72,10 +70,9 @@ module.exports = function (db) {
       });
   });
 
-
-  router.delete("/:product_id/delete", (req, res) => {
+  router.delete("/delete", (req, res) => {
     queries
-      .deleteProduct(req.body.updateProduct, db)
+      .deleteProduct(req.body.product_id, db)
       .then((data) => {
         res.json(data);
       })
@@ -85,14 +82,13 @@ module.exports = function (db) {
   });
   //search jobs
   router.post("/search", (req, res) => {
-    console.log('req.body', req.body)
     queries
-    .getSearchProducts(req.body.productName, db)
-    // let { term } = req.query;
-    // term = term.toLowerCase();
-    .then((data) => {
-      res.json(data);
-    })
+      .getSearchProducts(req.body.productName, db)
+      // let { term } = req.query;
+      // term = term.toLowerCase();
+      .then((data) => {
+        res.json(data);
+      });
     // .catch((err) => {
     //   res.status(500).json({ error: err.message });
     // });

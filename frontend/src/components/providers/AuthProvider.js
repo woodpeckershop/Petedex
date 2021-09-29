@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import Axios from "axios";
+import { createContext, useState } from 'react';
+import Axios from 'axios';
 
 // import uuid from "react-uuid";
 
@@ -16,7 +16,7 @@ export default function AuthProvider(props) {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
 
-  const [loginStatus, setloginStatus] = useState("");
+  const [loginStatus, setloginStatus] = useState([]);
 
   // Perform login process for the user & save authID, etc
   const login = (email, password) => {
@@ -24,11 +24,12 @@ export default function AuthProvider(props) {
       email: email,
       password: password,
     }).then((response) => {
-      console.log("ressssssssss", response);
+      console.log('ressssssssss', response);
       if (response.data.error) {
-        setloginStatus(response.data.error);
+        setloginStatus([response.data.error]);
       } else {
-        setloginStatus(response.data[0].name);
+        setloginStatus([response.data[0]]);
+        localStorage.setItem('user', JSON.stringify(response.data[0].id));
       }
     });
   };
@@ -41,15 +42,15 @@ export default function AuthProvider(props) {
       password: passwordReg,
     }).then((response) => {
       if (response.data.error) {
-        setloginStatus(response.data.error);
+        setloginStatus([response.data.error]);
       } else {
-        setloginStatus(response.data[0].name);
+        setloginStatus([response.data[0]]);
       }
     });
   };
 
   const logout = function (email, password, setUser, setAuth) {
-    setUser({ email: "", name: "" });
+    setUser({ email: '', name: '' });
     setAuth(false);
   };
 

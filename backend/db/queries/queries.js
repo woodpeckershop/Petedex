@@ -1,9 +1,13 @@
 const getAllProducts = (db) => {
-  const queryStatement = `SELECT users.name, price, products.name, description, image_path, products.id
-  FROM products
-  JOIN users ON user_id = users.id
+  // const queryStatement = `SELECT users.name, price, products.name, description, image_path, products.id
+  // FROM products
+  // JOIN users ON user_id = users.id
+  // ORDER BY products.name`;
+
+  const queryStatement = `SELECT * from products
   ORDER BY products.name`;
   return db.query(queryStatement).then((res) => {
+    console.log("res", res);
     return res.rows;
   });
 };
@@ -64,19 +68,20 @@ const getPassWordWithEmail = function (email, db) {
     });
 };
 
-const updateProduct = (updateProduct) => {
+const updateProduct = (updateProduct, db) => {
   const value = [
     updateProduct.price,
     updateProduct.description,
-    updateProduct.photo_path,
+    updateProduct.image_path,
     updateProduct.name,
     updateProduct.product_id,
+    updateProduct.user_id,
   ];
 
   const queryStatement = `UPDATE products
-       SET price = $1, description = $2, photo_path = $3, name = $4
+       SET price = $1, description = $2, image_path = $3, name = $4, user_id = $6
        WHERE id = $5
-       RETURN *;`;
+       RETURNING *;`;
   return db
     .query(queryStatement, value)
     .then((res) => {
@@ -106,11 +111,11 @@ const updateProduct = (updateProduct) => {
 //     );
 //   };
 
-const deleteProduct = (id) => {
-  const value = id["id"];
-  const queryStatement = `DELETE FROM product
-    WHERE  product_id = $1
-    RETURNING *`;
+const deleteProduct = (id, db) => {
+  const value = [id];
+  const queryStatement = `DELETE FROM products
+    WHERE  id = $1
+    RETURNING *;`;
 
   return db
     .query(queryStatement, value)
@@ -293,7 +298,7 @@ const getSearchProducts = function (searchTerm, db) {
   return db
     .query(queryStatement, value)
     .then((res) => {
-      console.log("res.rows",res.rows)
+      console.log("res.rows", res.rows);
       return res.rows;
     })
     .catch((err) => {
@@ -315,5 +320,5 @@ module.exports = {
   deleteProduct,
   createNewUser,
   getPassWordWithEmail,
-  getSearchProducts
+  getSearchProducts,
 };
