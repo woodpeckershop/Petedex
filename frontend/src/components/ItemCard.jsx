@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Item(props) {
+export default function ItemCard(props) {
   const { id, name, image_path, price, description } = props;
+ 
   return (
     <div className="section-center">
       <article key={id} className="menu-item">
@@ -13,6 +15,13 @@ export default function Item(props) {
           </header>
           <p className="item-text">{description}</p>
         </div>
+
+        <Link to={`/8/products/${id}`}>
+          <button >Details</button>
+        </Link>
+
+
+       
       </article>
     </div>
   );

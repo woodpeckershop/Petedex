@@ -6,71 +6,77 @@ import Checkout from "./Checkout.jsx";
 import Header from "./Header.jsx";
 import Itemlist from "./Itemlist.jsx";
 import Categories from "./Categories.jsx";
+import ProductDetail from "./ProductDetail.jsx";
 import Mystore from "./Mystore";
+import Favorites from "./Favorites.jsx";
+import Login from "./Users/login.js";
+import { useContext } from "react";
+import { authContext } from "./providers/AuthProvider";
 
 function App() {
   const [items, setItems] = useState({
     products: [],
     services: [],
+    favorites: {},
   });
 
   const [selectedCategory, setSelectedCategory] = useState("products");
+  const [selectedItem, setSelectedItem] = useState("{}");
 
   useEffect(() => {
-    Promise.all([axios.get("/api/products"), axios.get("/api/services")]).then(
-      (all) => {
-        setItems((prev) => ({
-          ...prev,
-          products: all[0].data,
-          services: all[1].data,
-        }));
-      }
-    );
+    Promise.all([
+      axios.get("/api/products"),
+      axios.get("/api/services"),
+      axios.get("/api/favorites/8"),
+    ]).then((all) => {
+      setItems((prev) => ({
+        ...prev,
+        products: all[0].data,
+        services: all[1].data,
+        // favorites: all[2].data,
+      }));
+    });
   }, []);
 
-  // const filter88888Items = (category) => {
-  //   if (category === "products") {
-  //     return items.products;
-  //   } else {
-  //     return items.services;
-  //   }
-  // };
-
-  // const categorizeItems = (category) => {
-  //   if (category === "products") {
-  //     setItems(products);
-  //     return;
-  //   }
-  //   const newItems = items.filter((item) => item.category === category);
-  //   setMenuItems(newItems);
-  // };
-
+  console.log("items", items);
   return (
     //BEM
+
     <Router>
       <div className="App">
-        <Header />
+        <Header setSelectedItem={setSelectedItem} />
         <Switch>
-          <Route path="/:user_id">
+          <Route path="/mystore" exact>
             <Mystore />
           </Route>
 
-          <Route path="/">
+          <Route path="/search">
+            <Itemlist items={selectedItem} />
+          </Route>
+
+          <Route path="/:user_id/products" exact>
+            <Categories setSelectedCategory={setSelectedCategory} />
+            <Itemlist items={items[selectedCategory]} />
+          </Route>
+          {/* <Route path="/checkout"> */}
+          <Route path="/8/checkout">
             <Checkout />
           </Route>
 
-          <Route path="/">
-            <Categories
-              // filterItems={filterItems} items={items}
-              setSelectedCategory={setSelectedCategory}
-            />
-            <Itemlist
-              selectedItems={items[selectedCategory]}
-              // products={filterItems(products)} services={filterItems(services)}
-            />
+          <Route path="/login">
+            <Login />
           </Route>
 
-          {/* <Route path='/products/:id' component={ItemDetails}/> */}
+          <Route path="/favorites">
+            <Favorites />
+          </Route>
+          <Route path="/" exact>
+            <Categories setSelectedCategory={setSelectedCategory} />
+            <Itemlist items={items[selectedCategory]} />
+          </Route>
+          <Route path={`/:user_id/products/:product_id`} exact>
+            <ProductDetail />
+          </Route>
         </Switch>
       </div>
     </Router>
