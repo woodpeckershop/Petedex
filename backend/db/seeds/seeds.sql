@@ -103,7 +103,7 @@ insert into users ( name, email, phone) values ( 'Dottie', 'dshergold2r@topsy.co
 -- Seeds for products table
 
 insert into products (user_id,name, description, price, image_path) values (1,'Brittani', 'Turkey vulture', 70, '/images/item-6.jpeg');
-insert into products (user_id, name, description, price, image_path) values (1,'Reba', 'Fowl, helmeted guinea', 92, '/images/item-6.jpeg');
+insert into products (user_id, name, description, price, image_path) values (1,'LitterEasy', 'This Exquisicat Rimmed Litter Pan helps to reduce litter scatter because of its snap-on rim. Your cat will love it because it is easy to navigate in terms of entry and exit, and you will love it because it keeps litter where it belongs;in the litter pan.', 9.2, '/images/litterbox.jpg');
 insert into products (user_id, name, description, price, image_path) values (1,'Crosby', 'Gelada baboon', 9, '/images/item-6.jpeg');
 insert into products (user_id, name, description, price, image_path) values (1,'Den', 'Hare, arctic', 51, '/images/item-6.jpeg');
 insert into products (user_id, name, description, price, image_path) values (1,'Alexandro', 'Yellow-brown sungazer', 82, '/images/item-6.jpeg');
