@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import Axios from "axios";
+import { createContext, useState } from 'react';
+import Axios from 'axios';
 
 // import uuid from "react-uuid";
 
@@ -24,12 +24,21 @@ export default function AuthProvider(props) {
       email: email,
       password: password,
     }).then((response) => {
-      // console.log("ressssssssss", response);
+
+      console.log('ressssssssss', response);
+      if (response.data.error) {
+        setloginStatus([response.data.error]);
+      } else {
+        setloginStatus([response.data[0]]);
+        localStorage.setItem('user', JSON.stringify(response.data[0].id));
+      }
+    });
+  };
+
 
       if (response.data.error) {
-        setloginStatus(response.data.error);
+        setloginStatus([response.data.error]);
       } else {
-        console.log("response.data[0]", response.data[0]);
 
         setloginStatus([response.data[0]]);
       }
@@ -52,7 +61,7 @@ export default function AuthProvider(props) {
   // };
 
   const logout = function (email, password, setUser, setAuth) {
-    setUser({ email: "", name: "" });
+    setUser({ email: '', name: '' });
     setAuth(false);
   };
 

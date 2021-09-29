@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from "axios";
-import "./App.css";
-import Checkout from "./Checkout.jsx";
-import Header from "./Header.jsx";
-import Itemlist from "./Itemlist.jsx";
-import Categories from "./Categories.jsx";
-import ProductDetail from "./ProductDetail.jsx";
-import Mystore from "./Mystore";
-import Favorites from "./Favorites.jsx";
-import Login from "./Users/login.js";
-import { useContext } from "react";
-import { authContext } from "./providers/AuthProvider";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+import './App.css';
+import Checkout from './Checkout.jsx';
+import Header from './Header.jsx';
+import Itemlist from './Itemlist.jsx';
+import Categories from './Categories.jsx';
+import ProductDetail from './ProductDetail.jsx';
+import Mystore from './Mystore';
+import Favorites from './Favorites.jsx';
+import Login from './Users/login.js';
+import { useContext } from 'react';
+import { authContext } from './providers/AuthProvider';
 
 function App() {
   const [items, setItems] = useState({
@@ -20,14 +20,14 @@ function App() {
     favorites: {},
   });
 
-  const [selectedCategory, setSelectedCategory] = useState("products");
-  const [selectedItem, setSelectedItem] = useState("{}");
- 
+  const [selectedCategory, setSelectedCategory] = useState('products');
+  const [selectedItem, setSelectedItem] = useState('{}');
+
   useEffect(() => {
     Promise.all([
-      axios.get("/api/products"),
-      axios.get("/api/services"),
-      axios.get("/api/favorites/8"),
+      axios.get('/api/products'),
+      axios.get('/api/services'),
+      axios.get('/api/favorites/8'),
     ]).then((all) => {
       setItems((prev) => ({
         ...prev,
@@ -38,39 +38,41 @@ function App() {
     });
   }, []);
 
-  console.log("items", items);
+  console.log('items', items);
   return (
     //BEM
 
     <Router>
-      <div className="App">
-        <Header setSelectedItem={setSelectedItem}/>
+      <div className='App'>
+        <Header setSelectedItem={setSelectedItem} />
         <Switch>
-          <Route path="/search">
-            <Itemlist items={selectedItem} />
-          </Route>
-         
-          <Route path="/mystore" exact>
+
+          <Route path='/mystore' exact>
             <Mystore />
           </Route>
 
-          <Route path="/:user_id/products" exact>
+          <Route path='/search'>
+            <Itemlist items={selectedItem} />
+          </Route>
+
+
+          <Route path='/:user_id/products' exact>
             <Categories setSelectedCategory={setSelectedCategory} />
             <Itemlist items={items[selectedCategory]} />
           </Route>
           {/* <Route path="/checkout"> */}
-          <Route path="/8/checkout">
+          <Route path='/8/checkout'>
             <Checkout />
           </Route>
 
-          <Route path="/login">
+          <Route path='/login'>
             <Login />
           </Route>
 
-          <Route path="/8/favorites">
+          <Route path='/8/favorites'>
             <Favorites />
           </Route>
-          <Route path="/" exact>
+          <Route path='/' exact>
             <Categories setSelectedCategory={setSelectedCategory} />
             <Itemlist items={items[selectedCategory]} />
           </Route>
