@@ -66,7 +66,7 @@ function Header({ setSelectedItem }) {
           <span className="header_optionLineTwo">Prime</span>
         </div>
 
-        <Link to="/8/favorites">
+        <Link to="/favorites">
           <div className="header_optionBasket">
             <FavoriteIcon />
           </div>

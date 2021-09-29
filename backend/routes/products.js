@@ -70,6 +70,18 @@ module.exports = function (db) {
       });
   });
 
+  router.get("/:user_id", (req, res) => {
+    console.log("getidididididididi", req.params);
+    queries
+      .getProductWithUserId(req.params.user_id, db)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   router.delete("/delete", (req, res) => {
     queries
       .deleteProduct(req.body.product_id, db)
