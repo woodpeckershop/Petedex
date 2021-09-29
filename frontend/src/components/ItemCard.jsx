@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 
 export default function ItemCard(props) {
   const { id, name, image_path, price, description } = props;
+  const getLocalUser = () => {
+    let user = localStorage.getItem("user");
+    if (user) {
+      return JSON.parse(user);
+    } else {
+      return null;
+    }
+  };
+  
+    const user_id = getLocalUser();
  
   return (
     <div className="section-center">
@@ -16,7 +26,7 @@ export default function ItemCard(props) {
           <p className="item-text">{description}</p>
         </div>
 
-        <Link to={`/8/products/${id}`}>
+        <Link to={`/${user_id}/products/${id}`}>
           <button >Details</button>
         </Link>
 

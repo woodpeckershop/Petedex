@@ -1,7 +1,6 @@
-import { Button } from '@mui/material';
+
 import React, { useState } from 'react';
 import './login.scss';
-import Axios from 'axios';
 import { useContext } from 'react';
 import { authContext } from '../providers/AuthProvider';
 import { Link } from 'react-router-dom';
@@ -35,14 +34,14 @@ function Login() {
           <label>Username</label>
           <input
             type='text'
-            onUsernameChange={(e) => {
+            onChange={(e) => {
               setUsernameReg(e.target.value);
             }}
           ></input>
           <label>Email</label>
           <input
             type='email'
-            onEmailChange={(e) => {
+            onChange={(e) => {
               setEmailReg(e.target.value);
             }}
           ></input>
