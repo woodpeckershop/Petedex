@@ -222,6 +222,25 @@ const getProductWithId = function (id, db) {
     });
 };
 
+const getProductWithUserId = function (id, db) {
+  console.log("userdadadada", id);
+  const value = [Number(id)];
+  const queryStatement = `
+      SELECT *
+      FROM products
+      Where user_id = $1
+      `;
+
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
 const getServiceWithId = function (id, db) {
   const value = [Number(id)];
   const queryStatement = `
@@ -321,4 +340,5 @@ module.exports = {
   createNewUser,
   getPassWordWithEmail,
   getSearchProducts,
+  getProductWithUserId,
 };
