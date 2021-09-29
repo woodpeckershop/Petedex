@@ -16,7 +16,7 @@ export default function AuthProvider(props) {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
 
-  const [loginStatus, setloginStatus] = useState("");
+  const [loginStatus, setloginStatus] = useState([]);
 
   // Perform login process for the user & save authID, etc
   const login = (email, password) => {
@@ -24,29 +24,32 @@ export default function AuthProvider(props) {
       email: email,
       password: password,
     }).then((response) => {
-      console.log("ressssssssss", response);
+      // console.log("ressssssssss", response);
+
       if (response.data.error) {
         setloginStatus(response.data.error);
       } else {
-        setloginStatus(response.data[0].name);
+        console.log("response.data[0]", response.data[0]);
+
+        setloginStatus([response.data[0]]);
       }
     });
   };
 
-  const register = (usernameReg, emailReg, phoneReg, passwordReg) => {
-    Axios.put(`http://localhost:8080/api/users/signup`, {
-      username: usernameReg,
-      email: emailReg,
-      phone: phoneReg,
-      password: passwordReg,
-    }).then((response) => {
-      if (response.data.error) {
-        setloginStatus(response.data.error);
-      } else {
-        setloginStatus(response.data[0].name);
-      }
-    });
-  };
+  // const register = (usernameReg, emailReg, phoneReg, passwordReg) => {
+  //   Axios.put(`http://localhost:8080/api/users/signup`, {
+  //     username: usernameReg,
+  //     email: emailReg,
+  //     phone: phoneReg,
+  //     password: passwordReg,
+  //   }).then((response) => {
+  //     if (response.data.error) {
+  //       setloginStatus(response.data.error);
+  //     } else {
+  //       setloginStatus(response.data[0].name);
+  //     }
+  //   });
+  // };
 
   const logout = function (email, password, setUser, setAuth) {
     setUser({ email: "", name: "" });
@@ -55,7 +58,7 @@ export default function AuthProvider(props) {
 
   const test = 1;
   // authContext will expose these items
-  const userData = { test, login, register, logout, loginStatus };
+  const userData = { test, login, logout, loginStatus };
 
   // We can use this component to wrap any content we want to share this context
   return (

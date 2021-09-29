@@ -72,6 +72,17 @@ module.exports = function (db) {
       });
   });
 
+
+  router.delete("/:product_id/delete", (req, res) => {
+    queries
+      .deleteProduct(req.body.updateProduct, db)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
   //search jobs
   router.post("/search", (req, res) => {
     console.log('req.body', req.body)

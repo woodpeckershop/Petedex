@@ -6,8 +6,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useContext } from "react";
 import { authContext } from "../providers/AuthProvider";
-
-const getLocalStorage = () => {
+import { Link } from "react-router-dom";
+// const getLocalStorage = () => {
 //   let list = localStorage.getItem("list");
 //   if (list) {
 //     return (list = JSON.parse(localStorage.getItem("list")));
@@ -17,8 +17,13 @@ const getLocalStorage = () => {
 // };
 const Mystore = (props) => {
   const { test, loginStatus } = useContext(authContext);
-  console.log("login status88888", loginStatus);
-  let { user_id } = useParams();
+
+
+  // if (!loginStatus){
+
+  // }
+  let user_id = loginStatus.id;
+  console.log("login status88888", loginStatus[0]);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -123,12 +128,13 @@ const Mystore = (props) => {
     setDescription(specificItem.des);
     setImage(specificItem.image);
   };
-  useEffect(() => {
-    Aixo.get('')
-    localStorage.setItem("list", JSON.stringify(list));
-  }, [list]);
+  // useEffect(() => {
+  //   Aixo.get('')
+  //   localStorage.setItem("list", JSON.stringify(list));
+  // }, [list]);
+ 
 
-  return (
+  return user_id ? (
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
         {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
@@ -181,7 +187,7 @@ const Mystore = (props) => {
         </div>
       )}
     </section>
-  );
+  ):(<h1>please log in <Link to='/login'></Link></h1>)
 };
 
 export default Mystore;

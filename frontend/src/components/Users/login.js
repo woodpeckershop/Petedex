@@ -19,6 +19,8 @@ function Login() {
   const { login, register, loginStatus } = useContext(authContext);
   console.log("loginininininin", loginStatus);
 
+
+
   const onSubmit = function (event) {
     event.preventDefault();
     if (email) login(email, password);
@@ -84,7 +86,7 @@ function Login() {
               setPassword(e.target.value);
             }}
           ></input>
-          <Link to="/2/Mystore">
+          <Link to='/Mystore'> 
             <button onClick={() => login(email, password)}>Login</button>
           </Link>
         </div>

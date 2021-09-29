@@ -311,9 +311,9 @@ module.exports = {
   addFavorite,
   getFavoritesByUserId,
   deleteFavorite,
-  getSearchProducts,
   updateProduct,
   deleteProduct,
   createNewUser,
   getPassWordWithEmail,
+  getSearchProducts
 };

@@ -50,7 +50,7 @@ function App() {
             <Itemlist items={selectedItem} />
           </Route>
          
-          <Route path="/:user_id/mystore" exact>
+          <Route path="/mystore" exact>
             <Mystore />
           </Route>
 
@@ -62,6 +62,7 @@ function App() {
           <Route path="/8/checkout">
             <Checkout />
           </Route>
+
           <Route path="/login">
             <Login />
           </Route>
