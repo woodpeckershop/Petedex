@@ -29,40 +29,63 @@ const getAllServices = (db) => {
   });
 };
 
-//   const createNewUser = (newUser) => {
-//     const value = [
-//       newUser["first_name"],
-//       newUser["last_name"],
-//       newUser["email"],
-//       newUser["password"],
-//       newUser["phone"],
-//     ];
+const createNewUser = (newUser) => {
+  const value = [
+    newUser["name"],
+    newUser["email"],
+    newUser["password"],
+    newUser["phone"],
+  ];
 
-//     const queryStatement = `INSERT INTO users(first_name, last_name, email, password, phone)
-//     VALUES ($1, $2, $3, $4, $5)`;
-//     return db.query(queryStatement, value).catch((err) => {
-//       return err;
-//     });
-//   };
+  const queryStatement = `INSERT INTO users(name, email, password, phone)
+    VALUES ($1, $2, $3, $4)`;
+  return db.query(queryStatement, value).catch((err) => {
+    return err;
+  });
+};
 
-//   const updateProduct = (updateProduct) => {
-//     const value = [
-//       updateProduct.price,
-//       updateProduct.description,
-//       updateProduct.photo_path,
-//       updateProduct.name,
-//     ];
+const getPassWordWithEmail = function (email, db) {
+  const value = [email["email"], email["password"]];
+  const queryStatement = `
+  SELECT *
+  FROM users
+  WHERE email = $1 AND password = $2
 
-//     const queryStatement = `UPDATE products
-//        SET price = $1, description = $2, photo_path = $3, name = $4`;
-//     return (
-//       db
-//         .query(queryStatement, value)
-//         .catch((err) => {
-//           return err;
-//         })
-//     );
-//   };
+  `;
+  return db
+    .query(queryStatement, value)
+    .then((data) => {
+      console.log("dadadadadadad", data);
+      return data.rows;
+    })
+    .catch((err) => {
+      console.log("eeeeeeeror", err);
+      return err;
+    });
+};
+
+const updateProduct = (updateProduct) => {
+  const value = [
+    updateProduct.price,
+    updateProduct.description,
+    updateProduct.photo_path,
+    updateProduct.name,
+    updateProduct.product_id,
+  ];
+
+  const queryStatement = `UPDATE products
+       SET price = $1, description = $2, photo_path = $3, name = $4
+       WHERE id = $5
+       RETURN *;`;
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
 
 //   const updateServices = (updateProduct) => {
 //     const value = [
@@ -83,21 +106,21 @@ const getAllServices = (db) => {
 //     );
 //   };
 
-//   const deleteProduct = (id) => {
-//     const value = id["id"];
-//     const queryStatement = `DELETE FROM product
-//     WHERE  product_id = $1
-//     RETURNING *`;
+const deleteProduct = (id) => {
+  const value = id["id"];
+  const queryStatement = `DELETE FROM product
+    WHERE  product_id = $1
+    RETURNING *`;
 
-//     return db
-//       .query(queryStatement, value)
-//       .then((res) => {
-//         return res.rows;
-//       })
-//       .catch((err) => {
-//         return err;
-//       });
-//   };
+  return db
+    .query(queryStatement, value)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
 
 //   const deleteServices = (id) => {
 //     const value = id["id"];
@@ -247,7 +270,6 @@ const deleteFavorite = (oldFav, db) => {
     });
 };
 
-
 const getFavoritesByUserId = (userId, db) => {
   const value = [Number(userId)];
   const queryStatement = `SELECT products.name, products.price, products.description, products.image_path, products.id, products.user_id
@@ -289,5 +311,9 @@ module.exports = {
   addFavorite,
   getFavoritesByUserId,
   deleteFavorite,
-  getSearchProducts
+  getSearchProducts,
+  updateProduct,
+  deleteProduct,
+  createNewUser,
+  getPassWordWithEmail,
 };
