@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./ItemCard.scss";
 
 export default function ItemCard(props) {
   const { id, name, image_path, price, description } = props;
@@ -16,7 +17,7 @@ export default function ItemCard(props) {
  
   return (
     <div className="section-center">
-      <article key={id} className="menu-item">
+      <article key={id} className="item-card">
         <img src={image_path} alt={name} className="photo" />
         <div className="item-info">
           <header>
@@ -27,7 +28,7 @@ export default function ItemCard(props) {
         </div>
 
         <Link to={`/${user_id}/products/${id}`}>
-          <button >Details</button>
+          <button className="button">Details</button>
         </Link>
 
 
