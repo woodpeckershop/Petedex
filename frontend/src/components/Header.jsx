@@ -35,7 +35,7 @@ function Header({ setSelectedItem }) {
         <img alt="logo" className="header_logo" src={logo} />
       </Link>
       <div className="header_search">
-        <form onSubmit={handleSubmit}>
+        <form className="header_searchForm" onSubmit={handleSubmit}>
           <input
             className="header_searchInput"
             type="text"
@@ -57,13 +57,13 @@ function Header({ setSelectedItem }) {
           </div>
         </Link>
         <div className="header_option">
-          <span className="header_optionLineOne">Returns</span>
-          <span className="header_optionLineTwo">& Orders</span>
+          <span className="header_optionLineOne">My</span>
+          <span className="header_optionLineTwo">Store</span>
         </div>
 
         <div className="header_option">
-          <span className="header_optionLineOne">Your</span>
-          <span className="header_optionLineTwo">Prime</span>
+          <span className="header_optionLineOne">My</span>
+          <span className="header_optionLineTwo">Reports</span>
         </div>
 
         <Link to="/favorites">
