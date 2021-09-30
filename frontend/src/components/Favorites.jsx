@@ -20,7 +20,7 @@ function Favorites({ setSelectedItem }) {
       const favorites = result.data;
       setFav(favorites);
     });
-  }, []);
+  }, [user_id]);
 
   return (
     <div>

@@ -31,7 +31,7 @@ function ProductDetail() {
 
 
   useEffect(() => {
-    Axios.get("/api/favorites/8").then((result) => {
+    Axios.get(`/api/favorites/${user_id}`).then((result) => {
       
       const isFavored = !!result.data.find((product) => {
        
@@ -39,7 +39,7 @@ function ProductDetail() {
       });
       setFav(isFavored);
     });
-  }, [productIdParams]);
+  }, [productIdParams,user_id]);
 
 
   const changeFav = () => {

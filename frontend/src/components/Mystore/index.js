@@ -3,10 +3,10 @@ import List from "./List";
 import Alert from "./Alert";
 import "./style.scss";
 import axios from "axios";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { useContext } from "react";
-import { authContext } from "../providers/AuthProvider";
-import { listItemAvatarClasses } from "@mui/material";
+// import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+// import { useContext } from "react";
+// import { authContext } from "../providers/AuthProvider";
+// import { listItemAvatarClasses } from "@mui/material";
 
 // const getLocalStorage = () => {
 //   let list = localStorage.getItem("list");
@@ -141,11 +141,16 @@ const Mystore = (props) => {
     setImage(specificItem.image_path);
   };
 
-  axios.get(`http://localhost:8080/api/products/${user_id}`).then((res) => {
-    setList([...res.data]);
-    console.log(res, "res");
-  });
-  localStorage.setItem("list", JSON.stringify(list));
+  // why adding list cause render?
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/products/${user_id}`).then((res) => {
+      setList([...res.data]);
+      console.log(res, 'res');
+    });
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [user_id]);
+
+ 
 
   return (
     <section className="section-center">

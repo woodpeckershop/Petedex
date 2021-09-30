@@ -10,8 +10,6 @@ import ProductDetail from "./ProductDetail.jsx";
 import Mystore from "./Mystore";
 import Favorites from "./Favorites.jsx";
 import Login from "./Users/login.js";
-import { useContext } from "react";
-import { authContext } from "./providers/AuthProvider";
 
 function App() {
   const [items, setItems] = useState({
