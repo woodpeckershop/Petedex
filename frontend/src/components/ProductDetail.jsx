@@ -79,6 +79,7 @@ function ProductDetail() {
   };
 
   return (
+    <div className="shell">
     <div className="product">
       <div className="product__info">
         <p>{item.name}</p>
@@ -88,16 +89,18 @@ function ProductDetail() {
         </p>
       </div>
 
-      <img src={item.image_path} alt="" />
-      <button>Add to basket</button>
+      <img src={item.image_path} alt="" className="product__img" />
+      <p className="product__img">{item.description}</p>
+      {/* <button>Add to basket</button> */}
       <Link
         to={{
           pathname: "/",
         }}
       >
-        <button>Main Page</button>
+        <button className="product__button">Main Page</button>
       </Link>
-      <FavoriteIcon color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} />
+      <FavoriteIcon className="product__fav" color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} />
+    </div>
     </div>
   );
 }

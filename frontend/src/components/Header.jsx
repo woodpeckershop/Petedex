@@ -6,13 +6,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { amazon } from "../assets/images";
+import { amazon, logo } from "../assets/images";
 import { IconButton } from "@mui/material";
 import Axios from "axios";
 
 function Header({ setSelectedItem }) {
   const [productName, setProductName] = useState("");
-  console.log("outside productName", productName);
+  // console.log("outside productName", productName);
   let history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,10 +32,10 @@ function Header({ setSelectedItem }) {
   return (
     <div className="header">
       <Link to="/">
-        <img alt="logo" className="header_logo" src={amazon} />
+        <img alt="logo" className="header_logo" src={logo} />
       </Link>
       <div className="header_search">
-        <form onSubmit={handleSubmit}>
+        <form className="header_searchForm" onSubmit={handleSubmit}>
           <input
             className="header_searchInput"
             type="text"
@@ -56,14 +56,15 @@ function Header({ setSelectedItem }) {
             <span className="header_optionLineTwo">Sign In</span>
           </div>
         </Link>
+        <Link to="/Mystore">
         <div className="header_option">
-          <span className="header_optionLineOne">Returns</span>
-          <span className="header_optionLineTwo">& Orders</span>
+          <span className="header_optionLineOne">My</span>
+          <span className="header_optionLineTwo">Store</span>
         </div>
-
+        </Link>
         <div className="header_option">
-          <span className="header_optionLineOne">Your</span>
-          <span className="header_optionLineTwo">Prime</span>
+          <span className="header_optionLineOne">My</span>
+          <span className="header_optionLineTwo">Reports</span>
         </div>
 
         <Link to="/favorites">
@@ -72,7 +73,7 @@ function Header({ setSelectedItem }) {
           </div>
         </Link>
 
-        <Link to="/8/checkout">
+        <Link to="/checkout">
           <div className="header_optionBasket">
             <ShoppingBasketIcon />
             <span className="header_optionLineTwo header_basketCount">0</span>
