@@ -1,19 +1,24 @@
+.shell{
+  display: flex;
+  justify-content: center; 
+}
+
 .product {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   margin: 10px;
   padding: 20px;
-  width: 100%;
-  max-height: 400px;
-  min-width: 100px;
+  width: 70%;
+  /* max-height: 400px; */
+  /* min-width: 100px; */
   background-color: white;
   z-index: 1;
 }
 
 .product > img {
-  max-height: 200px;
+  max-height: 500px;
   width: 100%;
   object-fit: contain;
   margin-bottom: 15px;
@@ -25,7 +30,7 @@
 }
 
 .product__price {
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .product > button {
@@ -39,4 +44,13 @@
 .product__rating{
   display: flex;
   flex-direction: row;
+}
+.product__button {
+  margin: 15px;
+}
+
+.product__text {
+  margin: 15px;
+  /* how to make it wrap as the width of pic? */
+  width: 500px;
 }

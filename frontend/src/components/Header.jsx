@@ -56,11 +56,12 @@ function Header({ setSelectedItem }) {
             <span className="header_optionLineTwo">Sign In</span>
           </div>
         </Link>
+        <Link to="/Mystore">
         <div className="header_option">
           <span className="header_optionLineOne">My</span>
           <span className="header_optionLineTwo">Store</span>
         </div>
-
+        </Link>
         <div className="header_option">
           <span className="header_optionLineOne">My</span>
           <span className="header_optionLineTwo">Reports</span>
@@ -72,7 +73,7 @@ function Header({ setSelectedItem }) {
           </div>
         </Link>
 
-        <Link to="/8/checkout">
+        <Link to="/checkout">
           <div className="header_optionBasket">
             <ShoppingBasketIcon />
             <span className="header_optionLineTwo header_basketCount">0</span>

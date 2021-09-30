@@ -24,7 +24,7 @@ export default function ItemCard(props) {
             <h4>{name}</h4>
             <h4 className="price">${price}</h4>
           </header>
-          <p className="item-text">{description}</p>
+          {/* <p className="item-text">{description}</p> */}
         </div>
 
         <Link to={`/${user_id}/products/${id}`}>
