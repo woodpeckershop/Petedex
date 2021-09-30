@@ -50,11 +50,12 @@ function Header({ setSelectedItem }) {
         </form>
       </div>
       <div className="header_nav">
-        <div className="header_option">
-          <span className="header_optionLineOne">Hello Guest</span>
-          <span className="header_optionLineTwo">Sign In</span>
-        </div>
-
+        <Link to="/login">
+          <div className="header_option">
+            <span className="header_optionLineOne">Hello Guest</span>
+            <span className="header_optionLineTwo">Sign In</span>
+          </div>
+        </Link>
         <div className="header_option">
           <span className="header_optionLineOne">Returns</span>
           <span className="header_optionLineTwo">& Orders</span>
@@ -65,7 +66,7 @@ function Header({ setSelectedItem }) {
           <span className="header_optionLineTwo">Prime</span>
         </div>
 
-        <Link to="/8/favorites">
+        <Link to="/favorites">
           <div className="header_optionBasket">
             <FavoriteIcon />
           </div>

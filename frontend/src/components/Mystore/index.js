@@ -3,25 +3,44 @@ import List from "./List";
 import Alert from "./Alert";
 import "./style.scss";
 import axios from "axios";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+// import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+// import { useContext } from "react";
+// import { authContext } from "../providers/AuthProvider";
+// import { listItemAvatarClasses } from "@mui/material";
 
-const getLocalStorage = () => {
-  let list = localStorage.getItem("list");
-  if (list) {
-    return (list = JSON.parse(localStorage.getItem("list")));
+// const getLocalStorage = () => {
+//   let list = localStorage.getItem("list");
+//   if (list) {
+//     return (list = JSON.parse(localStorage.getItem("list")));
+//   } else {
+//     return [];
+//   }
+// };
+
+const getLocalUser = () => {
+  let user = localStorage.getItem("user");
+  if (user) {
+    return JSON.parse(user);
   } else {
-    return [];
+    return null;
   }
 };
+
 const Mystore = (props) => {
-  let { user_id } = useParams();
+  const user_id = getLocalUser();
+  console.log("useridididi", user_id);
+  // console.log("list", list);
+  // const { test, loginStatus } = useContext(authContext);
+  // let user_id;
+  // if (loginStatus[0]) user_id = loginStatus[0].id;
+  // console.log("userididid", user_id);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
-  const [list, setList] = useState(getLocalStorage());
+  const [list, setList] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
@@ -30,41 +49,68 @@ const Mystore = (props) => {
     if (!name) {
       showAlert(true, "danger", "please enter value");
     } else if (name && isEditing) {
+      const updateProduct = {
+        product_id: editID,
+        user_id,
+        name,
+        description,
+        price,
+        image_path: image,
+      };
+      console.log("updateProduct", updateProduct);
+      axios
+        .patch(`http://localhost:8080/api/products/${user_id}/${editID}/edit`, {
+          updateProduct: { ...updateProduct },
+        })
+        .then((res) => {
+          showAlert(true, "success", "product updated");
+          setName("");
+          setPrice("");
+          setDescription("");
+          setImage("");
+
+          const updatedProduct = res.data;
+          const filteredList = list.filter((a) => a.id !== updatedProduct.id);
+          const newList = [...filteredList, updatedProduct];
+          setList([...newList]);
+        })
+        .catch((err) => console.log(err));
       setList(
         list.map((item) => {
           if (item.id === editID) {
-            return { ...item, title: name };
+            return { ...item, updateProduct };
           }
           return item;
         })
       );
       setName("");
+      setPrice("");
+      setDescription("");
+      setImage("");
       setEditID(null);
       setIsEditing(false);
       showAlert(true, "success", "value changed");
     } else {
-      // router.put("/user_id/:product_id/add", (req, res) => {
-      //add products needs newproduct: {user_id, name, description, price, image_path}
-
       const newProduct = { user_id, name, description, price, image };
       console.log(newProduct, "newProduct");
-      //need to change product id
       axios
         .put(`http://localhost:8080/api/products/${user_id}/add`, {
           newProduct: { ...newProduct },
         })
         .then((res) => {
           showAlert(true, "success", "item added to the list");
-          const newItem = {
-            id: new Date().getTime().toString(),
-            title: name,
-            des: description,
-            image: image,
-            price: price,
-          };
-
-          setList([...list, newItem]);
+          // const newItem = {
+          //   user_id,
+          //   name,
+          //   description,
+          //   image_path: image,
+          //   price,
+          // };
+          setList([...list, ...res.data]);
           setName("");
+          setPrice("");
+          setDescription("");
+          setImage("");
           console.log("put success", res);
         })
         .catch((err) => console.log(err));
@@ -74,23 +120,37 @@ const Mystore = (props) => {
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
   };
-  const clearList = () => {
-    showAlert(true, "danger", "empty list");
-    setList([]);
-  };
+
   const removeItem = (id) => {
     showAlert(true, "danger", "item removed");
+    axios.delete("http://localhost:8080/api/products/delete", {
+      data: { product_id: id },
+    });
     setList(list.filter((item) => item.id !== id));
   };
+
   const editItem = (id) => {
+    console.log("item id", id);
+
     const specificItem = list.find((item) => item.id === id);
     setIsEditing(true);
     setEditID(id);
-    setName(specificItem.title);
+    setName(specificItem.name);
+    setPrice(specificItem.price);
+    setDescription(specificItem.description);
+    setImage(specificItem.image_path);
   };
+
+  // why adding list cause render?
   useEffect(() => {
-    localStorage.setItem("list", JSON.stringify(list));
-  }, [list]);
+    axios.get(`http://localhost:8080/api/products/${user_id}`).then((res) => {
+      setList([...res.data]);
+      console.log(res, 'res');
+    });
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [user_id]);
+
+ 
 
   return (
     <section className="section-center">
@@ -142,9 +202,6 @@ const Mystore = (props) => {
       {list.length > 0 && (
         <div className="grocery-container">
           <List items={list} removeItem={removeItem} editItem={editItem} />
-          <button className="clear-btn" onClick={clearList}>
-            clear items
-          </button>
         </div>
       )}
     </section>

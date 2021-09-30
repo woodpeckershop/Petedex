@@ -5,8 +5,18 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+const getLocalUser = () => {
+  let user = localStorage.getItem("user");
+  if (user) {
+    return JSON.parse(user);
+  } else {
+    return null;
+  }
+};
+
 function ProductDetail() {
-  const { user_id, product_id } = useParams();
+  const user_id = getLocalUser();
+  const {  product_id } = useParams();
   const productIdParams = Number(product_id)
   const [fav, setFav] = useState(false);
   const [item, setItem] = useState({});
@@ -21,7 +31,7 @@ function ProductDetail() {
 
 
   useEffect(() => {
-    Axios.get("/api/favorites/8").then((result) => {
+    Axios.get(`/api/favorites/${user_id}`).then((result) => {
       
       const isFavored = !!result.data.find((product) => {
        
@@ -29,7 +39,7 @@ function ProductDetail() {
       });
       setFav(isFavored);
     });
-  }, [productIdParams]);
+  }, [productIdParams,user_id]);
 
 
   const changeFav = () => {

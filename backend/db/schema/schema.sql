@@ -9,7 +9,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  phone TEXT NOT NULL DEFAULT 0
+  phone TEXT NOT NULL DEFAULT 0,
+  password VARCHAR(255) NOT NULL
 );
 -- products table
 CREATE TABLE products (
