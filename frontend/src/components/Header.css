@@ -2,7 +2,7 @@
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #131921;
+  background-color: #14332e;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -10,12 +10,21 @@
 
 .header_logo {
   width: 100px;
+  height: 50px;
   object-fit: contain;
   margin: 0 20px;
-  margin-top: 18px;
+  margin-top: 5px;
 }
 
 .header_search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 24px;
+}
+
+.header_searchForm {
+  /* how to delete the gap btw input and icon? */
   display: flex;
   flex: 1;
   align-items: center;
@@ -33,6 +42,7 @@
   padding: 5px;
   height: 22px !important;
   background-color: #cd9042;
+  border: none;
 }
 
 .header_nav {
@@ -61,6 +71,7 @@
   display: flex;
   align-items: center;
   color: white;
+  margin-left: 10px;
 }
 
 .header_basketCount {

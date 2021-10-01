@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+// import "./Home.css";
 import ItemCard from "./ItemCard.jsx";
 
 // const allCategories = ['all', ...new Set(items.map((item) => item.category))];
