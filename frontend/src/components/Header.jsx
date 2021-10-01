@@ -25,7 +25,7 @@ function Header({ setSelectedItem }) {
         history.push("/search");
       })
       .catch((err) => {
-        err.status(500).json({ error: err.message });
+        console.log("err", err);
       });
   };
 
