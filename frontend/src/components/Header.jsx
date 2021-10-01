@@ -46,7 +46,7 @@ function Header({ setSelectedItem }) {
   return (
     <div className="header">
       <Link to="/">
-        <img alt="logo" className="header_logo" src={amazon} />
+        <img alt="logo" className="header_logo" src={logo} />
       </Link>
       <div className="header_search">
         <form onSubmit={handleSubmit}>
