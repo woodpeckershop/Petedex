@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Itemlist from "./Itemlist.jsx";
 import Axios from "axios";
-const getLocalUser = () => {
-  let user = localStorage.getItem("user");
-  if (user) {
-    return JSON.parse(user);
-  } else {
-    return null;
-  }
-};
+import { authContext } from "../components/providers/AuthProvider";
 
 
 function Favorites({ setSelectedItem }) {
-  const user_id = getLocalUser();
+  const { user_id } = useContext(authContext);
   console.log("ididididdi",user_id);
   const [fav, setFav] = useState([]);
   useEffect(() => {
