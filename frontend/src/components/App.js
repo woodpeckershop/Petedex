@@ -13,13 +13,13 @@ import Login from "./Users/login.js";
 
 function App() {
   const [items, setItems] = useState({
-    products: [],
-    services: [],
+    products: null,
+    services: null,
     favorites: {},
   });
 
   const [selectedCategory, setSelectedCategory] = useState("products");
-  const [selectedItem, setSelectedItem] = useState("{}");
+  const [selectedItem, setSelectedItem] = useState();
 
   useEffect(() => {
     Promise.all([
@@ -70,10 +70,18 @@ function App() {
           </Route>
           <Route path="/" exact>
             <Categories setSelectedCategory={setSelectedCategory} />
-            <Itemlist items={items[selectedCategory]} />
+          </Route>
+          <Route path="/products" exact>
+            <Itemlist category='products' items={items["products"]} />
+          </Route>
+          <Route path="/services" exact>
+            <Itemlist category='services' items={items["services"]} />
           </Route>
           <Route path={`/:user_id/products/:product_id`} exact>
-            <ProductDetail />
+            <ProductDetail category='products' />
+          </Route>
+          <Route path={`/:user_id/services/:product_id`} exact>
+            <ProductDetail category='services' />
           </Route>
         </Switch>
       </div>

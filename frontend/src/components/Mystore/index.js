@@ -1,39 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import List from "./List";
 import Alert from "./Alert";
 import "./style.scss";
 import axios from "axios";
-// import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-// import { useContext } from "react";
-// import { authContext } from "../providers/AuthProvider";
-// import { listItemAvatarClasses } from "@mui/material";
+import { authContext } from "../providers/AuthProvider";
 
-// const getLocalStorage = () => {
-//   let list = localStorage.getItem("list");
-//   if (list) {
-//     return (list = JSON.parse(localStorage.getItem("list")));
-//   } else {
-//     return [];
-//   }
-// };
-
-const getLocalUser = () => {
-  let user = localStorage.getItem("user");
-  if (user) {
-    return JSON.parse(user);
-  } else {
-    return null;
-  }
-};
-
-const Mystore = (props) => {
-  const user_id = getLocalUser();
-  console.log("useridididi", user_id);
-  // console.log("list", list);
-  // const { test, loginStatus } = useContext(authContext);
-  // let user_id;
-  // if (loginStatus[0]) user_id = loginStatus[0].id;
-  // console.log("userididid", user_id);
+const Mystore = () => {
+  const { user_id } = useContext(authContext);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -143,15 +116,15 @@ const Mystore = (props) => {
 
   // why adding list cause render?
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/products/${user_id}`).then((res) => {
-      setList([...res.data]);
-      console.log(res, 'res');
-    });
-    localStorage.setItem('list', JSON.stringify(list));
+    if(user_id) {
+      axios.get(`http://localhost:8080/api/products/${user_id}`).then((res) => {
+        setList([...res.data]);
+        console.log(res, 'res');
+      });
+    }
   }, [user_id]);
 
  
-
   return (
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
