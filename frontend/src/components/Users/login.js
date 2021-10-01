@@ -1,7 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './login.scss';
-import { useContext } from 'react';
 import { authContext } from '../providers/AuthProvider';
 import { Link } from 'react-router-dom';
 
@@ -14,11 +13,8 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const { login, register } = useContext(authContext);
-  const { login, register, loginStatus } = useContext(authContext);
-  console.log('loginininininin', loginStatus);
-
-
+  const { login, register, user_name } = useContext(authContext);
+  console.log('loginininininin', user_name);
 
   const onSubmit = function (event) {
     event.preventDefault();
@@ -27,7 +23,7 @@ function Login() {
 
   return (
     <div>
-      <h1>{loginStatus}</h1>
+      <h1>{user_name}</h1>
       <form onSubmit={onSubmit}>
         <div>
           <h1>Sign up</h1>
@@ -86,11 +82,11 @@ function Login() {
             }}
           ></input>
 
-          <Link to='/Mystore'> 
+          <Link onClick={()=>login(email, password)} to='/Mystore'> 
 
-            <button onClick={() => login(email, password)}>Login</button>
-          </Link>
-        </div>
+            <button>Login</button>
+          </Link>        
+          </div>
       </form>
     </div>
   );

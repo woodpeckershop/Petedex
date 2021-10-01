@@ -1,48 +1,33 @@
 import React from "react";
-import "./Home.css";
+// import "./Home.css";
 import ItemCard from "./ItemCard.jsx";
 
 // const allCategories = ['all', ...new Set(items.map((item) => item.category))];
 
 function Itemlist(props) {
-  const { items } = props;
+  const { items, category } = props;
   console.log("items", items);
 
-  if (!Array.isArray(items)) {
-    return (
-      <div>
-        <ItemCard
-          //why error?
-          key={items.id}
-          id={items.id}
-          userId={items.user_id}
-          name={items.name}
-          image_path={items.image_path}
-          description={items.description}
-          price={items.price}
-        />
-      </div>
-    );
-  }
-  // const itemArray = Object.values(items);
-  // const [items, setItems] = useState(items);
-  // const [categories, setCategories] = useState(allCategories);
+  if (!items) return false;
 
-  // const itemList = props.products.map((product) => {
-  //   return (
-  //     <Item
-  //     //why error?
-  //       key={product.id}
-  //       id={product.id}
-  //       user_id={product.user_id}
-  //       name={product.name}
-  //       image_path={product.image_path}
-  //       description={product.description}
-  //       price={product.price}
-  //     />
-  //   );
-  // });
-  // return <ul>{itemList}</ul>;
+  if ((Array.isArray(items) && !items.length)) {
+    return <h1>There is no pet!</h1>;
+  }
+
+  if (!Array.isArray(items)) {
+    return <ItemCard
+      //why error?
+      key={items.id}
+      id={items.id}
+      userId={items.user_id}
+      name={items.name}
+      image_path={items.image_path}
+      description={items.description}
+      price={items.price}
+      category={category}
+    />
+  }
+
   return (
     <div>
       {items.map((item) => (
@@ -55,6 +40,7 @@ function Itemlist(props) {
           image_path={item.image_path}
           description={item.description}
           price={item.price}
+          category={category}
         />
       ))}
     </div>

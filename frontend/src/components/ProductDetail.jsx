@@ -2,32 +2,23 @@ import { Link } from "react-router-dom";
 import "./ProductDetail.css";
 import Axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { authContext } from "./providers/AuthProvider";
 
-const getLocalUser = () => {
-  let user = localStorage.getItem("user");
-  if (user) {
-    return JSON.parse(user);
-  } else {
-    return null;
-  }
-};
-
-function ProductDetail() {
-  const user_id = getLocalUser();
-  const {  product_id } = useParams();
+function ProductDetail({category='products'}) {
+  const { user_id }= useContext(authContext)
+  const { product_id } = useParams();
   const productIdParams = Number(product_id)
   const [fav, setFav] = useState(false);
   const [item, setItem] = useState({});
   
-
-    useEffect(() => {
-    Axios.get(`/api/products/${productIdParams}`).then((result) => {
+  useEffect(() => {
+    Axios.get(`/api/${category}/${productIdParams}`).then((result) => {
       const itemDetail = result.data[0]
       setItem(itemDetail);
     });
-  }, [productIdParams]);
+  }, [productIdParams, category]);
 
 
   useEffect(() => {
@@ -79,6 +70,7 @@ function ProductDetail() {
   };
 
   return (
+    <div className="shell">
     <div className="product">
       <div className="product__info">
         <p>{item.name}</p>
@@ -88,16 +80,18 @@ function ProductDetail() {
         </p>
       </div>
 
-      <img src={item.image_path} alt="" />
-      <button>Add to basket</button>
+      <img src={item.image_path} alt="" className="product__img" />
+      <p className="product__img">{item.description}</p>
+      {/* <button>Add to basket</button> */}
       <Link
         to={{
           pathname: "/",
         }}
       >
-        <button>Main Page</button>
+        <button className="product__button">Main Page</button>
       </Link>
-      <FavoriteIcon color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} />
+      <FavoriteIcon className="product__fav" color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} />
+    </div>
     </div>
   );
 }

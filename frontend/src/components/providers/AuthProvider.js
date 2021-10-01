@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+
 import Axios from "axios";
 
 // import uuid from "react-uuid";
@@ -6,17 +7,8 @@ import Axios from "axios";
 export const authContext = createContext();
 
 export default function AuthProvider(props) {
-  // const [auth, setAuth] = useState(false);
-  // const [user, setUser] = useState({ email: "", name: "", id: "" });
-  // const [usernameReg, setUsernameReg] = useState("");
-  // const [passwordReg, setpasswordReg] = useState("");
-  // const [emailReg, setEmailReg] = useState("");
-  // const [phoneReg, setPhoneReg] = useState("");
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  const [loginStatus, setloginStatus] = useState([]);
+  const [user_name, setUserName] = useState('');
+  const [user_id, setUserId] = useState();
 
   // Perform login process for the user & save authID, etc
   const login = (email, password) => {
@@ -26,10 +18,10 @@ export default function AuthProvider(props) {
     }).then((response) => {
       console.log("ressssssssss", response);
       if (response.data.error) {
-        setloginStatus([response.data.error]);
+        window.alert(response.data.error);
       } else {
-        setloginStatus([response.data[0]]);
-        localStorage.setItem("user", JSON.stringify(response.data[0].id));
+        setUserName(response.data[0].name);
+        setUserId(response.data[0].id);
       }
     });
   };
@@ -42,9 +34,9 @@ export default function AuthProvider(props) {
       password: passwordReg,
     }).then((response) => {
       if (response.data.error) {
-        setloginStatus([response.data.error]);
+        setUserName([response.data.error]);
       } else {
-        setloginStatus([response.data[0]]);
+        setUserName([response.data[0]]);
       }
     });
   };
@@ -54,9 +46,8 @@ export default function AuthProvider(props) {
     setAuth(false);
   };
 
-  const test = 1;
   // authContext will expose these items
-  const userData = { test, login, register, logout, loginStatus };
+  const userData = { user_id, login, register, logout, user_name };
 
   // We can use this component to wrap any content we want to share this context
   return (
