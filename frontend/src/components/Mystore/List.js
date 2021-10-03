@@ -7,10 +7,19 @@ const List = ({ items, removeItem, editItem }) => {
         const { name, description, image_path, price, id } = item;
         return (
           <article className="grocery-item" key={id}>
-            <p className="title">{name}</p>
-            <p className="title">{description}</p>
-            <p className="title">{price}</p>
-            <p className="title">{image_path}</p>
+            <div>
+              <label className="grocery-label">Product Name</label>
+              <p className="title">{name}</p>
+            </div>
+            <div>
+              <label className="grocery-label">Description</label>
+              <p className="title">{description}</p>
+            </div>
+            <div>
+              <label className="grocery-label">Price</label>
+              <p className="title">${price}</p>
+            </div>
+            <img className="grocery-img" src={image_path} alt="new" />
 
             <div className="btn-container">
               <button
