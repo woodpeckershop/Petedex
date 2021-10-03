@@ -29,7 +29,9 @@ CREATE TABLE services (
   name VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   price INTEGER NOT NULL DEFAULT 0,
-  image_path TEXT NOT NULL
+  image_path TEXT NOT NULL,
+  lat FLOAT(8),
+  lng FLOAT(8)
 );
 -- favorites table
 CREATE TABLE favorites (
