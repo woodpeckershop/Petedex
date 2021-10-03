@@ -45,6 +45,7 @@ const usersRoute = require("./routes/users");
 const productsRoute = require("./routes/products");
 const servicesRoute = require("./routes/services");
 const favoritesRoute = require("./routes/favorites");
+const messagesRoute = require("./routes/messages");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -54,6 +55,7 @@ app.use("/api/services", servicesRoute(db));
 // app.use ("/api/users", usersRoute(db))
 app.use("/api/favorites", favoritesRoute(db));
 app.use("/api/users", usersRoute(db));
+app.use("/api/messages", messagesRoute(db));
 // app.use ("/api/favorites", favoritesRoute(db))
 
 // original
