@@ -59,7 +59,7 @@ module.exports = function (db) {
   });
 
   //get a product
-  router.get("/:product_id", (req, res) => {
+  router.get("/product/:product_id", (req, res) => {
     queries
       .getProductWithId(req.params.product_id, db)
       .then((data) => {
@@ -70,7 +70,7 @@ module.exports = function (db) {
       });
   });
 
-  router.get("/:user_id", (req, res) => {
+  router.get("/user/:user_id", (req, res) => {
     console.log("getidididididididi", req.params);
     queries
       .getProductWithUserId(req.params.user_id, db)

@@ -12,12 +12,14 @@ function ProductDetail({category='products'}) {
   const productIdParams = Number(product_id)
   const [fav, setFav] = useState(false);
   const [item, setItem] = useState({});
+
   
   useEffect(() => {
-    Axios.get(`/api/${category}/${productIdParams}`).then((result) => {
+    Axios.get(`/api/${category}/product/${productIdParams}`).then((result) => {
       const itemDetail = result.data[0]
+      console.log("itemdetail", itemDetail)
       setItem(itemDetail);
-    });
+    }).catch(err=>console.log(err));
   }, [productIdParams, category]);
 
 
@@ -69,6 +71,24 @@ function ProductDetail({category='products'}) {
     });
   };
 
+
+  const [input, setInput] = useState('');
+  const handleReply = () => {
+    const templateVar = {
+      recipient_id: item.user_id,
+      sender_id: user_id,
+      content: input,
+    };
+
+    Axios.put('http://localhost:8080/api/messages', templateVar)
+      .then((data) => {
+        console.log("message sent")
+      })
+      .catch((err) => console.log(err));
+    setInput('');
+    return;
+  };
+
   return (
     <div className="shell">
     <div className="product">
@@ -91,6 +111,12 @@ function ProductDetail({category='products'}) {
         <button className="product__button">Main Page</button>
       </Link>
       <FavoriteIcon className="product__fav" color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} />
+      <input
+        type='text'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={handleReply}>Send</button>
     </div>
     </div>
   );

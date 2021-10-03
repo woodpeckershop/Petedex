@@ -3,25 +3,26 @@ const router = express.Router();
 const queries = require("../db/queries/queries");
 
 module.exports = function (db) {
-  router.get("/messages/:id", (req, res) => {
-    res.render("messages", {
-      user: req.session.user_id,
-      ownerid: req.params.id,
-    });
+  router.get("/:id", (req, res) => {
+    const id = req.params.id;
+    queries
+      .getMessageWithId(id, db)
+
+      .then((messages) => {
+        res.json(messages);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
-  router.post("/messages/:id", (req, res) => {
-    const sender_id = req.session.user_id;
-
-    const recipient_id = req.params.id;
-
-    const content = req.body.message;
-
-    database
-      .addMessage({ sender_id, recipient_id, content })
+  router.put("/", (req, res) => {
+    console.log(req.body, "here in post message id");
+    const { sender_id, recipient_id, content } = req.body;
+    queries
+      .addMessage({ sender_id, recipient_id, content }, db)
       .then((data) => {
-        console.log("message", data);
-        res.redirect("/books");
+        res.send(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

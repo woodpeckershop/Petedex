@@ -43,6 +43,7 @@ function Header({ setSelectedItem }) {
   };
 
   const myStoreLink = user_id ? '/Mystore' : '/login';
+  const myMessagesLink = user_id ? '/mymessages' : '/login';
 
   return (
     <div className="header">
@@ -75,6 +76,12 @@ function Header({ setSelectedItem }) {
         <div className="header_option">
           <span className="header_optionLineOne">My</span>
           <span className="header_optionLineTwo">Store</span>
+        </div>
+        </Link>
+        <Link to={myMessagesLink}>
+        <div className="header_option">
+          <span className="header_optionLineOne">My</span>
+          <span className="header_optionLineTwo">Messages</span>
         </div>
         </Link>
         <div className="header_option">
