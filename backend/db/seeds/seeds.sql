@@ -34,3 +34,16 @@ insert into services (user_id, name, description, price, image_path, lat, lng) v
 insert into services (user_id, name, description, price, image_path, lat, lng) values (1,'Cats walking', 'Every cat walker on the site has been hand-reviewed and approved by the Rover team. They’ve also completed a general background check.', 30, '/images/catWalker.jpg', 49.33165099336615, -123.10539385419389);
 insert into services (user_id, name, description, price, image_path, lat, lng) values (2,'Dogs walking', 'Making dogs look great is our passion! Our academy-trained Pet Stylists have over 800 hours of hands-on grooming instruction that includes bathing, trimming & styling at least 200 dogs of all breeds & sizes plus annual safety certification. We offer complete bath & haircut services and walk-in services. Book your pet salon appointment today!', 30, '/images/dogWalker.jpg', 49.25798367961171, -123.10640006213352);
 insert into services (user_id, name, description, price, image_path, lat, lng) values (3,'dog Hotel', 'Our comfortable accommodations & safety-certified associates provide a welcoming place for dogs & cats to stay while you’re away! Guests will feel at home with the around-the-clock care of our pet-loving staff. We offer a safe, clean, temperature-controlled environment, playtime, exercise, healthy meals & more. Book the ultimate staycation destination for your pet now!', 109, '/images/dogHotelBed.jpg',49.28321168623181, -122.78057502494524);
+
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (1, 3, 'Is it still available?');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (3, 1, 'Yes. I have many in stock');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (1, 3, 'Will you negotiate on the price?');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (3, 1, 'What would you like to offer?');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (2, 3, 'What is the condition of that book?');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (3, 2, 'It is brand new');
