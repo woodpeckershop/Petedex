@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState, useEffect, useContext } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { authContext } from "./providers/AuthProvider";
-import Map from "./Map.jsx"
+import Map from "./Map.jsx";
 
 function ProductDetail({ category = "products" }) {
   const { user_id } = useContext(authContext);
@@ -13,11 +13,6 @@ function ProductDetail({ category = "products" }) {
   const productIdParams = Number(product_id);
   const [fav, setFav] = useState(false);
   const [item, setItem] = useState({});
-
-
-console.log('item',item)
-
-
 
   useEffect(() => {
     Axios.get(`/api/${category}/${productIdParams}`).then((result) => {
@@ -70,71 +65,71 @@ console.log('item',item)
     });
   };
 
+  if (category === "services") {
+    return (
+      <div className="shell">
+        <div className="product">
+          <div className="product__info">
+            <p>{item.name}</p>
+            <p className="product__price">
+              <small>$</small>
+              <strong>{item.price}</strong>
+            </p>
+          </div>
 
-
-  // // Initialize and add the map
-  // function initMap() {
-  //   // The location of Uluru
-  //   const uluru = { lat: -25.344, lng: 131.036 };
-  //   // The map, centered at Uluru
-  //   const map = new google.maps.Map(document.getElementById("map"), {
-  //     zoom: 4,
-  //     center: uluru,
-  //   });
-  //   // The marker, positioned at Uluru
-  //   const marker = new google.maps.Marker({
-  //     position: uluru,
-  //     map: map,
-  //   });
-  // }
-
-  // const loader = new Loader({
-  //   apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg",
-  //   version: "weekly",
-  //   ...additionalOptions,
-  // });
-
-  // loader.load().then(() => {
-  //   map = new google.maps.Map(document.getElementById("map"), {
-  //     center: { lat: -34.397, lng: 150.644 },
-  //     zoom: 8,
-  //   });
-  // });
-
-  return (
-    <div className="shell">
-      <div className="product">
-        <div className="product__info">
-          <p>{item.name}</p>
-          <p className="product__price">
-            <small>$</small>
-            <strong>{item.price}</strong>
-          </p>
+          <img src={item.image_path} alt="" className="product__img" />
+          <p className="product__img">{item.description}</p>
+          {/* <button>Add to basket</button> */}
+          <Link
+            to={{
+              pathname: "/",
+            }}
+          >
+            <button className="product__button">Main Page</button>
+          </Link>
+          <FavoriteIcon
+            className="product__fav"
+            color={fav ? "secondary" : "disabled"}
+            variant="contained"
+            onClick={changeFav}
+          />
         </div>
 
-        <img src={item.image_path} alt="" className="product__img" />
-        <p className="product__img">{item.description}</p>
-        {/* <button>Add to basket</button> */}
-        <Link
-          to={{
-            pathname: "/",
-          }}
-        >
-          <button className="product__button">Main Page</button>
-        </Link>
-        <FavoriteIcon
-          className="product__fav"
-          color={fav ? "secondary" : "disabled"}
-          variant="contained"
-          onClick={changeFav}
-        />
+        <Map longitude={item.lng} latitude={item.lat} />
       </div>
+    );
+  } else {
+    return (
+      <div className="shell">
+        <div className="product">
+          <div className="product__info">
+            <p>{item.name}</p>
+            <p className="product__price">
+              <small>$</small>
+              <strong>{item.price}</strong>
+            </p>
+          </div>
 
-    <Map longitude={item.lng} latitude={item.lat}/>
-
-     
-    </div>
-  );
+          <img src={item.image_path} alt="" className="product__img" />
+          <p className="product__img">{item.description}</p>
+          {/* <button>Add to basket</button> */}
+          <Link
+            to={{
+              pathname: "/",
+            }}
+          >
+            <button className="product__button">Main Page</button>
+          </Link>
+          <FavoriteIcon
+            className="product__fav"
+            color={fav ? "secondary" : "disabled"}
+            variant="contained"
+            onClick={changeFav}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ProductDetail;
