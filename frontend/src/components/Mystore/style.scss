@@ -143,14 +143,14 @@ p {
 }
 
 .section-center {
-  width: 90vw;
+  width: 180vw;
   margin: 0 auto;
-  max-width: 35rem;
+  max-width: 80rem;
   margin-top: 8rem;
 }
 @media screen and (min-width: 992px) {
   .section-center {
-    width: 95vw;
+    width: 160vw;
   }
 }
 main {
@@ -194,6 +194,7 @@ Grocery List
 }
 .grocery-form h3 {
   color: var(--clr-primary-1);
+
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -212,6 +213,18 @@ Grocery List
   font-size: 1rem;
   flex: 1 0 auto;
   color: var(--clr-grey-5);
+  border-radius: 0.5em;
+}
+.grocery-label {
+  font-size: 1.2em;
+}
+.grocery-img {
+  border-radius: 10%;
+  width: 300px;
+  height: 300px;
+}
+.grocery-input {
+  border-radius: 10%;
 }
 .grocery::placeholder {
   font-family: var(--ff-secondary);
@@ -246,15 +259,16 @@ Grocery List
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   transition: var(--transition);
   padding: 0.25rem 1rem;
-  border-radius: var(--radius);
+  border: 3px solid #cdddb7;
+  border-radius: 1rem;
   text-transform: capitalize;
 }
 .grocery-item:hover {
   color: var(--clr-grey-5);
-  background: var(--clr-grey-10);
+  background: rgb(238, 245, 235);
 }
 .grocery-item:hover .title {
   color: var(--clr-grey-5);
@@ -264,14 +278,15 @@ Grocery List
   color: var(--clr-grey-1);
   letter-spacing: 2px;
   transition: var(--transition);
+  border-radius: 10%;
 }
 .edit-btn,
 .delete-btn {
   background: transparent;
   border-color: transparent;
   cursor: pointer;
-  font-size: 0.7rem;
-  margin: 0 0.15rem;
+  font-size: 3rem;
+  margin: 0 1rem;
   transition: var(--transition);
 }
 .edit-btn {
