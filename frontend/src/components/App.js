@@ -18,7 +18,7 @@ function App() {
   const [items, setItems] = useState({
     products: null,
     services: null,
-    favorites: {},
+    favorites: null,
   });
 
   const [selectedCategory, setSelectedCategory] = useState('products');
@@ -29,7 +29,7 @@ function App() {
     Promise.all([
       axios.get('/api/products'),
       axios.get('/api/services'),
-      axios.get('/api/favorites/8'),
+     
     ]).then((all) => {
       setItems((prev) => ({
         ...prev,
