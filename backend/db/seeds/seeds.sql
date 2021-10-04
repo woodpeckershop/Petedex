@@ -47,3 +47,10 @@ INSERT INTO messages (sender_id, recipient_id, content)
 VALUES (2, 3, 'What is the condition of that book?');
 INSERT INTO messages (sender_id, recipient_id, content)
 VALUES (3, 2, 'It is brand new');
+
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (1, 2, 'Is it still available?');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (2, 1, 'Yes. I have many in stock');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (1, 2, 'Will you negotiate on the price?');

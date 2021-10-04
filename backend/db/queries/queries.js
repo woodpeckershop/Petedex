@@ -7,7 +7,7 @@ const getAllProducts = (db) => {
   const queryStatement = `SELECT * from products
   ORDER BY products.name`;
   return db.query(queryStatement).then((res) => {
-    console.log("res", res);
+    console.log("ROHID", res.rows);
     return res.rows;
   });
 };
@@ -325,11 +325,11 @@ const getSearchProducts = function (searchTerm, db) {
     });
 };
 
-const addMessage = function (text) {
+const addMessage = function (text, db) {
   const sender_id = text.sender_id;
   const recipient_id = text.recipient_id;
   const content = text.content;
-  return pool
+  return db
     .query(
       `
       INSERT INTO messages (sender_id, recipient_id, content)
@@ -342,8 +342,8 @@ const addMessage = function (text) {
     .catch((err) => err.message);
 };
 
-const getMessageWithId = function (id) {
-  return pool
+const getMessageWithId = function (id, db) {
+  return db
     .query(
       `
     SELECT *

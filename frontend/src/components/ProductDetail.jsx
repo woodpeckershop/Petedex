@@ -9,16 +9,19 @@ import Map from "./Map.jsx";
 
 function ProductDetail({ category = "products" }) {
   const { user_id } = useContext(authContext);
-  const { product_id } = useParams();
-  const productIdParams = Number(product_id);
+  const { product_id, service_id } = useParams();
+  const productIdParams = Number(product_id || service_id);
   const [fav, setFav] = useState(false);
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    Axios.get(`/api/${category}/${productIdParams}`).then((result) => {
-      const itemDetail = result.data[0];
-      setItem(itemDetail);
-    });
+    Axios.get(`/api/${category}/${productIdParams}`)
+      .then((result) => {
+        const itemDetail = result.data[0];
+        console.log("itemdetail", itemDetail);
+        setItem(itemDetail);
+      })
+      .catch((err) => console.log(err));
   }, [productIdParams, category]);
 
   useEffect(() => {
@@ -64,7 +67,22 @@ function ProductDetail({ category = "products" }) {
       console.log("Successfully deleted.");
     });
   };
+  const [input, setInput] = useState("");
+  const handleReply = () => {
+    const templateVar = {
+      recipient_id: item.user_id,
+      sender_id: user_id,
+      content: input,
+    };
 
+    Axios.put("http://localhost:8080/api/messages", templateVar)
+      .then((data) => {
+        console.log("message sent");
+      })
+      .catch((err) => console.log(err));
+    setInput("");
+    return;
+  };
   if (category === "services") {
     return (
       <div className="shell">
@@ -126,6 +144,12 @@ function ProductDetail({ category = "products" }) {
             variant="contained"
             onClick={changeFav}
           />
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button onClick={handleReply}>Send</button>
         </div>
       </div>
     );
