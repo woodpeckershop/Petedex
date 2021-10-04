@@ -7,7 +7,7 @@ import { authContext } from "../components/providers/AuthProvider";
 function Favorites({ setSelectedItem }) {
   const { user_id } = useContext(authContext);
   console.log("ididididdi",user_id);
-  const [fav, setFav] = useState([]);
+  const [fav, setFav] = useState(null);
   useEffect(() => {
     Axios.get(`/api/favorites/${user_id}`).then((result) => {
       const favorites = result.data;

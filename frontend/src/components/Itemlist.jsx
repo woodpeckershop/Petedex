@@ -11,7 +11,7 @@ function Itemlist(props) {
   if (!items) return false;
 
   if ((Array.isArray(items) && !items.length)) {
-    return <h1>There is no pet!</h1>;
+    return <h1>There isn't such a thing called 'you like'</h1>;
   }
 
   if (!Array.isArray(items)) {
