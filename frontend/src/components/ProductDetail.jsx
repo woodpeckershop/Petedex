@@ -15,10 +15,12 @@ function ProductDetail({ category = "products" }) {
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    Axios.get(`/api/${category}/${productIdParams}`).then((result) => {
-      const itemDetail = result.data[0];
-      setItem(itemDetail);
-    });
+    Axios.get(`/api/${category}/${productIdParams}`)
+      .then((result) => {
+        const itemDetail = result.data[0];
+        setItem(itemDetail);
+      })
+      .catch((err) => console.log(err));
   }, [productIdParams, category]);
 
   useEffect(() => {
@@ -63,6 +65,23 @@ function ProductDetail({ category = "products" }) {
       setFav(false);
       console.log("Successfully deleted.");
     });
+  };
+
+  const [input, setInput] = useState("");
+  const handleReply = () => {
+    const templateVar = {
+      recipient_id: item.user_id,
+      sender_id: user_id,
+      content: input,
+    };
+
+    Axios.put("http://localhost:8080/api/messages", templateVar)
+      .then((data) => {
+        console.log("message sent");
+      })
+      .catch((err) => console.log(err));
+    setInput("");
+    return;
   };
 
   if (category === "services") {
@@ -126,10 +145,15 @@ function ProductDetail({ category = "products" }) {
             variant="contained"
             onClick={changeFav}
           />
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button onClick={handleReply}>Send</button>
         </div>
       </div>
     );
   }
 }
-
 export default ProductDetail;
