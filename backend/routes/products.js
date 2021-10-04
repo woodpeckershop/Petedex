@@ -59,7 +59,7 @@ module.exports = function (db) {
   });
 
   //get a product
-  router.get("/product/:product_id", (req, res) => {
+  router.get("/:product_id", (req, res) => {
     queries
       .getProductWithId(req.params.product_id, db)
       .then((data) => {

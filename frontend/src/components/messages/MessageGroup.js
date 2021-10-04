@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { authContext } from '../providers/AuthProvider';
 import './MessageGroup.scss';
-import Message from './Message';
+import Message from './message';
 
 function MessageGroup() {
   const { user_id } = useContext(authContext);

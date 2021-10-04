@@ -8,14 +8,14 @@ import { authContext } from "./providers/AuthProvider";
 
 function ProductDetail({category='products'}) {
   const { user_id }= useContext(authContext)
-  const { product_id } = useParams();
-  const productIdParams = Number(product_id)
+  const { product_id, service_id } = useParams();
+  const productIdParams = Number(product_id || service_id)
   const [fav, setFav] = useState(false);
   const [item, setItem] = useState({});
 
   
   useEffect(() => {
-    Axios.get(`/api/${category}/product/${productIdParams}`).then((result) => {
+    Axios.get(`/api/${category}/${productIdParams}`).then((result) => {
       const itemDetail = result.data[0]
       console.log("itemdetail", itemDetail)
       setItem(itemDetail);
