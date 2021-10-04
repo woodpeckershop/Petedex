@@ -4,7 +4,7 @@ import "./ItemCard.scss";
 import { authContext } from "./providers/AuthProvider";
 
 export default function ItemCard(props) {
-  const { id, name, image_path, price, description, category="product" } = props;
+  const { id, name, image_path, price, description, category="products" } = props;
 
   
   const { user_id } = useContext(authContext);
