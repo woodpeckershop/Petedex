@@ -9,8 +9,13 @@ import Map from "./Map.jsx";
 
 function ProductDetail({ category = "products" }) {
   const { user_id } = useContext(authContext);
+<<<<<<< HEAD
   const { product_id } = useParams();
   const productIdParams = Number(product_id);
+=======
+  const { product_id, service_id } = useParams();
+  const productIdParams = Number(product_id || service_id);
+>>>>>>> master
   const [fav, setFav] = useState(false);
   const [item, setItem] = useState({});
 
@@ -18,6 +23,10 @@ function ProductDetail({ category = "products" }) {
     Axios.get(`/api/${category}/${productIdParams}`)
       .then((result) => {
         const itemDetail = result.data[0];
+<<<<<<< HEAD
+=======
+        console.log("itemdetail", itemDetail);
+>>>>>>> master
         setItem(itemDetail);
       })
       .catch((err) => console.log(err));
@@ -66,7 +75,6 @@ function ProductDetail({ category = "products" }) {
       console.log("Successfully deleted.");
     });
   };
-
   const [input, setInput] = useState("");
   const handleReply = () => {
     const templateVar = {
