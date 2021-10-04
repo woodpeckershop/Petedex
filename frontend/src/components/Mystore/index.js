@@ -5,8 +5,9 @@ import './style.scss';
 import axios from 'axios';
 import { authContext } from '../providers/AuthProvider';
 
-const Mystore = () => {
+const Mystore = ({ setItems, items }) => {
   const { user_id } = useContext(authContext);
+  // const { patch, post, del } = useContext(networkContext);
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -71,20 +72,27 @@ const Mystore = () => {
           newProduct: { ...newProduct },
         })
         .then((res) => {
+          setItems((prev) => ({
+            ...prev,
+            products: [...prev.products, res.data[0]]
+
+
+          }));
+          // setItems(items=>[...items, res.data[0]]);
+          // .then((all) => {
+          //   setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
+          // })
+
+          console.log("products")
           showAlert(true, 'success', 'item added to the list');
-          // const newItem = {
-          //   user_id,
-          //   name,
-          //   description,
-          //   image_path: image,
-          //   price,
-          // };
+
           setList([...list, ...res.data]);
           setName('');
           setPrice('');
           setDescription('');
           setImage('');
-          console.log('put success', res);
+          console.log('put successful', res);
+          // console.log("products",products)
         })
         .catch((err) => console.log(err));
     }
@@ -98,23 +106,34 @@ const Mystore = () => {
     showAlert(true, 'danger', 'item removed');
     axios.delete('http://localhost:8080/api/products/delete', {
       data: { product_id: id },
+    })
+
+    .then((res) => {
+      const productsRemained = items.products.filter((product)=>{
+       return product.id !== id 
+      })
+      setItems(prev => ({
+        ...prev,
+        products: productsRemained,
+      }));
+      
+
     });
     setList(list.filter((item) => item.id !== id));
-  };
+  }
+    const editItem = (id) => {
+      console.log('item id', id);
 
-  const editItem = (id) => {
-    console.log('item id', id);
+      const specificItem = list.find((item) => item.id === id);
+      setIsEditing(true);
+      setEditID(id);
+      setName(specificItem.name);
+      setPrice(specificItem.price);
+      setDescription(specificItem.description);
+      setImage(specificItem.image_path);
+    };
 
-    const specificItem = list.find((item) => item.id === id);
-    setIsEditing(true);
-    setEditID(id);
-    setName(specificItem.name);
-    setPrice(specificItem.price);
-    setDescription(specificItem.description);
-    setImage(specificItem.image_path);
-  };
-
-  // why adding list cause render?
+  
   useEffect(() => {
     if (user_id) {
       axios
@@ -180,6 +199,45 @@ const Mystore = () => {
       )}
     </section>
   );
-};
+}
 
 export default Mystore;
+
+
+
+// const NetworkContext = React.createContext();
+
+// const NetworkProvider = ({ setItems, children }) => {
+//   const refreshData = () => {
+//     Promise.all([
+//       axios.get('/api/products'),
+//       axios.get('/api/services'),
+//       axios.get('/api/favorites/8'),
+//     ]).then((all) => {
+//       setItems((prev) => ({
+//         ...prev,
+//         products: all[0].data,
+//         services: all[1].data,
+//       }));
+//     });
+//   }
+
+//   const del = (url, body) => {
+//     return axios.delete(url, body).then(res => {
+//       refreshData();
+//       return res;
+//     });
+//   }
+//   const post = (url, body, skipReload=false) => {
+//     return axios.post(url, body).then(res => {
+//       if (skipReload) refreshData();
+//       return res;
+//     });
+//   }
+
+
+//   post('/confirmEmail', undefined, true);
+//   return <NetworkContext.Provider value={{ post, del }}>
+//     {children}
+//   </NetworkContext.Provider>
+// }

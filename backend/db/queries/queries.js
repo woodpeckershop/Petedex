@@ -7,7 +7,7 @@ const getAllProducts = (db) => {
   const queryStatement = `SELECT * from products
   ORDER BY products.name`;
   return db.query(queryStatement).then((res) => {
-    console.log("res", res);
+    console.log("ROHID", res.rows);
     return res.rows;
   });
 };

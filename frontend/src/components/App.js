@@ -35,7 +35,6 @@ function App() {
         ...prev,
         products: all[0].data,
         services: all[1].data,
-        // favorites: all[2].data,
       }));
     });
   }, []);
@@ -53,7 +52,7 @@ function App() {
           </Route>
 
           <Route path='/mystore' exact>
-            <Mystore />
+            <Mystore setItems={setItems} items={items}/>
           </Route>
 
           <Route path='/search'>
