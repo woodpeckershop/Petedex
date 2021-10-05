@@ -9,6 +9,7 @@ module.exports = function (db) {
       .getMessageWithId(id, db)
 
       .then((messages) => {
+        console.log("mmmmmmmm8888", messages);
         res.json(messages);
       })
       .catch((err) => {

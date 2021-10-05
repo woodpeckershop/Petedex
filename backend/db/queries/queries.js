@@ -357,6 +357,13 @@ const getMessageWithId = function (id, db) {
     .catch((err) => err.message);
 };
 
+const getAllUsers = (db) => {
+  return db
+    .query(`SELECT * FROM users`)
+    .then((res) => res.rows)
+    .catch((err) => err.message);
+};
+
 module.exports = {
   getAllProducts,
   getAllServices,
@@ -375,4 +382,5 @@ module.exports = {
   getProductWithUserId,
   addMessage,
   getMessageWithId,
+  getAllUsers,
 };

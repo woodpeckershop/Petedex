@@ -147,6 +147,7 @@ p {
   margin: 0 auto;
   max-width: 80rem;
   margin-top: 8rem;
+  border-radius: 3em;
 }
 @media screen and (min-width: 992px) {
   .section-center {
@@ -165,10 +166,11 @@ Grocery List
 */
 .section-center {
   background: var(--clr-white);
-  border-radius: var(--radius);
+  border-radius: 3em;
   box-shadow: var(--light-shadow);
   transition: var(--transition);
   padding: 2rem;
+  border: 1px solid rgb(227, 232, 241);
 }
 .section-center:hover {
   box-shadow: var(--dark-shadow);
@@ -199,6 +201,8 @@ Grocery List
   text-align: center;
 }
 .form-control {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -216,12 +220,24 @@ Grocery List
   border-radius: 0.5em;
 }
 .grocery-label {
+  border: 1px solid rgb(227, 232, 241);
+  border-radius: 0.5rem;
+  background-color: rgb(179, 214, 191);
   font-size: 1.2em;
+  padding: 3px;
+}
+.item_box {
+  margin-bottom: 9em;
 }
 .grocery-img {
   border-radius: 10%;
-  width: 300px;
-  height: 300px;
+  width: 240px;
+  height: 240px;
+}
+.grocery-img:hover {
+  -ms-transform: scale(1.05); /* IE 9 */
+  -webkit-transform: scale(1.05); /* Safari 3-8 */
+  transform: scale(1.05);
 }
 .grocery-input {
   border-radius: 10%;
@@ -231,6 +247,8 @@ Grocery List
   color: var(--clr-grey-5);
 }
 .submit-btn {
+  margin-top: 1em;
+  margin-left: 39.6em;
   background: var(--clr-primary-8);
   border-color: transparent;
   flex: 0 0 5rem;
@@ -239,14 +257,18 @@ Grocery List
   padding: 0.25rem;
   text-transform: capitalize;
   letter-spacing: 2px;
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
+  border-radius: 0.5em;
   cursor: pointer;
   content: var(--clr-primary-5);
   transition: var(--transition);
   font-size: 0.85rem;
+  width: 10em;
+  height: 3em;
 }
 .submit-btn:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
   background: var(--clr-primary-5);
   color: var(--clr-white);
 }
@@ -254,7 +276,11 @@ Grocery List
 .grocery-container {
   margin-top: 2rem;
 }
-
+.grocery:hover {
+  -ms-transform: scale(1.02); /* IE 9 */
+  -webkit-transform: scale(1.02); /* Safari 3-8 */
+  transform: scale(1.02);
+}
 .grocery-item {
   display: flex;
   align-items: center;
@@ -267,19 +293,34 @@ Grocery List
   text-transform: capitalize;
 }
 .grocery-item:hover {
+  -ms-transform: scale(1.05); /* IE 9 */
+  -webkit-transform: scale(1.05); /* Safari 3-8 */
+  transform: scale(1.05);
   color: var(--clr-grey-5);
-  background: rgb(238, 245, 235);
+  background: rgb(241, 243, 240);
 }
 .grocery-item:hover .title {
   color: var(--clr-grey-5);
 }
 .title {
+  margin-top: 0.5em;
   margin-bottom: 0;
   color: var(--clr-grey-1);
   letter-spacing: 2px;
   transition: var(--transition);
   border-radius: 10%;
 }
+.des_title {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  color: var(--clr-grey-1);
+  letter-spacing: 2px;
+  transition: var(--transition);
+  border-radius: 10%;
+  width: 350px;
+  height: 80px;
+}
+
 .edit-btn,
 .delete-btn {
   background: transparent;
@@ -294,12 +335,18 @@ Grocery List
 }
 .edit-btn:hover {
   color: var(--clr-green-dark);
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2);
 }
 .delete-btn {
   color: var(--clr-red-light);
 }
 .delete-btn:hover {
   color: var(--clr-red-dark);
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2);
 }
 .clear-btn {
   text-transform: capitalize;
@@ -319,4 +366,31 @@ Grocery List
 }
 .clear-btn:hover {
   color: var(--clr-red-dark);
+}
+
+.des_container {
+  margin-top: -5.45em;
+  border: 1px solid rgba(227, 232, 241, 0.027);
+  border-radius: 0.5rem;
+  width: 30%;
+  height: 30%;
+}
+
+.mystore_topbar {
+  margin-top: -2em;
+  margin-left: -2em;
+  border: 3px solid rgba(10, 15, 9, 0.027);
+  background-color: rgb(18, 61, 32);
+  color: #d4edda;
+  border-top-left-radius: 3em;
+  border-top-right-radius: 3em;
+  width: 1278px;
+}
+.mystore_toptitle {
+  margin-top: 0.5em;
+  margin-left: 13.75em;
+  margin-bottom: 0.5em;
+}
+.mystore_bottomtitle {
+  margin-top: 1em;
 }
