@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState, useEffect, useContext } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { authContext } from "./providers/AuthProvider";
+import BasicModal from "./modal.jsx"
+
 
 function ProductDetail({category='products'}) {
   const { user_id }= useContext(authContext)
@@ -72,22 +74,22 @@ function ProductDetail({category='products'}) {
   };
 
 
-  const [input, setInput] = useState('');
-  const handleReply = () => {
-    const templateVar = {
-      recipient_id: item.user_id,
-      sender_id: user_id,
-      content: input,
-    };
+  // const [input, setInput] = useState('');
+  // const handleReply = () => {
+  //   const templateVar = {
+  //     recipient_id: item.user_id,
+  //     sender_id: user_id,
+  //     content: input,
+  //   };
 
-    Axios.put('http://localhost:8080/api/messages', templateVar)
-      .then((data) => {
-        console.log("message sent")
-      })
-      .catch((err) => console.log(err));
-    setInput('');
-    return;
-  };
+  //   Axios.put('http://localhost:8080/api/messages', templateVar)
+  //     .then((data) => {
+  //       console.log("message sent")
+  //     })
+  //     .catch((err) => console.log(err));
+  //   setInput('');
+  //   return;
+  // };
 
   return (
     <div className="shell">
@@ -111,12 +113,14 @@ function ProductDetail({category='products'}) {
         <button className="product__button">Main Page</button>
       </Link>
       <FavoriteIcon className="product__fav" color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} />
-      <input
+      <BasicModal item={item} user_id={user_id}>Message the owner</BasicModal>
+
+      {/* <input
         type='text'
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button onClick={handleReply}>Send</button>
+      <button onClick={handleReply}>Send</button> */}
     </div>
     </div>
   );
