@@ -5,12 +5,9 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState, useEffect, useContext } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { authContext } from "./providers/AuthProvider";
-<<<<<<< HEAD
 import BasicModal from "./modal.jsx"
-
-=======
+import DetailCard from "./DetailCard";
 import Map from "./Map.jsx";
->>>>>>> b16ea0b5e00c31c03f156bf3ca9485bdab4d5a6a
 
 function ProductDetail({ category = "products" }) {
   const { user_id } = useContext(authContext);
@@ -92,8 +89,9 @@ function ProductDetail({ category = "products" }) {
 
   if (category === "services") {
     return (
-      <div className="shell">
-        <div className="product">
+      <div className="service-shell">
+         <DetailCard item={item} user_id={user_id} fav={fav} changeFav={changeFav}/>
+        {/* <div className="product">
           <div className="product__info">
             <p>{item.name}</p>
             <p className="product__price">
@@ -105,7 +103,7 @@ function ProductDetail({ category = "products" }) {
           <img src={item.image_path} alt="" className="product__img" />
           <p className="product__img">{item.description}</p>
           {/* <button>Add to basket</button> */}
-          <Link
+          {/* <Link
             to={{
               pathname: "/",
             }}
@@ -118,15 +116,16 @@ function ProductDetail({ category = "products" }) {
             variant="contained"
             onClick={changeFav}
           />
-        </div>
+        </div> */} 
 
         <Map longitude={item.lng} latitude={item.lat} />
       </div>
     );
   } else {
     return (
-      <div className="shell">
-        <div className="product">
+      <div className="product-shell">
+        <DetailCard item={item} user_id={user_id} fav={fav} changeFav={changeFav}/>
+        {/* <div className="product">
           <div className="product__info">
             <p>{item.name}</p>
             <p className="product__price">
@@ -138,15 +137,15 @@ function ProductDetail({ category = "products" }) {
       <img src={item.image_path} alt="" className="product__img" />
       <p className="product__img">{item.description}</p>
       {/* <button>Add to basket</button> */}
-      <Link
+      {/* <Link
         to={{
           pathname: "/",
         }}
       >
         <button className="product__button">Main Page</button>
       </Link>
-      <FavoriteIcon className="product__fav" color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} />
-      <BasicModal item={item} user_id={user_id}>Message the owner</BasicModal>
+      <FavoriteIcon className="product__fav" color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} /> 
+      <BasicModal item={item} user_id={user_id}>Message the owner</BasicModal> */}
 
       {/* <input
         type='text'
@@ -154,8 +153,9 @@ function ProductDetail({ category = "products" }) {
         onChange={(e) => setInput(e.target.value)}
       />
       <button onClick={handleReply}>Send</button> */}
-    </div>
+    {/* </div> */}
     </div>
   );
+}
 }
 export default ProductDetail;

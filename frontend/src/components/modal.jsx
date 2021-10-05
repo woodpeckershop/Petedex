@@ -4,7 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useState} from "react";
+import TextField from '@mui/material/TextField';
 
 const style = {
   position: 'absolute',
@@ -39,6 +40,7 @@ export default function BasicModal({user_id,item}) {
       })
       .catch((err) => console.log(err));
     setInput('');
+    handleClose()
     return;
   };
 
@@ -58,12 +60,20 @@ export default function BasicModal({user_id,item}) {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography> */}
-          <input
+          <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          defaultValue="Please enter your message"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+          {/* <input
             type='text'
             value={input}
-            onChange={(e) => setInput(e.target.value)}
-      />
-          <button onClick={handleReply}>Send</button>
+            onChange={(e) => setInput(e.target.value)} */}
+      {/* /> */}
+          <Button onClick={handleReply} size="large">Send</Button>
         </Box>
       </Modal>
     </div>
