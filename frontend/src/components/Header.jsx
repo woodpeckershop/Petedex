@@ -1,27 +1,30 @@
 import { useEffect, useState, useContext } from "react";
-import "./Header.css";
+import "./Header.scss";
 import { Link, useHistory } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { logo } from "../assets/images";
 import { IconButton } from "@mui/material";
 import Axios from "axios";
-import { authContext } from '../components/providers/AuthProvider';
+import { authContext } from "../components/providers/AuthProvider";
 
 function Header({ setSelectedItem }) {
   const [productName, setProductName] = useState("");
   const { user_name, user_id } = useContext(authContext);
   const [name, setName] = useState("Guest");
-  const [status, setStatus] = useState("Sign In");
+  const [status, setStatus] = useState(<LoginIcon style={{ fill: "white", fontSize: "400%" }}/>);
 
   useEffect(() => {
     if (user_name) {
       setName(user_name);
-      setStatus("Log Out");
+      setStatus(<LogoutIcon style={{ fill: "white", fontSize: "400%" }}/>);
     }
   }, [user_name]);
 
@@ -38,19 +41,18 @@ function Header({ setSelectedItem }) {
         history.push("/search");
       })
       .catch((err) => {
-        err.status(500).json({ error: err.message });
+        console.log("err", err);
       });
   };
 
-  const myStoreLink = user_id ? '/Mystore' : '/login';
-  const myMessagesLink = user_id ? '/mymessages' : '/login';
+  const myStoreLink = user_id ? "/Mystore" : "/login";
+  const myMessagesLink = user_id ? "/mymessages" : "/login";
+  const myFavLink = user_id ? "/favorites" : "/login";
 
   return (
     <div className="header">
-      <Link to="/">
-        <img alt="logo" className="header_logo" src={logo} />
-      </Link>
-      <div className="header_search">
+     
+      
         <form className="header_searchForm" onSubmit={handleSubmit}>
           <input
             className="header_searchInput"
@@ -64,41 +66,30 @@ function Header({ setSelectedItem }) {
             <SearchIcon className="header_searchIcon" />
           </IconButton>
         </form>
-      </div>
-      <div className="header_nav">
+      
+
+      <Link to="/">
+        <img alt="logo" className="header_logo" src={logo} />
+      </Link>
+
+      <div className="header-right">
         <Link to="/login">
-          <div className="header_option">
-            <span className="header_optionLineOne">{`Hello ${name}`}</span>
-            <span className="header_optionLineTwo">{status}</span>
-          </div>
-        </Link>
-        <Link to={myStoreLink}>
-        <div className="header_option">
-          <span className="header_optionLineOne">My</span>
-          <span className="header_optionLineTwo">Store</span>
-        </div>
-        </Link>
-        <Link to={myMessagesLink}>
-        <div className="header_option">
-          <span className="header_optionLineOne">My</span>
-          <span className="header_optionLineTwo">Messages</span>
-        </div>
-        </Link>
-        <div className="header_option">
-          <span className="header_optionLineOne">My</span>
-          <span className="header_optionLineTwo">Reports</span>
-        </div>
-        <Link to="/favorites">
-          <div className="header_optionBasket">
-            <FavoriteIcon />
+          <div className="header_login">
+            <span >{`Hello ${name}`}</span>
+            <span >{status}</span>
           </div>
         </Link>
 
-        <Link to="/checkout">
-          <div className="header_optionBasket">
-            <ShoppingBasketIcon />
-            <span className="header_optionLineTwo header_basketCount">0</span>
-          </div>
+        <Link to={myStoreLink}>
+          <StorefrontIcon style={{ fill: "white", fontSize: "400%" }} />
+        </Link>
+
+        <Link to={myMessagesLink}>
+          <MailOutlineIcon style={{ fill: "white", fontSize: "400%" }} />
+        </Link>
+
+        <Link to={myFavLink}>
+          <FavoriteBorderIcon style={{ fill: "white", fontSize: "400%" }} />
         </Link>
       </div>
     </div>
