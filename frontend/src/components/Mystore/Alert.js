@@ -4,9 +4,9 @@ const Alert = ({ type, msg, removeAlert, list }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       removeAlert();
-    }, 3000);
+    }, 0);
     return () => clearTimeout(timeout);
-  }, [list,removeAlert]);
+  }, [list, removeAlert]);
   return <p className={`alert alert-${type}`}>{msg}</p>;
 };
 
