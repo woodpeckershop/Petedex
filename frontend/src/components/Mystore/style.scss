@@ -267,6 +267,9 @@ Grocery List
   text-transform: capitalize;
 }
 .grocery-item:hover {
+  -ms-transform: scale(1.05); /* IE 9 */
+  -webkit-transform: scale(1.05); /* Safari 3-8 */
+  transform: scale(1.05);
   color: var(--clr-grey-5);
   background: rgb(238, 245, 235);
 }
@@ -319,4 +322,11 @@ Grocery List
 }
 .clear-btn:hover {
   color: var(--clr-red-dark);
+}
+
+.des_container {
+  border: 1px solid rgba(227, 232, 241, 0.027);
+  border-radius: 0.5rem;
+  width: 30%;
+  height: 30%;
 }

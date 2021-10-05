@@ -34,8 +34,11 @@ function MessageGroup() {
     }
 
     return (
-      <>
-        <h1>Message with: {clientName}</h1>
+      <div className="chatContainer">
+        <div className="chat_top_bar">
+          <h3 className="chat_title">Message with: {clientName}</h3>
+        </div>
+
         <Message
           messages={messages}
           users={users}
@@ -43,7 +46,7 @@ function MessageGroup() {
           user_id={user_id}
           setMessages={setMessages}
         />
-      </>
+      </div>
     );
   });
 

@@ -31,29 +31,35 @@ function Message({ messages, id, user_id, setMessages, users }) {
         )[0].name;
 
         return (
-          <tr>
-            <td>From: {fromName}</td>
-            <td>To: {toName}</td>
-            <td>Content: {message.content}</td>
-          </tr>
+          <div className="message_box">
+            <div>
+              {fromName} : {message.content}
+            </div>
+          </div>
         );
       }
     });
   return (
-    <div>
-      <table> {messageList}</table>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button onClick={handleReply}>Reply</button>
-      </form>
+    <div className="chat_main">
+      <span> {messageList}</span>
+      <div className="bottom_bar">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <input
+            className="chat_input"
+            placeholder="Reply ..."
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button onClick={handleReply} className="reply_button">
+            Reply
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

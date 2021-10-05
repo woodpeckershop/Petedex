@@ -9,15 +9,15 @@ const List = ({ items, removeItem, editItem }) => {
           <article className="grocery-item" key={id}>
             <div>
               <label className="grocery-label">Product Name</label>
-              <p className="title">{name}</p>
+              <div className="title">{name}</div>
             </div>
-            <div>
-              <label className="grocery-label">Description</label>
-              <p className="title">{description}</p>
+            <div className="des_container">
+              <label className="grocery-label">Description :</label>
+              <div className="title">{description}</div>
             </div>
             <div>
               <label className="grocery-label">Price</label>
-              <p className="title">${price}</p>
+              <div className="title">${price}</div>
             </div>
             <img className="grocery-img" src={image_path} alt="new" />
 
