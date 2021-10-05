@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useState } from "react";
 
-function Message({ messages, id, user_id, setMessages, users }) {
+function Message({ messages, id, user_id, setMessages, users, clientName }) {
   const [input, setInput] = useState("");
   const handleReply = () => {
     const templateVar = {
@@ -32,16 +32,20 @@ function Message({ messages, id, user_id, setMessages, users }) {
 
         return (
           <div className="message_box">
-            <div>
+            <p
+              className={fromName !== clientName ? "mymeesage" : "othermessage"}
+            >
               {fromName} : {message.content}
-            </div>
+            </p>
           </div>
         );
       }
     });
   return (
     <div className="chat_main">
-      <span> {messageList}</span>
+      <div className="chat_middle">
+        <div> {messageList}</div>
+      </div>
       <div className="bottom_bar">
         <form
           onSubmit={(e) => {

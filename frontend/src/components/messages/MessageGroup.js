@@ -40,6 +40,7 @@ function MessageGroup() {
         </div>
 
         <Message
+          clientName={clientName}
           messages={messages}
           users={users}
           id={id}

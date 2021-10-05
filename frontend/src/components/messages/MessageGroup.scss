@@ -23,15 +23,18 @@
 }
 
 .message_box {
-  background-color: rgb(85, 172, 112);
+  background-color: rgba(85, 172, 113, 0.007);
   border: 1px solid rgb(227, 232, 241);
   border-radius: 0.5rem;
 }
+.mymeesage {
+  color: brown;
+  text-align: right;
+  padding: 10px;
+}
 
 .bottom_bar {
-  position: absolute;
-
-  margin-top: 22.4em;
+  margin-top: 26em;
   background-color: rgb(85, 172, 112);
   border: 1px solid rgb(227, 232, 241);
   border-radius: 0.5rem;
@@ -58,4 +61,13 @@
 }
 .reply_button:hover {
   background: rgb(196, 230, 203);
+}
+.chat_middle {
+  width: 700px;
+  height: 28px;
+}
+
+.othermessage {
+  color: black;
+  padding: 10px;
 }
