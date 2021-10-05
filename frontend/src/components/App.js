@@ -17,6 +17,20 @@ import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 const theme = createTheme({
   typography: {
     fontFamily: ["Baloo 2"],
+    defaultProps: {
+      variantMapping: {
+        h1: 'h2',
+        h2: 'h2',
+        h3: 'h2',
+        h4: 'h2',
+        h5: 'h2',
+        h6: 'h2',
+        subtitle1: 'h2',
+        subtitle2: 'h2',
+        body1: 'span',
+        body2: 'span',
+      },
+    },
   },
 });
 
@@ -79,14 +93,10 @@ function App() {
             </Route>
 
             <Route path="/products" exact>
-              <div className="items-container">
-                <Itemlist category="products" items={items["products"]} />
-              </div>
+              <Itemlist category="products" items={items["products"]} />
             </Route>
             <Route path="/services" exact>
-              <div className="items-container">
-                <Itemlist category="services" items={items["services"]} />
-              </div>
+              <Itemlist category="services" items={items["services"]} />
             </Route>
             <Route path={`/:user_id/products/:product_id`} exact>
               <ProductDetail category="products" />
