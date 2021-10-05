@@ -3,3 +3,23 @@
   width:500px;
   height: 500px
 }
+
+// .section-center{
+//   width:560px;
+//   height: 660px
+// }
+
+.item-card {
+  width:560px;
+  height: 660px;
+  background: var(--clr-white);
+  border-radius: var(--radius);
+  box-shadow: var(--light-shadow);
+  transition: var(--transition);
+  padding: 2rem;
+  margin:2rem
+  
+}
+.section-center:hover {
+  box-shadow: var(--dark-shadow);
+}
