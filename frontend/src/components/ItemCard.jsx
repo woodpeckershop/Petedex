@@ -10,7 +10,7 @@ export default function ItemCard(props) {
   const { user_id } = useContext(authContext);
  
   return (
-    <div className="section-center">
+    
       <article key={id} className="item-card">
         <img src={image_path} alt={name} className="photo" />
         <div className="item-info">
@@ -26,6 +26,6 @@ export default function ItemCard(props) {
         </Link>
 
       </article>
-    </div>
+   
   );
 }
