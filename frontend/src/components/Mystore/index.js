@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import List from "./List";
 import Alert from "./Alert";
-import "./style.scss";
+import "./store.scss";
 import axios from "axios";
 import { authContext } from "../providers/AuthProvider";
 

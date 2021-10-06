@@ -294,7 +294,7 @@
 // export default Header;
 
 import { useEffect, useState, useContext } from "react";
-import "./Header.scss";
+import "./Nav.scss";
 import { Link, useHistory } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -308,7 +308,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { logo } from "../assets/images";
 import { IconButton } from "@mui/material";
 import Axios from "axios";
-import { authContext } from "../components/providers/AuthProvider";
+import { authContext } from "./providers/AuthProvider";
 
 function Header({ setSelectedItem }) {
   const [productName, setProductName] = useState("");
@@ -355,6 +355,7 @@ function Header({ setSelectedItem }) {
             placeholder="Please type product here."
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
+            size='40'
           />
 
           <IconButton type="submit">
@@ -370,7 +371,7 @@ function Header({ setSelectedItem }) {
       <div className="header-right">
         <Link to="/login">
           <div className="header_login">
-            <span >{`Hello ${name}`}</span>
+            <span className='header-right-font'>{`Hello ${name}`}</span>
             <span >{status}</span>
           </div>
         </Link>
