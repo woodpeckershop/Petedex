@@ -22,16 +22,16 @@ import green from "@material-ui/core/colors/green";
 //   },
 // });
 
-const theme = createTheme({
-  palette: { primary: { main: green[500] }, secondary: { main: green[500] } },
-});
+// const theme = createTheme({
+//   palette: { primary: { main: green[500] }, secondary: { main: green[500] } },
+// });
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  // <ThemeProvider theme={theme}>
     <AuthProvider>
       <App />
-    </AuthProvider>
-  </ThemeProvider>,
+    </AuthProvider>,
+  // </ThemeProvider>
   document.getElementById("root")
 );
 

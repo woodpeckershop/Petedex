@@ -13,9 +13,8 @@ import MessageGroup from "./messages/MessageGroup";
 import { authContext } from "./providers/AuthProvider";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-import green from "@material-ui/core/colors/green";
 import Button from "@mui/material/Button"
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 
 import { useTheme } from '@mui/material/styles';
 import { FaCommentsDollar } from "react-icons/fa";
@@ -42,8 +41,8 @@ function App() {
     favorites: null,
   });
 
-const theme = useTheme()
-console.log('theme',theme)
+// const theme = useTheme()
+// console.log('theme',theme)
 
   const [selectedCategory, setSelectedCategory] = useState("products");
   const [selectedItem, setSelectedItem] = useState();
@@ -70,8 +69,6 @@ console.log('theme',theme)
       {/* <ThemeProvider theme={theme}> */}
         {/* <div className="app"> */}
         <Header setSelectedItem={setSelectedItem} />
-
-        <Button variant="contained">Contained</Button>
 
         <Switch>
           <Route path="/mymessages" exact>
