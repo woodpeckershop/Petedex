@@ -1,13 +1,14 @@
-.service-shell{
+.service-shell {
   display: flex;
- align-items: center;
+  align-items: center;
   justify-content: space-between;
+  margin: 25px;
 }
 
-.product-shell{
+.product-shell {
   display: flex;
- align-items: center;
- justify-content:center;
+  align-items: center;
+  justify-content: center;
   // justify-content: space-between;
 }
 
@@ -49,7 +50,7 @@
   color: #111;
 }
 
-.product__rating{
+.product__rating {
   display: flex;
   flex-direction: row;
 }

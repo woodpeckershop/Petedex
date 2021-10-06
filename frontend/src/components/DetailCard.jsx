@@ -25,8 +25,7 @@ export default function DetailCard({item,user_id,fav,changeFav}) {
 
   return (
     <Card sx={{ maxWidth: 1000 }}>
-      <CardHeader fontSize="h1"
-      titleTypographyProps={{variant:'h1' }}
+      <CardHeader fontSize="h2"
         title={item.name}
       />
       <CardMedia
@@ -36,7 +35,11 @@ export default function DetailCard({item,user_id,fav,changeFav}) {
         alt={item.name}
       />
       <CardContent>
-        <Typography variant="h4" color="text.secondary" >
+        <Typography variant="h5" color="text.secondary" >
+        <p className="product__price">
+              <small>$</small>
+              <strong>{item.price}</strong>
+            </p>
         {item.description}
         </Typography>
       </CardContent>
@@ -47,6 +50,7 @@ export default function DetailCard({item,user_id,fav,changeFav}) {
            color={fav ? "secondary" : "disabled"}
            variant="contained"
            onClick={changeFav}
+           fontSize="large"
           />
         </IconButton>
         {/* <IconButton aria-label="share">
@@ -57,9 +61,9 @@ export default function DetailCard({item,user_id,fav,changeFav}) {
               pathname: "/",
             }}
           >
-            <Button className="product__button">Main Page</Button>
+            <Button className="product__button" fontSize="large">Main Page</Button>
           </Link>
-          <BasicModal item={item} user_id={user_id}>Message the owner</BasicModal>
+          <BasicModal item={item} user_id={user_id} fontSize="large">Message the owner</BasicModal>
        
       </CardActions>
       

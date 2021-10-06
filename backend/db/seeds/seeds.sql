@@ -14,14 +14,14 @@ insert into users ( name, email, phone, password) values ( 'Buck', 'boakden8@qua
 
 -- Seeds for products table
 
-insert into products (user_id,name, description, price, image_path) values (1,'Attraction', 'Keep your kitty active and engaged with this Whisker City Cactus Compressed Catnip Cat Toy. A touch of catnip makes this fun toy even better. ', 6.99, '/images/catMint.jpg');
+insert into products (user_id,name, description, price, image_path) values (1,'Catnips 3lbs', 'Keep your kitty active and engaged with this Whisker City Cactus Compressed Catnip Cat Toy. A touch of catnip makes this fun toy even better. ', 6.99, '/images/catMint.jpg');
 insert into products (user_id, name, description, price, image_path) values (2,'LitterEasy', 'This Exquisicat Rimmed Litter Pan helps to reduce litter scatter because of its snap-on rim.You will love it because it keeps litter where it belongs;in the litter pan.', 9.2, '/images/litterbox.jpg');
 insert into products (user_id, name, description, price, image_path) values (3,'Little Companion', 'Our Elephant Dog Toy is detailed with tiny limbs, soft to the touch and squeaks for added entertainment. Keep him active with fun toys; an active dog is a healthy dog. ', 9, '/images/dogAndToy.jpg');
 insert into products (user_id, name, description, price, image_path) values (4,'Bonding Bites', 'Natural snack for dogs made from a single ingredient: 100% sweet potato of Peruvian origin.', 17.9, '/images/dogFood.jpg');
 insert into products (user_id, name, description, price, image_path) values (1,'Dogsour', 'Finally! A plush toy that lasts! KONGs Plush Dinosour Squeaker Dog Toy is the perfect toy for your pooch who loves stuffed toys - minus the mess! This plush toy comes with a pre-loaded removable internal squeaker that all dogs love.', 28, '/images/dogAndDinosour.jpg');
 insert into products (user_id, name, description, price, image_path) values (2,'Whisker City', 'Your cat will love spending time on this Whisker City Wicker Short Cat Tower. This tower provides the perfect perch on which your kitty can absorb the world around her.', 119.99, '/images/furniture.jpg');
 insert into products (user_id, name, description, price, image_path) values (3,'Fresh Breath Dental Sticks', 'Fresh Breath by TropiClean offers many solutions to help make your dogs dental care routine easier! Treat your dog to a healthy mouth with Fresh Breath by TropiClean Dental Sticks. By treating your dog to one Fresh Breath Dental Stick each day, you can support his oral health and give him fresh breat - no brushing required. These grain & gluten-free, easily digestible Dental Sticks for small dogs have a tasty Vanilla Mint flavor, and a unique chewy texture that helps brush away plaque & tartar and provide fresh breath for dogs with each bite.', 15, '/images/treats.jpg');
-insert into products (user_id, name, description, price, image_path) values (4,'Ah Rubber Duck!','Who said only software developers love rubber ducks? Your dog too!Buy them some so that your duck will still be available to be told codes to.' , 15, '/images/dogAndRubberDuck.jpg');
+insert into products (user_id, name, description, price, image_path) values (1,'Ah Rubber Duck!','Who said only software developers love rubber ducks? Your dog too!Buy them some so that your duck will still be available to be told codes to.' , 15, '/images/dogAndRubberDuck.jpg');
 
 
 
@@ -42,3 +42,5 @@ INSERT INTO messages (sender_id, recipient_id, content)
 VALUES (2, 1, 'Yes. I have many in stock');
 INSERT INTO messages (sender_id, recipient_id, content)
 VALUES (1, 2, 'Will you negotiate on the price?');
+INSERT INTO messages (sender_id, recipient_id, content)
+VALUES (2, 1, 'Sorry, this is the lowest price I could offer.');
