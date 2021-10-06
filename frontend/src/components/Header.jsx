@@ -259,21 +259,27 @@ function Header({ setSelectedItem }) {
         <Link to={myStoreLink}>
           <StorefrontIcon
             className="header-right-button"
-            style={{ fill: "#e1533c", fontSize: "400%" }}
+            style={{ 
+              // fill: "#e1533c", 
+              fontSize: "400%" }}
           />
         </Link>
 
         <Link to={myMessagesLink}>
           <MailOutlineIcon
             className="header-right-button"
-            style={{ fill: "#e1533c", fontSize: "400%" }}
+            style={{ 
+              // fill: "#e1533c", 
+              fontSize: "400%" }}
           />
         </Link>
 
         <Link to={myFavLink}>
           <FavoriteBorderIcon
             className="header-right-button"
-            style={{ fill: "#e1533c", fontSize: "400%" }}
+            style={{ 
+              // fill: "#e1533c", 
+              fontSize: "400%" }}
           />
         </Link>
       </div>
