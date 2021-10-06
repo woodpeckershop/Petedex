@@ -4,7 +4,10 @@
 }
 
 body {
+  background-image: url('./assets/images/backgroundImage.jpg');
+  background-repeat: no-repeat;
   background-color: #ece7dd;
+  background-size: cover;
   // color: #e1533c;
   // color: #ece7dd;
   // color: #232323;
@@ -21,6 +24,18 @@ code {
 }
 
 #root {
-  background-color: #ece7dd;
+  // background-color: #ece7dd;
+  // background-image: url('./assets/images/backgroundImage.jpg');
   height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // position: fixed; 
+  // top: 0; 
+  // left: 0; 
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
 }
