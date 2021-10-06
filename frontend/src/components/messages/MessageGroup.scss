@@ -27,9 +27,14 @@
   border: 1px solid rgb(227, 232, 241);
   border-radius: 0.5rem;
 }
+.mymeesage {
+  color: rgb(5, 5, 5);
+  text-align: right;
+  padding: 10px;
+}
 
 .bottom_bar {
-  margin-top: 26em;
+  margin-top: 23em;
   background-color: rgb(85, 172, 112);
   border: 1px solid rgb(227, 232, 241);
   border-radius: 0.5rem;
@@ -64,11 +69,5 @@
 
 .othermessage {
   color: black;
-  padding: 10px;
-}
-
-.mymeesage {
-  color: rgb(5, 5, 5);
-  text-align: right;
   padding: 10px;
 }
