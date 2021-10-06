@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./index.scss";
 import App from "./components/App";
 import reportWebVitals from "./components/reportWebVitals";
 import AuthProvider from "./components/providers/AuthProvider";
 
+
+
 ReactDOM.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>,
+    <AuthProvider>
+      <App />
+    </AuthProvider>,
   document.getElementById("root")
 );
 

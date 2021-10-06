@@ -13,12 +13,26 @@ import MessageGroup from "./messages/MessageGroup";
 import { authContext } from "./providers/AuthProvider";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import Button from "@mui/material/Button"
+// import Typography from "@mui/material/Typography";
 
-const theme = createTheme({
-  typography: {
-    fontFamily: ["Baloo 2"],
-  },
-});
+// import { useTheme } from '@mui/material/styles';
+// import { FaCommentsDollar } from "react-icons/fa";
+
+// const theme = createTheme({
+//   typography: {
+//     fontFamily: ["Baloo 2"],
+//   },
+//   palette: {
+//     primary: green,
+//     // primary: {
+//     //   main: "#ece7dd",
+//     // },
+//     secondary: {
+//       main: "#e1533c",
+//     },
+//   },
+// });
 
 function App() {
   const [items, setItems] = useState({
@@ -26,6 +40,9 @@ function App() {
     services: null,
     favorites: null,
   });
+
+// const theme = useTheme()
+// console.log('theme',theme)
 
   const [selectedCategory, setSelectedCategory] = useState("products");
   const [selectedItem, setSelectedItem] = useState();
@@ -46,61 +63,60 @@ function App() {
   console.log("items", items);
   return (
     //BEM
+    
 
     <Router>
-      <ThemeProvider theme={theme}>
-        <div className="app">
-          <Header setSelectedItem={setSelectedItem} />
+      {/* <ThemeProvider theme={theme}> */}
+        {/* <div className="app"> */}
+        <Header setSelectedItem={setSelectedItem} />
 
-          <Switch>
-            <Route path="/mymessages" exact>
-              {user_id ? <MessageGroup /> : <Redirect to="/login" />}
-            </Route>
+        <Switch>
+          <Route path="/mymessages" exact>
+            {user_id ? <MessageGroup /> : <Redirect to="/login" />}
+          </Route>
 
-            <Route path="/mystore" exact>
-              <Mystore setItems={setItems} items={items} />
-            </Route>
+          <Route path="/mystore" exact>
+            <Mystore setItems={setItems} items={items} />
+          </Route>
 
-            <Route path="/search">
-              <Itemlist items={selectedItem} />
-            </Route>
+          <Route path="/search">
+            <Itemlist items={selectedItem} />
+          </Route>
 
-            {/* <Route path="/:user_id/products" exact>
+          {/* <Route path="/:user_id/products" exact>
               <Categories setSelectedCategory={setSelectedCategory} />
               <Itemlist items={items[selectedCategory]} />
             </Route> */}
 
-            <Route path="/login">
-              <Login />
-            </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
 
-            <Route path="/favorites">
-              <Favorites />
-            </Route>
+          <Route path="/favorites">
+            <Favorites />
+          </Route>
 
-            <Route path="/products" exact>
-              <div className="items-container">
-                <Itemlist category="products" items={items["products"]} />
-              </div>
-            </Route>
-            <Route path="/services" exact>
-              <div className="items-container">
-                <Itemlist category="services" items={items["services"]} />
-              </div>
-            </Route>
-            <Route path={`/:user_id/products/:product_id`} exact>
-              <ProductDetail category="products" />
-            </Route>
-            <Route path={`/:user_id/services/:product_id`} exact>
-              <ProductDetail category="services" />
-            </Route>
-            <Route path="/">
-              <Categories setSelectedCategory={setSelectedCategory} />
-            </Route>
-          </Switch>
-        </div>
-      </ThemeProvider>
+          <Route path="/products" exact>
+            <Itemlist category="products" items={items["products"]} />
+          </Route>
+          <Route path="/services" exact>
+            <Itemlist category="services" items={items["services"]} />
+          </Route>
+          <Route path={`/:user_id/products/:product_id`} exact>
+            <ProductDetail category="products" />
+          </Route>
+          <Route path={`/:user_id/services/:product_id`} exact>
+            <ProductDetail category="services" />
+          </Route>
+          <Route path="/">
+            <Categories setSelectedCategory={setSelectedCategory} />
+          </Route>
+        </Switch>
+        {/* </div> */}
+        {/* </ThemeProvider> */}
     </Router>
+  
+    
   );
 }
 

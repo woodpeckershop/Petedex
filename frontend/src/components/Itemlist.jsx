@@ -1,6 +1,7 @@
 import React from "react";
 // import "./Home.css";
 import ItemCard from "./ItemCard.jsx";
+import './Itemlist.scss'
 
 // const allCategories = ['all', ...new Set(items.map((item) => item.category))];
 
@@ -10,26 +11,28 @@ function Itemlist(props) {
 
   if (!items) return false;
 
-  if ((Array.isArray(items) && !items.length)) {
+  if (Array.isArray(items) && !items.length) {
     return <h1>There isn't such a thing called 'you like'</h1>;
   }
 
   if (!Array.isArray(items)) {
-    return <ItemCard
-      //why error?
-      key={items.id}
-      id={items.id}
-      userId={items.user_id}
-      name={items.name}
-      image_path={items.image_path}
-      description={items.description}
-      price={items.price}
-      category={category}
-    />
+    return (
+      <ItemCard
+        //why error?
+        key={items.id}
+        id={items.id}
+        userId={items.user_id}
+        name={items.name}
+        image_path={items.image_path}
+        description={items.description}
+        price={items.price}
+        category={category}
+      />
+    );
   }
 
   return (
-    <div>
+    <div className="items-container">
       {items.map((item) => (
         <ItemCard
           //why error?
