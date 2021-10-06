@@ -57,7 +57,7 @@ function Login() {
         </div>
       </form>
 
-      <h1>{user_name}</h1>
+      
       <form onSubmit={onSubmit} title="Login">
         <div id="loginform">
           <h1 id="headerTitle">Sign up</h1>
