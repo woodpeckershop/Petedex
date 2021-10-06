@@ -314,12 +314,12 @@ function Header({ setSelectedItem }) {
   const [productName, setProductName] = useState("");
   const { user_name, user_id } = useContext(authContext);
   const [name, setName] = useState("Guest");
-  const [status, setStatus] = useState(<LoginIcon style={{ fill: "white", fontSize: "400%" }}/>);
+  const [status, setStatus] = useState(<LoginIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }}/>);
 
   useEffect(() => {
     if (user_name) {
       setName(user_name);
-      setStatus(<LogoutIcon style={{ fill: "white", fontSize: "400%" }}/>);
+      setStatus(<LogoutIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }}/>);
     }
   }, [user_name]);
 
@@ -377,15 +377,15 @@ function Header({ setSelectedItem }) {
         </Link>
 
         <Link to={myStoreLink}>
-          <StorefrontIcon style={{ fill: "white", fontSize: "400%" }} />
+          <StorefrontIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }} />
         </Link>
 
         <Link to={myMessagesLink}>
-          <MailOutlineIcon style={{ fill: "white", fontSize: "400%" }} />
+          <MailOutlineIcon className='header-right-button' style={{ fill:'var(--clr-light)', fontSize: "400%" }} />
         </Link>
 
         <Link to={myFavLink}>
-          <FavoriteBorderIcon style={{ fill: "white", fontSize: "400%" }} />
+          <FavoriteBorderIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }} />
         </Link>
       </div>
     </div>

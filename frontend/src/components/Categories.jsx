@@ -5,7 +5,10 @@ import "./Categories.scss";
 
 const Categories = (props) => {
   return (
-    <div className="btn-container">
+    <div className="btn-container" style={{
+      position: 'absolute', left: '50%', top: '50%',
+      transform: 'translate(-50%, -50%)'
+  }}>
       <Link to="/products">
         <button className='category-button'>Products</button>
         {/* <Button variant="contained" classname='category-button'style={{borderRadius: '154px', fontFamily:'Baloo 2', maxWidth: '300px', maxHeight: '300px', minWidth: '300px', minHeight: '300px', margin: '30px',  marginTop: '600px',backgroundColor:' #cd9042', fontSize: '50px', padding: '100px'}}>Products</Button> */}

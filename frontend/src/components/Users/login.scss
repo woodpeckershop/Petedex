@@ -43,7 +43,7 @@ html {
 }
 
 .row input:focus {
-  box-shadow: inset 0px -3px 0px 0px rgba(34, 193, 195, 0.7);
+  box-shadow: inset 0px -3px 0px 0px var(--clr-blue-dark);
   outline: none;
 }
 
@@ -74,8 +74,8 @@ html {
   background: rgb(34, 193, 195);
   background: linear-gradient(
     90deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(253, 187, 45, 1) 100%
+   var( --clr-yellow) 0%,
+   var( --clr-orange) 100%
   );
   border: 0px;
   cursor: pointer;

@@ -15,8 +15,6 @@
     margin-top: 5px;
   }
 
- 
-
   .header_searchForm {
     display: flex;
     align-items: center;
@@ -28,9 +26,9 @@
     .header_searchInput {
       height: 52px;
       padding: 10px;
-font-size: 15px;
+      font-size: 15px;
       border-radius: 154px;
-      // border-color: #e1533c;
+      background-color: var(--clr-light);
     }
 
     .header_searchIcon {
@@ -40,7 +38,7 @@ font-size: 15px;
       // color: #e1533c;
       // background-color: white;
       // border: #e1533c solid 3px;
-      background-color: #cd9042;
+      background-color: var(--clr-orange);
       // border: none;
       border-radius: 154px;
       border-radius: 154px;
@@ -48,6 +46,7 @@ font-size: 15px;
   }
 
   .header-right {
+    color: var(--clr-light);
     display: flex;
     flex: 1;
     justify-content: flex-end;
@@ -55,13 +54,20 @@ font-size: 15px;
     .header-right-button {
       margin-left: 20px;
     }
+.header-right-button{
+  
+  
+  &:hover {
 
+    
+    transform: scale(1.2);
+  }
+}
     .header_login {
       display: flex;
       align-items: center;
       // color: #e1533c;
-      color: white;
-      
+      color: var(--clr-light);
 
       .header-right-font {
         font-size: xx-large;

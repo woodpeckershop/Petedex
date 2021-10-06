@@ -14,14 +14,16 @@
 // }
 
 body {
-  // background-color: var(-clr-primary-2);
+  background-image: url('./assets/images/backgroundImage.jpg');
+  background-repeat: no-repeat;
+  background-color: #ece7dd;
+  background-size: cover;
   // color: #e1533c;
   // color: #ece7dd;
   // color: #232323;
   // color: #dbc6ab;
   height: 100%;
-  background-size: cover 100%;
-  background-position: center center;
+ 
   margin: 0;
   font-family: "Baloo 2", cursive;
   -webkit-font-smoothing: antialiased;
@@ -36,10 +38,12 @@ code {
 }
 
 #root {
-  background-color: #ece7dd;
+  // background-color: #ece7dd;
 
   --clr-blue-dark: #133138;
-  --clr-blue-light: #d4edda;
+  // --clr-blue-light: #d4edda;
   --clr-yellow: #e2c495;
-  --clr-primary-2: #ece7dd;
+  --clr-orange:#c55b4a;
+  --clr-light: #ece7dd;
+
 }

@@ -24,13 +24,13 @@ export default function DetailCard({item,user_id,fav,changeFav}) {
   
 
   return (
-    <Card sx={{ maxWidth: 1000 }}>
-      <CardHeader fontSize="h2"
+    <Card sx={{ maxWidth: 900 }}>
+      <CardHeader fontSize="h1"
         title={item.name}
       />
       <CardMedia
         component="img"
-        height="800"
+        height="600"
         image={item.image_path}
         alt={item.name}
       />
