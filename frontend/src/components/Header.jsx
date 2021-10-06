@@ -5,15 +5,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Link } from "@mui/material";
 
 import { useEffect, useState, useContext } from "react";
 import "./Header.scss";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -106,20 +102,32 @@ export default function Header({ setSelectedItem }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        className="appbar"
+        position="sticky"
+        // style={{ background: "#ece7dd" }}
+        color="primary"
+      >
         <Toolbar>
           {/* <Link to="/">
         <img alt="logo" className="header_logo" src={logo} />
       </Link>  */}
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component={Link}
             to="/"
             sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            PETEDEX
-          </Typography>
+          > */}
+          {/* <Link to="/" >
+          <h2 style={{ textDecoration: 'none' }} >PETEDEX</h2>
+          </Link>  */}
+{/* <Button color='primary'></Button> */}
+          <Link href="/" underline="none" color='secondary'>
+            {<h2>PETEDEX</h2>}
+          </Link>
+
+          {/* </Typography> */}
 
           {/* <form className="header_searchForm" onSubmit={handleSubmit}>
           <input
@@ -142,7 +150,7 @@ export default function Header({ setSelectedItem }) {
                 </IconButton>
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Please type product here."
+                placeholder="Please type here."
                 inputProps={{ "aria-label": "search" }}
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
@@ -152,27 +160,6 @@ export default function Header({ setSelectedItem }) {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {/* <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-
-
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-             
-                <NotificationsIcon />
-             
-            </IconButton> */}
-
             {/* <Link to="/login">
               <div className="header_login">
                 <span className="header-right-font">{`Hello ${name}`}</span> */}
@@ -225,32 +212,21 @@ export default function Header({ setSelectedItem }) {
               <FavoriteBorderIcon />
             </IconButton>
 
-            {/* <Link to={myStoreLink}>
-              <StorefrontIcon
-                className="header-right-button"
-                style={{ fill: "#e1533c", fontSize: "400%" }}
-              />
-            </Link> */}
-
-            {/* <Link to={myMessagesLink}>
-              <MailOutlineIcon
-                className="header-right-button"
-                style={{ fill: "#e1533c", fontSize: "400%" }}
-              />
-            </Link>
-
-            <Link to={myFavLink}>
-              <FavoriteBorderIcon
-                className="header-right-button"
-                style={{ fill: "#e1533c", fontSize: "400%" }}
-              />
-            </Link> */}
           </Box>
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
+
+
+
+
+
+
+
+
+
 
 // function Header({ setSelectedItem }) {
 // const [productName, setProductName] = useState("");
