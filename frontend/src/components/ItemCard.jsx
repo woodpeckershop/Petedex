@@ -16,7 +16,7 @@ export default function ItemCard(props) {
   const { user_id } = useContext(authContext);
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="item-card">
+    <Card sx={{ maxWidth: 345 }} className="item-card" >
       <CardMedia component="img" height="140" image={image_path} alt={name} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

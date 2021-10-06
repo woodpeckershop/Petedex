@@ -294,7 +294,7 @@
 // export default Header;
 
 import { useEffect, useState, useContext } from "react";
-import "./Header.scss";
+import "./Nav.scss";
 import { Link, useHistory } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -308,18 +308,18 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { logo } from "../assets/images";
 import { IconButton } from "@mui/material";
 import Axios from "axios";
-import { authContext } from "../components/providers/AuthProvider";
+import { authContext } from "./providers/AuthProvider";
 
 function Header({ setSelectedItem }) {
   const [productName, setProductName] = useState("");
   const { user_name, user_id } = useContext(authContext);
   const [name, setName] = useState("Guest");
-  const [status, setStatus] = useState(<LoginIcon style={{ fill: "white", fontSize: "400%" }}/>);
+  const [status, setStatus] = useState(<LoginIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }}/>);
 
   useEffect(() => {
     if (user_name) {
       setName(user_name);
-      setStatus(<LogoutIcon style={{ fill: "white", fontSize: "400%" }}/>);
+      setStatus(<LogoutIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }}/>);
     }
   }, [user_name]);
 
@@ -355,6 +355,7 @@ function Header({ setSelectedItem }) {
             placeholder="Please type product here."
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
+            size='40'
           />
 
           <IconButton type="submit">
@@ -370,21 +371,21 @@ function Header({ setSelectedItem }) {
       <div className="header-right">
         <Link to="/login">
           <div className="header_login">
-            <span >{`Hello ${name}`}</span>
+            <span className='header-right-font'>{`Hello ${name}`}</span>
             <span >{status}</span>
           </div>
         </Link>
 
         <Link to={myStoreLink}>
-          <StorefrontIcon style={{ fill: "white", fontSize: "400%" }} />
+          <StorefrontIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }} />
         </Link>
 
         <Link to={myMessagesLink}>
-          <MailOutlineIcon style={{ fill: "white", fontSize: "400%" }} />
+          <MailOutlineIcon className='header-right-button' style={{ fill:'var(--clr-light)', fontSize: "400%" }} />
         </Link>
 
         <Link to={myFavLink}>
-          <FavoriteBorderIcon style={{ fill: "white", fontSize: "400%" }} />
+          <FavoriteBorderIcon className='header-right-button' style={{ fill: 'var(--clr-light)', fontSize: "400%" }} />
         </Link>
       </div>
     </div>

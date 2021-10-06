@@ -1,7 +1,17 @@
 * {
   margin: 0;
   font-family: "Baloo 2", cursive;
+  box-sizing: border-box;
 }
+
+// body {
+// font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+//   Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+// background: var(--clr-grey-10);
+// color: var(--clr-grey-1);
+// line-height: 1.5;
+// font-size: 0.875rem;
+// }
 
 body {
   background-image: url('./assets/images/backgroundImage.jpg');
@@ -12,12 +22,16 @@ body {
   // color: #ece7dd;
   // color: #232323;
   // color: #dbc6ab;
+  height: 100%;
+ 
   margin: 0;
   font-family: "Baloo 2", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+a {
+  text-decoration: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -25,17 +39,11 @@ code {
 
 #root {
   // background-color: #ece7dd;
-  // background-image: url('./assets/images/backgroundImage.jpg');
-  height: 100%;
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  // position: fixed; 
-  // top: 0; 
-  // left: 0; 
 
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;
+  --clr-blue-dark: #133138;
+  // --clr-blue-light: #d4edda;
+  --clr-yellow: #e2c495;
+  --clr-orange:#c55b4a;
+  --clr-light: #ece7dd;
+
 }

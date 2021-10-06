@@ -52,7 +52,7 @@ function MessageGroup() {
   });
 
   return (
-    <div>
+    <div className='message-page'>
       <table>{messageGroup}</table>
     </div>
   );
