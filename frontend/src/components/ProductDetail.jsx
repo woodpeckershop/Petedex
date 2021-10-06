@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./ProductDetail.scss";
 import Axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState, useEffect, useContext } from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
 import { authContext } from "./providers/AuthProvider";
-import BasicModal from "./modal.jsx"
+// import BasicModal from "./modal.jsx"
 import DetailCard from "./DetailCard";
 import Map from "./Map.jsx";
 

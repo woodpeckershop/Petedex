@@ -231,9 +231,9 @@ Grocery List
   border-radius: 0.5em;
 }
 .grocery-label {
-  border: 1px solid rgb(227, 232, 241);
+  border: 1px solid  var(--clr-light);
   border-radius: 0.5rem;
-  background-color: rgb(179, 214, 191);
+  background-color: var(--clr-light);
   font-size: 1.2em;
   padding: 3px;
 }
@@ -260,7 +260,7 @@ Grocery List
 .submit-btn {
   margin-top: 1em;
   margin-left: 39.6em;
-  background: var(--clr-primary-8);
+  background: var(--clr-light);
   border-color: transparent;
   flex: 0 0 5rem;
   display: grid;
@@ -270,7 +270,7 @@ Grocery List
   letter-spacing: 2px;
   border-radius: 0.5em;
   cursor: pointer;
-  content: var(--clr-primary-5);
+  content: var(--clr-blue-dark);
   transition: var(--transition);
   font-size: 0.85rem;
   width: 10em;
@@ -280,8 +280,8 @@ Grocery List
   -ms-transform: scale(1.1); /* IE 9 */
   -webkit-transform: scale(1.1); /* Safari 3-8 */
   transform: scale(1.1);
-  background: var(--clr-primary-5);
-  color: var(--clr-white);
+  background: var(--clr-orange);
+  color: var(--clr-light);
 }
 
 .grocery-container {
@@ -299,7 +299,7 @@ Grocery List
   margin-bottom: 1rem;
   transition: var(--transition);
   padding: 0.25rem 1rem;
-  border: 3px solid #cdddb7;
+  border: 3px solid var(--clr-yellow);
   border-radius: 1rem;
   text-transform: capitalize;
 }
@@ -336,25 +336,26 @@ Grocery List
 .delete-btn {
   background: transparent;
   border-color: transparent;
+  
   cursor: pointer;
   font-size: 3rem;
   margin: 0 1rem;
   transition: var(--transition);
 }
 .edit-btn {
-  color: var(--clr-green-light);
+  color:  var(--clr-yellow);
 }
 .edit-btn:hover {
-  color: var(--clr-green-dark);
+  color: var(--clr-blue-dark);
   -ms-transform: scale(1.2); /* IE 9 */
   -webkit-transform: scale(1.2); /* Safari 3-8 */
   transform: scale(1.2);
 }
 .delete-btn {
-  color: var(--clr-red-light);
+  color: var(--clr-orange);
 }
 .delete-btn:hover {
-  color: var(--clr-red-dark);
+  color: var(--clr-blue-dark);
   -ms-transform: scale(1.2); /* IE 9 */
   -webkit-transform: scale(1.2); /* Safari 3-8 */
   transform: scale(1.2);
@@ -392,7 +393,7 @@ Grocery List
   margin-left: -2em;
   border: 3px solid rgba(10, 15, 9, 0.027);
   background-color: var(--clr-blue-dark);
-  color: #d4edda;
+  color: var(--clr-light);
   border-top-left-radius: 3em;
   border-top-right-radius: 3em;
   width: 1278px;

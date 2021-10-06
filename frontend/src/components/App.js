@@ -6,14 +6,14 @@ import Nav from "./Nav.jsx";
 import Itemlist from "./Itemlist.jsx";
 import Categories from "./Categories.jsx";
 import ProductDetail from "./ProductDetail.jsx";
-import Mystore from "./Mystore";
+import Mystore from "./Mystore/Mystore";
 import Favorites from "./Favorites.jsx";
 import Login from "./Users/login.js";
 import MessageGroup from "./messages/MessageGroup";
 import { authContext } from "./providers/AuthProvider";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-import Button from "@mui/material/Button";
+// import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+// import Button from "@mui/material/Button";
 // import Typography from "@mui/material/Typography";
 
 // import { useTheme } from '@mui/material/styles';
