@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState, useEffect, useContext } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { authContext } from "./providers/AuthProvider";
+import BasicModal from "./modal.jsx"
+import DetailCard from "./DetailCard";
 import Map from "./Map.jsx";
 
 function ProductDetail({ category = "products" }) {
@@ -66,27 +68,30 @@ function ProductDetail({ category = "products" }) {
       console.log("Successfully deleted.");
     });
   };
-  const [input, setInput] = useState("");
-  const handleReply = () => {
-    const templateVar = {
-      recipient_id: item.user_id,
-      sender_id: user_id,
-      content: input,
-    };
 
-    Axios.put("http://localhost:8080/api/messages", templateVar)
-      .then((data) => {
-        console.log("message sent");
-      })
-      .catch((err) => console.log(err));
-    setInput("");
-    return;
-  };
+
+  // const [input, setInput] = useState('');
+  // const handleReply = () => {
+  //   const templateVar = {
+  //     recipient_id: item.user_id,
+  //     sender_id: user_id,
+  //     content: input,
+  //   };
+
+  //   Axios.put('http://localhost:8080/api/messages', templateVar)
+  //     .then((data) => {
+  //       console.log("message sent")
+  //     })
+  //     .catch((err) => console.log(err));
+  //   setInput('');
+  //   return;
+  // };
 
   if (category === "services") {
     return (
-      <div className="shell">
-        <div className="product">
+      <div className="service-shell">
+         <DetailCard item={item} user_id={user_id} fav={fav} changeFav={changeFav}/>
+        {/* <div className="product">
           <div className="product__info">
             <p>{item.name}</p>
             <p className="product__price">
@@ -98,7 +103,7 @@ function ProductDetail({ category = "products" }) {
           <img src={item.image_path} alt="" className="product__img" />
           <p className="product__img">{item.description}</p>
           {/* <button>Add to basket</button> */}
-          <Link
+          {/* <Link
             to={{
               pathname: "/",
             }}
@@ -111,15 +116,16 @@ function ProductDetail({ category = "products" }) {
             variant="contained"
             onClick={changeFav}
           />
-        </div>
+        </div> */} 
 
         <Map longitude={item.lng} latitude={item.lat} />
       </div>
     );
   } else {
     return (
-      <div className="shell">
-        <div className="product">
+      <div className="product-shell">
+        <DetailCard item={item} user_id={user_id} fav={fav} changeFav={changeFav}/>
+        {/* <div className="product">
           <div className="product__info">
             <p>{item.name}</p>
             <p className="product__price">
@@ -128,31 +134,28 @@ function ProductDetail({ category = "products" }) {
             </p>
           </div>
 
-          <img src={item.image_path} alt="" className="product__img" />
-          <p className="product__img">{item.description}</p>
-          {/* <button>Add to basket</button> */}
-          <Link
-            to={{
-              pathname: "/",
-            }}
-          >
-            <button className="product__button">Main Page</button>
-          </Link>
-          <FavoriteIcon
-            className="product__fav"
-            color={fav ? "secondary" : "disabled"}
-            variant="contained"
-            onClick={changeFav}
-          />
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button onClick={handleReply}>Send</button>
-        </div>
-      </div>
-    );
-  }
+      <img src={item.image_path} alt="" className="product__img" />
+      <p className="product__img">{item.description}</p>
+      {/* <button>Add to basket</button> */}
+      {/* <Link
+        to={{
+          pathname: "/",
+        }}
+      >
+        <button className="product__button">Main Page</button>
+      </Link>
+      <FavoriteIcon className="product__fav" color={fav? "secondary": "disabled"} variant="contained" onClick={changeFav} /> 
+      <BasicModal item={item} user_id={user_id}>Message the owner</BasicModal> */}
+
+      {/* <input
+        type='text'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={handleReply}>Send</button> */}
+    {/* </div> */}
+    </div>
+  );
+}
 }
 export default ProductDetail;
