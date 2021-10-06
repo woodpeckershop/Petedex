@@ -4,34 +4,13 @@ import "./index.scss";
 import App from "./components/App";
 import reportWebVitals from "./components/reportWebVitals";
 import AuthProvider from "./components/providers/AuthProvider";
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-import green from "@material-ui/core/colors/green";
 
-// const theme = createTheme({
-//   typography: {
-//     fontFamily: ["Baloo 2"],
-//   },
-//   palette: {
-//     primary: green,
-//     // primary: {
-//     //   main: "#ece7dd",
-//     // },
-//     secondary: {
-//       main: "#e1533c",
-//     },
-//   },
-// });
 
-// const theme = createTheme({
-//   palette: { primary: { main: green[500] }, secondary: { main: green[500] } },
-// });
 
 ReactDOM.render(
-  // <ThemeProvider theme={theme}>
     <AuthProvider>
       <App />
     </AuthProvider>,
-  // </ThemeProvider>
   document.getElementById("root")
 );
 
