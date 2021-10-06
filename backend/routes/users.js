@@ -44,6 +44,17 @@ module.exports = function (db) {
       });
   });
 
+  router.get("/all", (req, res) => {
+    queries
+      .getAllUsers(db)
+      .then((users) => {
+        res.json(users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
   router.put("/login", (req, res) => {
     console.log("00000000", req.body);
 

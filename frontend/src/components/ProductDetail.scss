@@ -1,7 +1,14 @@
-.shell{
+.service-shell{
   display: flex;
  align-items: center;
   justify-content: space-between;
+}
+
+.product-shell{
+  display: flex;
+ align-items: center;
+ justify-content:center;
+  // justify-content: space-between;
 }
 
 .product {
