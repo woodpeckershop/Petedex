@@ -6,7 +6,7 @@ import {Marker} from "./Marker.js"
 function Map({ latitude, longitude }) {
   function AnyReactComponent  ({ text }) {
     
-    return (<div style={Marker} className = "marker">{text}</div>);
+    return (<div style={Marker}>{text}</div>);
   }
   console.log(typeof latitude, longitude);
 
@@ -26,9 +26,9 @@ function Map({ latitude, longitude }) {
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals={true}
       >
-        <div className = "marker">
+        
         <AnyReactComponent lat={latitude} lng={longitude} text="😺" /> 
-        </div>
+       
         {/* <Marker className="marker"
           key="marker_1"
           position={{
