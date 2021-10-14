@@ -21,7 +21,7 @@ function Map({ latitude, longitude }) {
   return (
     <div style={{ height: "50vh", width: "50%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyC1njAZKv9rJIrWCsVI9VZO2OP0RTpjh2I" }}
+        bootstrapURLKeys={{ key: "AIzaSyC09Z2hpf-8k1fxeMRBi9MB1eZHYkR4b1E" }}
         center={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals={true}
