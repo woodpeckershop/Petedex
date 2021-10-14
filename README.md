@@ -2,6 +2,10 @@
 
 Petedex, inspired by Pokedex from Pokemon, is a full-stack web application built with Node/Express for the backend, React for the frontend and postgresSQL for the database along with material UI and the react-google-map api. It provides a one-stop-for-all experience for pet owner and product/service providers.
 
+## Final Product
+
+!["final product"](https://github.com/woodpeckershop/Petedex/blob/master/frontend/docs/pededex-show.gif?raw=true)
+
 ## Getting Started
 
 - Install all dependencies (using the `npm install` command).
