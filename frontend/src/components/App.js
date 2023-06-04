@@ -12,27 +12,6 @@ import Login from "./Users/login.js";
 import MessageGroup from "./messages/MessageGroup";
 import { authContext } from "./providers/AuthProvider";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-// import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-// import Button from "@mui/material/Button";
-// import Typography from "@mui/material/Typography";
-
-// import { useTheme } from '@mui/material/styles';
-// import { FaCommentsDollar } from "react-icons/fa";
-
-// const theme = createTheme({
-//   typography: {
-//     fontFamily: ["Baloo 2"],
-//   },
-//   palette: {
-//     primary: green,
-//     // primary: {
-//     //   main: "#ece7dd",
-//     // },
-//     secondary: {
-//       main: "#e1533c",
-//     },
-//   },
-// });
 
 function App() {
   const [items, setItems] = useState({
@@ -40,9 +19,6 @@ function App() {
     services: null,
     favorites: null,
   });
-
-  // const theme = useTheme()
-  // console.log('theme',theme)
 
   const [selectedCategory, setSelectedCategory] = useState("products");
   const [selectedItem, setSelectedItem] = useState();
