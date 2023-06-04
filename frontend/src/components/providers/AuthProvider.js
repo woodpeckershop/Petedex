@@ -16,7 +16,6 @@ export default function AuthProvider(props) {
       email: email,
       password: password,
     }).then((response) => {
-      console.log("ressssssssss", response);
       if (response.data.error) {
         window.alert(response.data.error);
       } else {
